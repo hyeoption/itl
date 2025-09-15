@@ -12,12 +12,15 @@ import {
   Search,
   Printer
 } from "lucide-react";
+import { sendContactEmail, validateContactForm, initEmailJS, type ContactFormData } from "../lib/emailService";
 
 export default function HwarangHomepage() {
   const [lang, setLang] = useState("en");
   const [mobileOpen, setMobileOpen] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
     const translations = {
     en: {
@@ -107,6 +110,42 @@ export default function HwarangHomepage() {
     
     return () => clearInterval(interval);
   }, []);
+
+  useEffect(() => {
+    // Initialize EmailJS
+    initEmailJS();
+  }, []);
+
+  // Handle form submission
+  const handleFormSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    // Validate form
+    const errors = validateContactForm(form as ContactFormData);
+    if (errors.length > 0) {
+      alert(errors.join('\n'));
+      return;
+    }
+
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+
+    try {
+      const success = await sendContactEmail(form as ContactFormData);
+      if (success) {
+        setSubmitStatus('success');
+        setForm({ name: "", email: "", message: "" }); // Reset form
+        setTimeout(() => setSubmitStatus('idle'), 5000); // Reset status after 5 seconds
+      } else {
+        setSubmitStatus('error');
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   const heroImages = [
     "/images/warehouse-logistics.jpg",
@@ -537,14 +576,39 @@ export default function HwarangHomepage() {
             {/* 오른쪽: Get in Touch 폼 */}
             <div>
               <h3 className="text-2xl font-semibold mb-6">{t.contactForm.title}</h3>
-              <form className="space-y-6">
+              
+              {/* Status Messages */}
+              {submitStatus === 'success' && (
+                <div className="mb-4 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg">
+                  <div className="flex items-center">
+                    <CheckCircle className="w-5 h-5 mr-2" />
+                    {lang === "ko" 
+                      ? "메시지가 성공적으로 전송되었습니다!" 
+                      : "Message sent successfully!"
+                    }
+                  </div>
+                </div>
+              )}
+              
+              {submitStatus === 'error' && (
+                <div className="mb-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg">
+                  {lang === "ko" 
+                    ? "메시지 전송에 실패했습니다. 다시 시도해주세요." 
+                    : "Failed to send message. Please try again."
+                  }
+                </div>
+              )}
+              
+              <form className="space-y-6" onSubmit={handleFormSubmit}>
                 <div>
                   <input
                     type="text"
                     placeholder={t.contactForm.name}
                     value={form.name}
                     onChange={(e) => setForm({...form, name: e.target.value})}
-                    className="w-full px-4 py-3 bg-white border border-neutral-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-neutral-900"
+                    required
+                    disabled={isSubmitting}
+                    className="w-full px-4 py-3 bg-white border border-neutral-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-neutral-900 disabled:bg-neutral-100"
                   />
                 </div>
                 <div>
@@ -553,7 +617,9 @@ export default function HwarangHomepage() {
                     placeholder={t.contactForm.email}
                     value={form.email}
                     onChange={(e) => setForm({...form, email: e.target.value})}
-                    className="w-full px-4 py-3 bg-white border border-neutral-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-neutral-900"
+                    required
+                    disabled={isSubmitting}
+                    className="w-full px-4 py-3 bg-white border border-neutral-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-neutral-900 disabled:bg-neutral-100"
                   />
                 </div>
                 <div>
@@ -562,14 +628,20 @@ export default function HwarangHomepage() {
                     value={form.message}
                     onChange={(e) => setForm({...form, message: e.target.value})}
                     rows={5}
-                    className="w-full px-4 py-3 bg-white border border-neutral-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-neutral-900"
+                    required
+                    disabled={isSubmitting}
+                    className="w-full px-4 py-3 bg-white border border-neutral-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-neutral-900 disabled:bg-neutral-100"
                   />
                 </div>
                 <button
                   type="submit"
-                  className="w-full px-6 py-3 bg-blue-900 text-white rounded-lg hover:bg-blue-800 transition-colors font-semibold"
+                  disabled={isSubmitting}
+                  className="w-full px-6 py-3 bg-blue-900 text-white rounded-lg hover:bg-blue-800 transition-colors font-semibold disabled:bg-neutral-400 disabled:cursor-not-allowed"
                 >
-                  {t.contactForm.button}
+                  {isSubmitting 
+                    ? (lang === "ko" ? "전송 중..." : "Sending...") 
+                    : t.contactForm.button
+                  }
                 </button>
               </form>
             </div>
