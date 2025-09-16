@@ -24,16 +24,15 @@ export default function WhyHwarangPageKo() {
   const t = {
     brand: "HWARANG CO., LTD.",
     nav: ["홈", "회사소개", "서비스", "견적요청", "네트워크 & 항로", "연락처"],
-    aboutSubNav: ["왜 화랑인가?", "회사설비", "회사연혁"],
-    pageTitle: "왜 화랑인가?",
-    pageSubtitle: "고객이 화랑을 선택하는 이유",
+    aboutSubNav: ["주식회사 화랑", "회사설비", "회사연혁"],
+    pageTitle: "주식회사 화랑",
+    pageSubtitle: "글로벌 비즈니스를 위한 전문 물류 및 포워딩 서비스",
     globalTitle: "글로벌 네트워크",
     globalDesc: "전 세계 파트너와의 협력을 통해 어디든 안전하게 화물을 운송합니다.",
     serviceTitle: "맞춤형 서비스",
     serviceDesc: "고객의 요구사항에 맞춘 최적화된 물류 솔루션을 제공합니다.",
     qualityTitle: "품질 보증",
     qualityDesc: "ISO 인증을 통한 체계적인 품질 관리 시스템을 운영합니다.",
-    strengthsTitle: "화랑의 강점",
     competitiveTitle: "경쟁력 있는 가격",
     competitiveDesc: "다양한 컨테이너를 자체 보유하여 합리적인 비용을 제공합니다.",
     timelyTitle: "정시 배송",
@@ -42,7 +41,6 @@ export default function WhyHwarangPageKo() {
     safetyDesc: "화물의 안전을 최우선으로 하는 체계적인 관리 시스템",
     customerTitle: "고객 만족",
     customerDesc: "고객의 성공이 곧 우리의 성공이라는 마음으로 최선을 다합니다.",
-    whyChooseTitle: "화랑을 선택해야 하는 이유",
     footer: "© 2025 주식회사 화랑. All rights reserved."
   };
 
@@ -115,7 +113,7 @@ export default function WhyHwarangPageKo() {
                             }
                           }}
                           className={`block w-full text-left px-4 py-3 text-sm hover:bg-gray-50 transition-colors ${
-                            subIndex === 0 ? "text-blue-900 font-medium" : "text-gray-700"
+                            subIndex === 0 ? "text-blue-900 font-medium bg-blue-50" : "text-gray-700"
                           }`}
                         >
                           {subItem}
@@ -251,61 +249,10 @@ export default function WhyHwarangPageKo() {
         </div>
       </div>
 
-      {/* Main Content */}
+      {/* Strengths Section */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-neutral-900 mb-4">
-              {t.whyChooseTitle}
-            </h2>
-            <div className="w-16 h-0.5 bg-blue-900 mx-auto"></div>
-          </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
-            <div className="text-center p-6 bg-neutral-50 rounded-xl">
-              <Globe className="w-12 h-12 text-blue-900 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold text-neutral-900 mb-3">
-                {t.globalTitle}
-              </h3>
-              <p className="text-neutral-600 leading-relaxed">
-                {t.globalDesc}
-              </p>
-            </div>
-            
-            <div className="text-center p-6 bg-neutral-50 rounded-xl">
-              <Target className="w-12 h-12 text-blue-900 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold text-neutral-900 mb-3">
-                {t.serviceTitle}
-              </h3>
-              <p className="text-neutral-600 leading-relaxed">
-                {t.serviceDesc}
-              </p>
-            </div>
-            
-            <div className="text-center p-6 bg-neutral-50 rounded-xl">
-              <Shield className="w-12 h-12 text-blue-900 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold text-neutral-900 mb-3">
-                {t.qualityTitle}
-              </h3>
-              <p className="text-neutral-600 leading-relaxed">
-                {t.qualityDesc}
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Strengths Section */}
-      <section className="py-20 bg-neutral-50">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-neutral-900 mb-4">
-              {t.strengthsTitle}
-            </h2>
-            <div className="w-16 h-0.5 bg-blue-900 mx-auto"></div>
-          </div>
-          
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
             <div className="space-y-8">
               <div className="flex items-start gap-4">
                 <TrendingUp className="w-8 h-8 text-blue-900 mt-1 flex-shrink-0" />
@@ -356,12 +303,45 @@ export default function WhyHwarangPageKo() {
               </div>
             </div>
             
-            <div className="flex justify-center">
+            <div className="flex justify-center items-center">
               <img 
                 src="/images/container-ship-aerial.jpg" 
                 alt="컨테이너" 
-                className="rounded-lg shadow-lg max-w-md w-full"
+                className="rounded-lg shadow-lg max-w-lg w-full h-auto object-cover"
               />
+            </div>
+          </div>
+
+          {/* Service Cards */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="text-center p-6 bg-neutral-50 rounded-xl">
+              <Globe className="w-12 h-12 text-blue-900 mx-auto mb-4" />
+              <h3 className="text-xl font-semibold text-neutral-900 mb-3">
+                {t.globalTitle}
+              </h3>
+              <p className="text-neutral-600 leading-relaxed">
+                {t.globalDesc}
+              </p>
+            </div>
+            
+            <div className="text-center p-6 bg-neutral-50 rounded-xl">
+              <Target className="w-12 h-12 text-blue-900 mx-auto mb-4" />
+              <h3 className="text-xl font-semibold text-neutral-900 mb-3">
+                {t.serviceTitle}
+              </h3>
+              <p className="text-neutral-600 leading-relaxed">
+                {t.serviceDesc}
+              </p>
+            </div>
+            
+            <div className="text-center p-6 bg-neutral-50 rounded-xl">
+              <Shield className="w-12 h-12 text-blue-900 mx-auto mb-4" />
+              <h3 className="text-xl font-semibold text-neutral-900 mb-3">
+                {t.qualityTitle}
+              </h3>
+              <p className="text-neutral-600 leading-relaxed">
+                {t.qualityDesc}
+              </p>
             </div>
           </div>
         </div>

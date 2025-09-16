@@ -26,7 +26,7 @@ export default function HwarangHomepage() {
     en: {
       brand: "HWARANG CO., LTD.",
       nav: ["Home", "About Us", "Services", "Quote Request", "Network & Lanes", "Contact"],
-      aboutSubNav: ["Why Hwarang?", "Facilities", "Company History"],
+      aboutSubNav: ["HWARANG CO., LTD.", "Facilities", "Company History"],
       heroTitle: "SAFE LOGISTICS WORLDWIDE",
       heroSubtitle:
         "Professional forwarding services with reliable partners and on‑time delivery.",
@@ -41,9 +41,9 @@ export default function HwarangHomepage() {
       coverageDesc:
         "Providing strategic delivery solutions and lanes specifically designed for your needs.",
       stats: [
-        { k: "20+", v: "YEARS OF EXPERIENCE" },
-        { k: "10,000+", v: "OWNED CONTAINERS" },
-        { k: "1M+", v: "TONS TRANSPORTED" }
+        { k: "24/7", v: "OPERATIONS" },
+        { k: "2,122", v: "OWNED CONTAINERS" },
+        { k: "KITA", v: "MEMBER SINCE 2023" }
       ],
       whyTitle: "Why Hwarang",
       why: [
@@ -64,7 +64,7 @@ export default function HwarangHomepage() {
     ko: {
       brand: "HWARANG CO., LTD.",
       nav: ["홈", "회사소개", "서비스", "견적요청", "네트워크", "연락처"],
-      aboutSubNav: ["왜 화랑인가?", "회사설비", "회사연혁"],
+      aboutSubNav: ["주식회사 화랑", "회사설비", "회사연혁"],
       heroTitle: "SAFE LOGISTICS WORLDWIDE",
       heroSubtitle:
         "신뢰할 수 있는 파트너와 정시 배송으로 전문적인 포워딩 서비스를 제공합니다.",
@@ -79,9 +79,9 @@ export default function HwarangHomepage() {
       coverageDesc:
         "고객의 요구에 맞게 특별히 설계된 전략적 배송 솔루션과 항로를 제공합니다.",
       stats: [
-        { k: "20+", v: "YEARS OF EXPERIENCE" },
-        { k: "10,000+", v: "OWNED CONTAINERS" },
-        { k: "1M+", v: "TONS TRANSPORTED" }
+        { k: "24/7", v: "OPERATIONS" },
+        { k: "2,122", v: "OWNED CONTAINERS" },
+        { k: "KITA", v: "MEMBER SINCE 2023" }
       ],
       whyTitle: "화랑을 선택하는 이유",
       why: [

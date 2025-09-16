@@ -24,16 +24,15 @@ export default function WhyHwarangPage() {
   const t = {
     brand: "HWARANG CO., LTD.",
     nav: ["Home", "About Us", "Services", "Quote Request", "Network & Lanes", "Contact"],
-    aboutSubNav: ["Why Hwarang?", "Facilities", "Company History"],
-    pageTitle: "Why Hwarang?",
-    pageSubtitle: "Why customers choose Hwarang for their logistics needs",
+    aboutSubNav: ["HWARANG CO., LTD.", "Facilities", "Company History"],
+    pageTitle: "HWARANG CO., LTD.",
+    pageSubtitle: "Professional logistics and forwarding services for global business",
     globalTitle: "Global Network",
     globalDesc: "Safe cargo transportation worldwide through partnerships with global partners.",
     serviceTitle: "Customized Services",
     serviceDesc: "Providing optimized logistics solutions tailored to customer requirements.",
     qualityTitle: "Quality Assurance",
     qualityDesc: "Operating systematic quality management system through ISO certification.",
-    strengthsTitle: "Hwarang's Strengths",
     competitiveTitle: "Competitive Pricing",
     competitiveDesc: "Offering cost-effective solutions through our own diverse container fleet.",
     timelyTitle: "On-time Delivery",
@@ -42,7 +41,6 @@ export default function WhyHwarangPage() {
     safetyDesc: "Systematic management system prioritizing cargo safety above all.",
     customerTitle: "Customer Satisfaction",
     customerDesc: "We do our best with the mindset that customer success is our success.",
-    whyChooseTitle: "Why Choose Hwarang",
     footer: "© 2025 Hwarang Co., Ltd. All rights reserved."
   };
 
@@ -53,7 +51,7 @@ export default function WhyHwarangPage() {
   if (!mounted) return null;
 
   return (
-    <div className="bg-white text-neutral-800 font-noto-sans-kr" data-testid="page-root">
+    <div className="bg-white text-neutral-800 font-sans">
       {/* Top info bar */}
       <div className="hidden md:flex items-center justify-between px-6 py-2 text-sm bg-neutral-100 text-neutral-600">
         <div className="flex items-center gap-4">
@@ -115,7 +113,7 @@ export default function WhyHwarangPage() {
                             }
                           }}
                           className={`block w-full text-left px-4 py-3 text-sm hover:bg-gray-50 transition-colors ${
-                            subIndex === 0 ? "text-blue-900 font-medium" : "text-gray-700"
+                            subIndex === 0 ? "text-blue-900 font-medium bg-blue-50" : "text-gray-700"
                           }`}
                         >
                           {subItem}
@@ -136,6 +134,8 @@ export default function WhyHwarangPage() {
                         window.location.href = `/network`;
                       } else if (item === "Contact") {
                         window.location.href = "/#contact";
+                      } else {
+                        window.location.href = "/";
                       }
                     }}
                     className="text-sm font-medium transition-colors hover:text-blue-900"
@@ -217,6 +217,8 @@ export default function WhyHwarangPage() {
                           window.location.href = `/network`;
                         } else if (item === "Contact") {
                           window.location.href = "/#contact";
+                        } else {
+                          window.location.href = "/";
                         }
                       }}
                       className="text-left py-1"
@@ -230,7 +232,7 @@ export default function WhyHwarangPage() {
                 onClick={() => window.location.href = "/#contact"}
                 className="mt-2 px-4 py-2 rounded-xl text-white bg-red-600"
               >
-                Contact
+                Contact Us
               </button>
             </div>
           </div>
@@ -247,61 +249,10 @@ export default function WhyHwarangPage() {
         </div>
       </div>
 
-      {/* Main Content */}
+      {/* Strengths Section */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-neutral-900 mb-4">
-              {t.whyChooseTitle}
-            </h2>
-            <div className="w-16 h-0.5 bg-blue-900 mx-auto"></div>
-          </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
-            <div className="text-center p-6 bg-neutral-50 rounded-xl">
-              <Globe className="w-12 h-12 text-blue-900 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold text-neutral-900 mb-3">
-                {t.globalTitle}
-              </h3>
-              <p className="text-neutral-600 leading-relaxed">
-                {t.globalDesc}
-              </p>
-            </div>
-            
-            <div className="text-center p-6 bg-neutral-50 rounded-xl">
-              <Target className="w-12 h-12 text-blue-900 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold text-neutral-900 mb-3">
-                {t.serviceTitle}
-              </h3>
-              <p className="text-neutral-600 leading-relaxed">
-                {t.serviceDesc}
-              </p>
-            </div>
-            
-            <div className="text-center p-6 bg-neutral-50 rounded-xl">
-              <Shield className="w-12 h-12 text-blue-900 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold text-neutral-900 mb-3">
-                {t.qualityTitle}
-              </h3>
-              <p className="text-neutral-600 leading-relaxed">
-                {t.qualityDesc}
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Strengths Section */}
-      <section className="py-20 bg-neutral-50">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-neutral-900 mb-4">
-              {t.strengthsTitle}
-            </h2>
-            <div className="w-16 h-0.5 bg-blue-900 mx-auto"></div>
-          </div>
-          
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
             <div className="space-y-8">
               <div className="flex items-start gap-4">
                 <TrendingUp className="w-8 h-8 text-blue-900 mt-1 flex-shrink-0" />
@@ -352,12 +303,45 @@ export default function WhyHwarangPage() {
               </div>
             </div>
             
-            <div className="flex justify-center">
+            <div className="flex justify-center items-center">
               <img 
                 src="/images/container-ship-aerial.jpg" 
-                alt="Container" 
-                className="rounded-lg shadow-lg max-w-md w-full"
+                alt="Container Ship" 
+                className="rounded-lg shadow-lg max-w-lg w-full h-auto object-cover"
               />
+            </div>
+          </div>
+
+          {/* Service Cards */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="text-center p-6 bg-neutral-50 rounded-xl">
+              <Globe className="w-12 h-12 text-blue-900 mx-auto mb-4" />
+              <h3 className="text-xl font-semibold text-neutral-900 mb-3">
+                {t.globalTitle}
+              </h3>
+              <p className="text-neutral-600 leading-relaxed">
+                {t.globalDesc}
+              </p>
+            </div>
+            
+            <div className="text-center p-6 bg-neutral-50 rounded-xl">
+              <Target className="w-12 h-12 text-blue-900 mx-auto mb-4" />
+              <h3 className="text-xl font-semibold text-neutral-900 mb-3">
+                {t.serviceTitle}
+              </h3>
+              <p className="text-neutral-600 leading-relaxed">
+                {t.serviceDesc}
+              </p>
+            </div>
+            
+            <div className="text-center p-6 bg-neutral-50 rounded-xl">
+              <Shield className="w-12 h-12 text-blue-900 mx-auto mb-4" />
+              <h3 className="text-xl font-semibold text-neutral-900 mb-3">
+                {t.qualityTitle}
+              </h3>
+              <p className="text-neutral-600 leading-relaxed">
+                {t.qualityDesc}
+              </p>
             </div>
           </div>
         </div>
@@ -377,7 +361,7 @@ export default function WhyHwarangPage() {
               onClick={() => window.location.href = "/#contact"}
               className="px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors font-semibold text-base"
             >
-              Get in Touch
+              Contact Us
             </button>
             <button 
               onClick={() => window.location.href = "/quote"}
@@ -403,7 +387,7 @@ export default function WhyHwarangPage() {
                 <span className="text-lg font-bold">{t.brand}</span>
               </div>
               <p className="text-neutral-400 text-sm leading-relaxed">
-                Professional logistics and forwarding services supporting your global business operations.
+                Supporting your global business through professional logistics and forwarding services.
               </p>
             </div>
             <div>
@@ -424,7 +408,7 @@ export default function WhyHwarangPage() {
               </div>
             </div>
             <div>
-              <h4 className="font-semibold mb-4 text-white">Office Hours</h4>
+              <h4 className="font-semibold mb-4 text-white">Business Hours</h4>
               <div className="space-y-2 text-sm text-neutral-400">
                 <div className="flex items-center justify-center md:justify-start gap-2">
                   <Clock className="w-4 h-4" />

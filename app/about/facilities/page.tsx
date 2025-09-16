@@ -20,7 +20,7 @@ export default function FacilitiesPage() {
   const t = {
     brand: "HWARANG CO., LTD.",
     nav: ["Home", "About", "Services", "Quote", "Network", "Contact"],
-    aboutSubNav: ["Why Hwarang?", "Facilities", "History"],
+    aboutSubNav: ["HWARANG CO., LTD.", "Facilities", "History"],
     
     companyName: "HWARANG CO., LTD.",
     
@@ -35,18 +35,33 @@ export default function FacilitiesPage() {
     containers: [
       {
         type: "20' Dry Container",
-        count: "3,421 units",
+        count: "1,140 units",
         description: "Standard dry containers for general cargo transportation"
       },
       {
         type: "20' Open Top Container",
-        count: "920 units", 
+        count: "307 units", 
         description: "Open top containers for oversized cargo and easy loading"
       },
       {
         type: "40' High Cube Container",
-        count: "902 units",
+        count: "301 units",
         description: "High capacity containers for large volume shipments"
+      },
+      {
+        type: "20' Refrigerated Container",
+        count: "150 units",
+        description: "Temperature-controlled containers for perishable goods"
+      },
+      {
+        type: "40' Open Top Container",
+        count: "127 units",
+        description: "Large open top containers for heavy and oversized cargo"
+      },
+      {
+        type: "20' Flat Rack Container",
+        count: "97 units",
+        description: "Flat rack containers for machinery and construction equipment"
       }
     ],
     
@@ -302,7 +317,7 @@ export default function FacilitiesPage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {t.containers.map((container, index) => (
               <div key={index} className="bg-gradient-to-br from-white to-neutral-50 border border-neutral-200 rounded-lg p-6 hover:shadow-lg transition-shadow duration-300">
                 <h3 className="text-lg font-semibold text-neutral-900 text-center mb-2">

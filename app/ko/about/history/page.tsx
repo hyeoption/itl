@@ -27,7 +27,7 @@ export default function CompanyHistoryPageKo() {
   const t = {
     brand: "HWARANG CO., LTD.",
     nav: ["홈", "회사소개", "서비스", "견적요청", "네트워크 & 항로", "연락처"],
-    aboutSubNav: ["왜 화랑인가?", "회사설비", "회사연혁"],
+    aboutSubNav: ["주식회사 화랑", "회사설비", "회사연혁"],
     heroTitle: "회사연혁",
     heroSubtitle: "수년간의 헌신적인 서비스를 통해 쌓아온 신뢰와 전문성",
     

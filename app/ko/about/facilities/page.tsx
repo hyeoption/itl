@@ -20,7 +20,7 @@ export default function FacilitiesPageKo() {
   const t = {
     brand: "HWARANG CO., LTD.",
     nav: ["홈", "회사소개", "서비스", "견적요청", "네트워크", "연락처"],
-    aboutSubNav: ["왜 화랑인가?", "회사설비", "회사연혁"],
+    aboutSubNav: ["주식회사 화랑", "회사설비", "회사연혁"],
     
     companyName: "주식회사 화랑",
     
@@ -35,18 +35,33 @@ export default function FacilitiesPageKo() {
     containers: [
       {
         type: "20' Dry 컨테이너",
-        count: "3421대",
+        count: "1,140대",
         description: "일반 화물 운송을 위한 표준 드라이 컨테이너"
       },
       {
         type: "20' Open Top 컨테이너",
-        count: "920대", 
+        count: "307대", 
         description: "대형 화물 및 간편한 적재를 위한 오픈탑 컨테이너"
       },
       {
         type: "40' High Cube 컨테이너",
-        count: "902대",
+        count: "301대",
         description: "대용량 선적을 위한 고용량 컨테이너"
+      },
+      {
+        type: "20' 냉동 컨테이너",
+        count: "150대",
+        description: "냉장/냉동 화물을 위한 온도 조절 컨테이너"
+      },
+      {
+        type: "40' Open Top 컨테이너",
+        count: "127대",
+        description: "중량물 및 대형 화물을 위한 대형 오픈탑 컨테이너"
+      },
+      {
+        type: "20' 플랫랙 컨테이너",
+        count: "97대",
+        description: "기계류 및 건설장비를 위한 플랫랙 컨테이너"
       }
     ],
     
@@ -302,7 +317,7 @@ export default function FacilitiesPageKo() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {t.containers.map((container, index) => (
               <div key={index} className="bg-gradient-to-br from-white to-neutral-50 border border-neutral-200 rounded-lg p-6 hover:shadow-lg transition-shadow duration-300">
                 <h3 className="text-lg font-semibold text-neutral-900 text-center mb-2">
