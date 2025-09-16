@@ -81,7 +81,7 @@ export default function CompanyHistoryPageKo() {
             <Mail className="w-4 h-4" /> hr@hwarangshipping.com
           </span>
           <span className="inline-flex items-center gap-2">
-            <Phone className="w-4 h-4" /> TEL. +82-31-994-68/0~2
+            <Phone className="w-4 h-4" /> TEL. +82-31-994-687/0~2
           </span>
           <span className="inline-flex items-center gap-2">
             <Printer className="w-4 h-4" /> FAX. +82-31-994-6873

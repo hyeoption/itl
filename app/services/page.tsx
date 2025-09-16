@@ -159,7 +159,7 @@ export default function ServicesPage() {
         <div className="flex items-center gap-6">
           <div className="flex items-center gap-2">
             <Phone className="w-4 h-4" />
-            <span>TEL. +82-31-994-68/0~2</span>
+            <span>TEL. +82-31-994-687/0~2</span>
           </div>
           <div className="flex items-center gap-2">
             <Printer className="w-4 h-4" />
@@ -453,7 +453,7 @@ export default function ServicesPage() {
               <div className="space-y-2 text-sm text-neutral-400">
                 <div className="flex items-center justify-center md:justify-start gap-2">
                   <Phone className="w-4 h-4" />
-                  <span>+82-31-994-68/0~2</span>
+                  <span>+82-31-994-687/0~2</span>
                 </div>
                 <div className="flex items-center justify-center md:justify-start gap-2">
                   <Mail className="w-4 h-4" />

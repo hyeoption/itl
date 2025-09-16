@@ -184,7 +184,7 @@ Hwarang/
 
 **HWARANG CO., LTD.**
 - **Email**: hr@hwarangshipping.com
-- **Phone**: +82-31-994-68/0~2
+- **Phone**: +82-31-994-687/0~2
 - **Fax**: +82-31-994-6873
 - **Hours**: Mon-Fri 9:00-18:00 KST
 

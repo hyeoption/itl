@@ -100,7 +100,7 @@ export default function FacilitiesPageKo() {
         <div className="flex items-center gap-6">
           <div className="flex items-center gap-2">
             <Phone className="w-4 h-4" />
-            <span>TEL. +82-31-994-68/0~2</span>
+            <span>TEL. +82-31-994-687/0~2</span>
           </div>
           <div className="flex items-center gap-2">
             <Printer className="w-4 h-4" />
