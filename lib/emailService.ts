@@ -1,13 +1,16 @@
 import emailjs from '@emailjs/browser';
 
 // EmailJS configuration
-const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || '';
-const EMAILJS_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || '';
-const EMAILJS_PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || '';
+const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || 'hye.option';
+const EMAILJS_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || 'template_5ummn9h';
+const EMAILJS_QUOTE_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_QUOTE_TEMPLATE_ID || 'template_quote_request';
+const EMAILJS_PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || '7Kk7gV6Kf6nVSj8Fa';
 
 // Initialize EmailJS
 export const initEmailJS = () => {
+  console.log('🚀 Initializing EmailJS with public key:', EMAILJS_PUBLIC_KEY);
   emailjs.init(EMAILJS_PUBLIC_KEY);
+  console.log('✅ EmailJS initialized successfully');
 };
 
 // Contact form email template
@@ -42,6 +45,12 @@ export interface QuoteFormData {
 // Send contact form email
 export const sendContactEmail = async (formData: ContactFormData): Promise<boolean> => {
   try {
+    console.log('🔧 EmailJS Contact Config:', {
+      serviceId: EMAILJS_SERVICE_ID,
+      templateId: EMAILJS_TEMPLATE_ID,
+      publicKey: EMAILJS_PUBLIC_KEY
+    });
+
     const templateParams = {
       from_name: formData.name,
       from_email: formData.email,
@@ -49,6 +58,8 @@ export const sendContactEmail = async (formData: ContactFormData): Promise<boole
       to_name: 'Hwarang Co., Ltd.',
       reply_to: formData.email,
     };
+
+    console.log('📧 Sending contact email with params:', templateParams);
 
     const response = await emailjs.send(
       EMAILJS_SERVICE_ID,
@@ -68,6 +79,12 @@ export const sendContactEmail = async (formData: ContactFormData): Promise<boole
 // Send quote request email
 export const sendQuoteEmail = async (formData: QuoteFormData): Promise<boolean> => {
   try {
+    console.log('🔧 EmailJS Quote Config:', {
+      serviceId: EMAILJS_SERVICE_ID,
+      templateId: EMAILJS_QUOTE_TEMPLATE_ID,
+      publicKey: EMAILJS_PUBLIC_KEY
+    });
+
     const templateParams = {
       company_name: formData.companyName,
       contact_person: formData.contact,
@@ -90,9 +107,11 @@ export const sendQuoteEmail = async (formData: QuoteFormData): Promise<boolean> 
       reply_to: formData.contactEmail,
     };
 
+    console.log('📦 Sending quote email with params:', templateParams);
+
     const response = await emailjs.send(
       EMAILJS_SERVICE_ID,
-      'template_quote_request', // We'll create a separate template for quotes
+      EMAILJS_QUOTE_TEMPLATE_ID,
       templateParams,
       EMAILJS_PUBLIC_KEY
     );

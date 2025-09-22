@@ -23,10 +23,13 @@ import {
   Upload,
   Download
 } from "lucide-react";
+import { sendQuoteEmail, validateQuoteForm, initEmailJS, type QuoteFormData } from "../../../lib/emailService";
 
 export default function QuotePageKo() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [formData, setFormData] = useState({
     companyName: "",
     contact: "",
@@ -92,6 +95,8 @@ export default function QuotePageKo() {
 
   useEffect(() => {
     setMounted(true);
+    // Initialize EmailJS
+    initEmailJS();
   }, []);
 
   const handleInputChange = (field: string, value: any) => {
@@ -101,10 +106,60 @@ export default function QuotePageKo() {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Quote request submitted:", formData);
-    alert("견적요청이 성공적으로 제출되었습니다!");
+    
+    // Convert form data for validation and submission
+    const submissionData: QuoteFormData = {
+      ...formData,
+      attachment: formData.attachment?.name || undefined
+    };
+
+    // Validate form
+    const errors = validateQuoteForm(submissionData);
+    if (errors.length > 0) {
+      alert(errors.join('\n'));
+      return;
+    }
+
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+
+    try {
+      const success = await sendQuoteEmail(submissionData);
+      if (success) {
+        setSubmitStatus('success');
+        // Reset form
+        setFormData({
+          companyName: "",
+          contact: "",
+          division: "수출",
+          shipmentCondition: "항공",
+          transportCondition: "EXW",
+          originPort: "",
+          destinationPort: "",
+          originCountry: "",
+          destinationCountry: "",
+          cbm: "",
+          productName: "",
+          hsCode: "",
+          volume: "",
+          cargoType: "수출통관",
+          title: "",
+          content: "",
+          attachment: null,
+          contactEmail: ""
+        });
+        setTimeout(() => setSubmitStatus('idle'), 5000); // Reset status after 5 seconds
+      } else {
+        setSubmitStatus('error');
+      }
+    } catch (error) {
+      console.error('Quote submission error:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -678,14 +733,33 @@ export default function QuotePageKo() {
                 />
               </div>
 
+              {/* Status Messages */}
+              {submitStatus === 'success' && (
+                <div className="mb-4 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg">
+                  <div className="flex items-center">
+                    <CheckCircle className="w-5 h-5 mr-2" />
+                    견적요청이 성공적으로 전송되었습니다! 곧 연락드리겠습니다.
+                  </div>
+                </div>
+              )}
+              
+              {submitStatus === 'error' && (
+                <div className="mb-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg">
+                  견적요청 전송에 실패했습니다. 다시 시도하거나 직접 연락해주세요.
+                </div>
+              )}
+
               {/* Submit Button */}
               <div className="pt-6">
                 <button
                   type="submit"
-                  className="w-full bg-blue-600 text-white py-4 px-6 rounded-lg hover:bg-blue-700 transition-colors text-lg font-semibold flex items-center justify-center space-x-2"
+                  disabled={isSubmitting}
+                  className="w-full bg-blue-600 text-white py-4 px-6 rounded-lg hover:bg-blue-700 transition-colors text-lg font-semibold flex items-center justify-center space-x-2 disabled:bg-gray-400 disabled:cursor-not-allowed"
                 >
                   <FileText size={20} />
-                  <span>{t.submitButton}</span>
+                  <span>
+                    {isSubmitting ? "전송 중..." : t.submitButton}
+                  </span>
                 </button>
               </div>
             </form>
