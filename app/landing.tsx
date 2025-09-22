@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   Globe,
   Phone,
@@ -12,7 +12,8 @@ import {
   Search,
   Printer
 } from "lucide-react";
-import { sendContactEmail, validateContactForm, initEmailJS, type ContactFormData } from "../lib/emailService";
+import { initEmailJS } from "../lib/emailService";
+import emailjs from '@emailjs/browser';
 
 export default function HwarangHomepage() {
   const [lang, setLang] = useState("en");
@@ -21,6 +22,7 @@ export default function HwarangHomepage() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const formRef = useRef<HTMLFormElement>(null);
 
     const translations = {
     en: {
@@ -120,10 +122,11 @@ export default function HwarangHomepage() {
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Validate form
-    const errors = validateContactForm(form as ContactFormData);
-    if (errors.length > 0) {
-      alert(errors.join('\n'));
+    console.log('📝 Contact form submitted with data:', form);
+    
+    // Basic validation
+    if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
+      alert('Please fill in all fields');
       return;
     }
 
@@ -131,16 +134,22 @@ export default function HwarangHomepage() {
     setSubmitStatus('idle');
 
     try {
-      const success = await sendContactEmail(form as ContactFormData);
-      if (success) {
-        setSubmitStatus('success');
-        setForm({ name: "", email: "", message: "" }); // Reset form
-        setTimeout(() => setSubmitStatus('idle'), 5000); // Reset status after 5 seconds
-      } else {
-        setSubmitStatus('error');
-      }
+      console.log('🚀 Sending email via EmailJS sendForm...');
+      
+      const result = await emailjs.sendForm(
+        'hye.option', // service ID
+        'template_5ummn9h', // template ID
+        formRef.current!, // form element
+        '7Kk7gV6Kf6nVSj8Fa' // public key
+      );
+      
+      console.log('✅ Email sent successfully:', result);
+      setSubmitStatus('success');
+      setForm({ name: "", email: "", message: "" }); // Reset form
+      setTimeout(() => setSubmitStatus('idle'), 5000); // Reset status after 5 seconds
+      
     } catch (error) {
-      console.error('Form submission error:', error);
+      console.error('❌ Contact form submission error:', error);
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
@@ -599,10 +608,11 @@ export default function HwarangHomepage() {
                 </div>
               )}
               
-              <form className="space-y-6" onSubmit={handleFormSubmit}>
+              <form ref={formRef} className="space-y-6" onSubmit={handleFormSubmit}>
                 <div>
                   <input
                     type="text"
+                    name="name"
                     placeholder={t.contactForm.name}
                     value={form.name}
                     onChange={(e) => setForm({...form, name: e.target.value})}
@@ -614,6 +624,7 @@ export default function HwarangHomepage() {
                 <div>
                   <input
                     type="email"
+                    name="email"
                     placeholder={t.contactForm.email}
                     value={form.email}
                     onChange={(e) => setForm({...form, email: e.target.value})}
@@ -624,6 +635,7 @@ export default function HwarangHomepage() {
                 </div>
                 <div>
                   <textarea
+                    name="message"
                     placeholder={t.contactForm.message}
                     value={form.message}
                     onChange={(e) => setForm({...form, message: e.target.value})}
