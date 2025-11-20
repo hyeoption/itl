@@ -18,11 +18,11 @@ export default function FacilitiesPage() {
   const [mounted, setMounted] = useState(false);
 
   const t = {
-    brand: "HWARANG CO., LTD.",
+    brand: "ITL CO., LTD.",
     nav: ["Home", "About", "Services", "Quote", "Network", "Contact"],
-    aboutSubNav: ["HWARANG CO., LTD.", "Facilities", "History"],
+    aboutSubNav: ["ITL CO., LTD.", "Facilities", "History"],
     
-    companyName: "HWARANG CO., LTD.",
+    companyName: "ITL CO., LTD.",
     
     intro: "Comprehensive facilities and container inventory to meet your logistics requirements.",
     
@@ -66,7 +66,7 @@ export default function FacilitiesPage() {
     ],
     
     warehouseInfo: {
-      name: "Hwarang Warehouse",
+      name: "ITL Warehouse",
       address: "288, Gomu-ro, Jangan-eup, Gijang-gun, Busan, South Korea",
       phone: "051-714-3950",
       features: [
@@ -91,7 +91,7 @@ export default function FacilitiesPage() {
       <div className="hidden md:flex items-center justify-between px-6 py-2 text-sm bg-neutral-100 text-neutral-600">
         <div className="flex items-center gap-4">
           <span className="inline-flex items-center gap-2">
-            <Mail className="w-4 h-4" /> hr@hwarangshipping.com
+            <Mail className="w-4 h-4" /> itl@itlshipping.com
           </span>
           <span className="inline-flex items-center gap-2">
             <Clock className="w-4 h-4" /> Mon-Fri 08:00-18:00
@@ -100,11 +100,11 @@ export default function FacilitiesPage() {
         <div className="flex items-center gap-6">
           <div className="flex items-center gap-2">
             <Phone className="w-4 h-4" />
-            <span>TEL. +82-31-994-687/0~2</span>
+            <span>TEL. +82-31-911-5612~4</span>
           </div>
           <div className="flex items-center gap-2">
             <Printer className="w-4 h-4" />
-            <span>FAX. +82-31-994-6873</span>
+            <span>FAX. +82-31-902-8130</span>
           </div>
         </div>
       </div>
@@ -114,14 +114,16 @@ export default function FacilitiesPage() {
         <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
           <button 
             onClick={() => window.location.href = "/"}
-            className="flex items-center gap-3 hover:opacity-80 transition-opacity"
+            className="flex items-center hover:opacity-80 transition-opacity"
           >
             <img 
-              src="/images/hwarang-logo-alt.jpeg" 
-              alt="HWARANG CO., LTD. Logo" 
-              className="w-10 h-10 object-contain"
+              src="/images/logo_itl.jpg?v=2" 
+              alt="ITL CO., LTD. Logo" 
+              className="h-11 object-contain"
+              onError={(e) => {
+                console.error('Logo failed to load');
+              }}
             />
-            <span className="text-xl font-bold tracking-tight text-neutral-900">{t.brand}</span>
           </button>
           
           <div className="hidden md:flex items-center gap-8">
@@ -411,7 +413,7 @@ export default function FacilitiesPage() {
                     allowFullScreen
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
-                    title="Hwarang Warehouse Location"
+                    title="ITL Warehouse Location"
                   ></iframe>
                 </div>
                 <div className="text-center">
@@ -436,7 +438,7 @@ export default function FacilitiesPage() {
             Ready to Grow Together?
           </h2>
           <p className="text-base md:text-lg text-gray-200 mb-6 max-w-2xl mx-auto">
-            Partner with Hwarang to unlock a bigger future. Our expert logistics team is dedicated to your success.
+            Partner with ITL to unlock a bigger future. Our expert logistics team is dedicated to your success.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button 

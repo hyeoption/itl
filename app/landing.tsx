@@ -15,7 +15,7 @@ import {
 import { initEmailJS } from "../lib/emailService";
 import emailjs from '@emailjs/browser';
 
-export default function HwarangHomepage() {
+export default function ITLHomepage() {
   const [lang, setLang] = useState("en");
   const [mobileOpen, setMobileOpen] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", message: "" });
@@ -26,16 +26,16 @@ export default function HwarangHomepage() {
 
     const translations = {
     en: {
-      brand: "HWARANG CO., LTD.",
+      brand: "ITL CO., LTD.",
       nav: ["Home", "About Us", "Services", "Quote Request", "Network & Lanes", "Contact"],
-      aboutSubNav: ["HWARANG CO., LTD.", "Facilities", "Company History"],
+      aboutSubNav: ["ITL CO., LTD.", "Facilities", "Company History"],
       heroTitle: "SAFE LOGISTICS WORLDWIDE",
       heroSubtitle:
         "Professional forwarding services with reliable partners and on‑time delivery.",
       ctaQuote: "Get in Touch",
       ctaContact: "Contact Us",
       aboutTitle: "About Us",
-      aboutSubtitle: "Hwarang Co., Ltd. is a leading logistics and forwarding company.",
+      aboutSubtitle: "ITL Co., Ltd. is a leading logistics and forwarding company.",
       about:
         "We own our own containers in Busan to reduce costs.",
       servicesTitle: "Core Services",
@@ -45,9 +45,9 @@ export default function HwarangHomepage() {
       stats: [
         { k: "24/7", v: "OPERATIONS" },
         { k: "2,122", v: "OWNED CONTAINERS" },
-        { k: "KITA", v: "MEMBER SINCE 2023" }
+        { k: "KITA", v: "MEMBER SINCE 2015" }
       ],
-      whyTitle: "Why Hwarang",
+      whyTitle: "Why ITL",
       why: [
         "Commitment to quality and safety  ",
         "Flexible and efficient solutions",
@@ -61,19 +61,19 @@ export default function HwarangHomepage() {
         message: "Message",
         button: "Send"
       },
-      footer: "© 2025 Hwarang Co., Ltd. All rights reserved."
+      footer: "© 2025 ITL Co., Ltd. All rights reserved."
     },
     ko: {
-      brand: "HWARANG CO., LTD.",
+      brand: "ITL CO., LTD.",
       nav: ["홈", "회사소개", "서비스", "견적요청", "네트워크", "연락처"],
-      aboutSubNav: ["주식회사 화랑", "회사설비", "회사연혁"],
+      aboutSubNav: ["주식회사 아이티엘", "회사설비", "회사연혁"],
       heroTitle: "SAFE LOGISTICS WORLDWIDE",
       heroSubtitle:
         "신뢰할 수 있는 파트너와 정시 배송으로 전문적인 포워딩 서비스를 제공합니다.",
       ctaQuote: "문의하기",
       ctaContact: "연락처",
                       aboutTitle: "About Us",
-      aboutSubtitle: "주식회사 화랑은 선도적인 물류 및 포워딩 회사입니다.",
+      aboutSubtitle: "주식회사 아이티엘은 선도적인 물류 및 포워딩 회사입니다.",
         about:
         "우리는 부산에 자체 컨테이너를 보유하여 비용을 절감하고 있습니다.",
       servicesTitle: "Our Services",
@@ -83,9 +83,9 @@ export default function HwarangHomepage() {
       stats: [
         { k: "24/7", v: "OPERATIONS" },
         { k: "2,122", v: "OWNED CONTAINERS" },
-        { k: "KITA", v: "MEMBER SINCE 2023" }
+        { k: "KITA", v: "MEMBER SINCE 2015" }
       ],
-      whyTitle: "화랑을 선택하는 이유",
+      whyTitle: "아이티엘을 선택하는 이유",
       why: [
         "품질과 안전에 대한 약속",
         "효율적인 비용의 Door to door",
@@ -99,7 +99,7 @@ export default function HwarangHomepage() {
         message: "메시지",
         button: "전송"
       },
-      footer: "© 2025 주식회사 화랑. All rights reserved."
+      footer: "© 2025 주식회사 아이티엘. All rights reserved."
     }
   };
 
@@ -168,7 +168,7 @@ export default function HwarangHomepage() {
       <div className="hidden md:flex items-center justify-between px-6 py-2 text-sm bg-neutral-100 text-neutral-600">
         <div className="flex items-center gap-4">
           <span className="inline-flex items-center gap-2">
-            <Mail className="w-4 h-4" /> hr@hwarangshipping.com
+            <Mail className="w-4 h-4" /> itl@itlshipping.com
           </span>
           <span className="inline-flex items-center gap-2">
             <Clock className="w-4 h-4" /> {lang === "ko" ? "월-금 08:00-18:00" : "Mon-Fri 08:00-18:00"}
@@ -177,11 +177,11 @@ export default function HwarangHomepage() {
         <div className="flex items-center gap-6">
           <div className="flex items-center gap-2">
             <Phone className="w-4 h-4" />
-            <span>TEL. +82-31-994-687/0~2</span>
+            <span>TEL. +82-31-911-5612~4</span>
           </div>
           <div className="flex items-center gap-2">
             <Printer className="w-4 h-4" />
-            <span>FAX. +82-31-994-6873</span>
+            <span>FAX. +82-31-902-8130</span>
           </div>
         </div>
       </div>
@@ -191,14 +191,16 @@ export default function HwarangHomepage() {
         <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
           <button 
             onClick={() => window.location.href = lang === "ko" ? "/ko" : "/"}
-            className="flex items-center gap-3 hover:opacity-80 transition-opacity"
+            className="flex items-center hover:opacity-80 transition-opacity"
           >
             <img 
-              src="/images/hwarang-logo-alt.jpeg" 
-              alt="HWARANG CO., LTD. Logo" 
-              className="w-10 h-10 object-contain"
+              src="/images/logo_itl.jpg?v=2" 
+              alt="ITL CO., LTD. Logo" 
+              className="h-11 object-contain"
+              onError={(e) => {
+                console.error('Logo failed to load');
+              }}
             />
-            <span className="text-xl font-bold tracking-tight text-neutral-900">{t.brand}</span>
           </button>
           <div className="hidden md:flex items-center gap-8">
             {t.nav.map((item: string, idx: number) => (
@@ -529,7 +531,7 @@ export default function HwarangHomepage() {
           <div className="mb-12">
             <div className="bg-neutral-800 rounded-lg overflow-hidden">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3150.8!2d126.7451!3d37.6695!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357c9e0c8f8b8b8b%3A0x8b8b8b8b8b8b8b8b!2s240%20Kintex-ro%2C%20Ilsanseo-gu%2C%20Goyang-si%2C%20Gyeonggi-do%2C%20South%20Korea!5e0!3m2!1sen!2sus!4v1699999999999"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3150.8!2d126.7451!3d37.6695!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357c9e0c8f8b8b8b%3A0x8b8b8b8b8b8b8b8b!2sRm404%2C%20Peugeot%20Bldg%2C%20844%20Hosu-ro%2C%20Daehwa-dong%2C%20Ilsanseo-gu%2C%20Goyang-si%2C%20Gyeonggi-do%2C%20South%20Korea!5e0!3m2!1sen!2sus!4v1699999999999"
                 width="100%"
                 height="400"
                 style={{ border: 0 }}
@@ -554,25 +556,25 @@ export default function HwarangHomepage() {
                     <p className="font-semibold text-neutral-900">
                       {lang === "ko" ? "본사" : "Head Office"}
                     </p>
-                    <p>240, Kintex-ro</p>
+                    <p>Rm404, Peugeot Bldg, 844 Hosu-ro, Daehwa-dong</p>
                     <p>Ilsanseo-gu, Goyang-si</p>
-                    <p>Gyeonggi-do, Korea</p>
+                    <p>Gyeonggi-do, South Korea</p>
                   </div>
                 </div>
                 
                 <div className="flex items-center gap-3">
                   <Phone className="w-5 h-5 text-blue-900 flex-shrink-0" />
-                  <span>+82-31-994-687/0~2</span>
+                  <span>+82-31-911-5612~4</span>
                 </div>
                 
                 <div className="flex items-center gap-3">
                   <Mail className="w-5 h-5 text-blue-900 flex-shrink-0" />
-                  <span>hr@hwarangshipping.com</span>
+                  <span>itl@itlshipping.com</span>
                 </div>
                 
                 <div className="flex items-center gap-3">
                   <Printer className="w-5 h-5 text-blue-900 flex-shrink-0" />
-                  <span>FAX. +82-31-994-6873</span>
+                  <span>FAX. +82-31-902-8130</span>
                 </div>
                 
                 <div className="flex items-center gap-3 mb-16">

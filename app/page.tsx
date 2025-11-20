@@ -1,5 +1,5 @@
-import HwarangHomepage from './landing'
+import ITLHomepage from './landing'
 
 export default function Home() {
-  return <HwarangHomepage />
+  return <ITLHomepage />
 }

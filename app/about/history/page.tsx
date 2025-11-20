@@ -27,84 +27,94 @@ export default function CompanyHistoryPage() {
 
   const translations = {
     en: {
-      brand: "HWARANG CO., LTD.",
+      brand: "ITL CO., LTD.",
       nav: ["Home", "About Us", "Services", "Quote Request", "Network & Lanes", "Contact"],
-      aboutSubNav: ["HWARANG CO., LTD.", "Facilities", "Company History"],
+      aboutSubNav: ["ITL CO., LTD.", "Facilities", "Company History"],
       heroTitle: "Company History",
       heroSubtitle: "Building trust and expertise through years of dedicated service",
       
-      companyName: "HWARANG CO., LTD.",
+      companyName: "ITL CO., LTD.",
       
       intro: "Our journey of growth and development in the logistics industry.",
       
-      historyIntro: "Since our establishment in 2021, Hwarang Co., Ltd. has been steadily growing as a comprehensive logistics company specializing in Russia-Asia trade corridors. Here's our journey of building expertise and expanding our capabilities.",
+      historyIntro: "Since our establishment in 2008, ITL Co., Ltd. has been steadily growing as a comprehensive logistics company specializing in Russia-Asia trade corridors. Here's our journey of building expertise and expanding our capabilities.",
       
       timelineItems: [
         {
-          date: "2021.11.15",
-          title: "Company Establishment & CEO Jung Byung-Ryul Appointment",
-          description: "Founded Hwarang Co., Ltd. with a vision to become a leading logistics partner in Asia-Russia trade"
+          date: "2008.10.09",
+          title: "Company Establishment",
+          description: "Founded ITL Co., Ltd., opening a new chapter in logistics services"
         },
         {
-          date: "2022.02.23", 
+          date: "2008.10.29", 
           title: "International Forwarding Business Registration - Goyang City",
-          description: "Obtained Certificate of International Forwarding Business, establishing our foundation for global logistics operations"
+          description: "Registered International Forwarding Business in Goyang City, establishing our foundation for global logistics operations"
         },
         {
-          date: "2023.01.03",
+          date: "2008.11.05",
+          title: "Korea International Logistics Association Membership",
+          description: "Joined the Korea International Logistics Association, strengthening our industry network and expertise"
+        },
+        {
+          date: "2011.01.07",
           title: "Freight Forwarding Business Registration - Busan Customs",
           description: "Expanded our capabilities with official freight forwarding business registration through Busan Customs"
         },
         {
-          date: "2023.01.05",
-          title: "Korea International Logistics Forwarders Association Membership",
-          description: "Joined the Korea International Logistics Forwarders Association, strengthening our industry network and credibility"
+          date: "2015.11.11",
+          title: "Korea International Trade Association Membership",
+          description: "Became a member of Korea International Trade Association (KITA), securing credibility in the trade industry"
         },
         {
-          date: "2023.02.08",
-          title: "KITA Membership & Trade Business Code Assignment",
-          description: "Became a member of Korea International Trade Association (KITA) and received our official trade business code"
+          date: "2023.03.03",
+          title: "Exemplary Taxpayer Award - Commissioner of National Tax Service",
+          description: "Received the Exemplary Taxpayer Award from the Commissioner of National Tax Service, recognized as a transparent and trustworthy company"
         }
       ]
     },
     ko: {
-      brand: "HWARANG CO., LTD.",
+      brand: "ITL CO., LTD.",
       nav: ["홈", "회사소개", "서비스", "견적요청", "네트워크 & 항로", "연락처"],
-      aboutSubNav: ["주식회사 화랑", "회사설비", "회사연혁"],
+      aboutSubNav: ["주식회사 아이티엘", "회사설비", "회사연혁"],
       heroTitle: "회사연혁",
       heroSubtitle: "수년간의 헌신적인 서비스를 통해 쌓아온 신뢰와 전문성",
       
-      companyName: "주식회사 화랑",
+      companyName: "주식회사 아이티엘",
       
       intro: "물류 업계에서의 성장과 발전의 여정입니다.",
       
-      historyIntro: "2021년 설립 이후, 주식회사 화랑은 러시아-아시아 무역 통로에 특화된 종합 물류 전문 기업으로 꾸준히 성장해왔습니다. 전문성을 구축하고 역량을 확장해온 저희의 여정을 소개합니다.",
+      historyIntro: "2008년 설립 이후, 주식회사 아이티엘은 러시아-아시아 무역 통로에 특화된 종합 물류 전문 기업으로 꾸준히 성장해왔습니다. 전문성을 구축하고 역량을 확장해온 저희의 여정을 소개합니다.",
       
       timelineItems: [
         {
-          date: "2021.11.15",
-          title: "회사 설립 및 대표이사 정병렬 사장 취임",
-          description: "아시아-러시아 무역의 선도적인 물류 파트너가 되겠다는 비전으로 주식회사 화랑을 설립"
+          date: "2008.10.09",
+          title: "회사 설립",
+          description: "주식회사 아이티엘을 설립하여 물류 서비스의 새로운 장을 열었습니다"
         },
         {
-          date: "2022.02.23",
-          title: "국제 물류주선업 등록 - 고양시",
-          description: "국제 물류주선업 등록증을 취득하여 글로벌 물류 운영의 기반을 마련"
+          date: "2008.10.29",
+          title: "국제물류주선업 등록 – 고양시",
+          description: "고양시에 국제물류주선업을 등록하여 글로벌 물류 운영의 기반을 마련했습니다"
         },
         {
-          date: "2023.01.03", 
-          title: "화물운송주선업자 등록 - 부산세관",
-          description: "부산세관을 통한 화물운송주선업자 공식 등록으로 역량을 확장"
+          date: "2008.11.05", 
+          title: "한국국제물류협회 가입",
+          description: "한국국제물류협회에 가입하여 업계 네트워크와 전문성을 강화했습니다"
         },
         {
-          date: "2023.01.05",
-          title: "한국 국제물류 주선업협회 회원 가입",
-          description: "한국 국제물류 주선업협회에 가입하여 업계 네트워크와 신뢰성을 강화"
+          date: "2011.01.07",
+          title: "화물운송주선업자 등록 – 부산세관",
+          description: "부산세관을 통한 화물운송주선업자 공식 등록으로 역량을 확장했습니다"
         },
         {
-          date: "2023.02.08",
-          title: "한국무역협회 회원 가입 및 무역업 고유번호 부여",
-          description: "한국무역협회(KITA) 회원이 되고 공식 무역업 고유번호를 부여받음"
+          date: "2015.11.11",
+          title: "한국무역협회 가입",
+          description: "한국무역협회(KITA) 회원이 되어 무역 업계의 신뢰성을 확보했습니다"
+        },
+        {
+          date: "2023.03.03",
+          title: "모범납세자 표창 – 국세청장",
+          description: "국세청장으로부터 모범납세자 표창을 수상하여 투명하고 신뢰할 수 있는 기업으로 인정받았습니다"
         }
       ]
     }
@@ -135,13 +145,13 @@ export default function CompanyHistoryPage() {
       <div className="hidden md:flex items-center justify-between px-6 py-2 text-sm bg-neutral-100 text-neutral-600">
         <div className="flex items-center gap-4">
           <span className="inline-flex items-center gap-2">
-            <Mail className="w-4 h-4" /> hr@hwarangshipping.com
+            <Mail className="w-4 h-4" /> itl@itlshipping.com
           </span>
           <span className="inline-flex items-center gap-2">
-            <Phone className="w-4 h-4" /> TEL. +82-31-994-687/0~2
+            <Phone className="w-4 h-4" /> TEL. +82-31-911-5612~4
           </span>
           <span className="inline-flex items-center gap-2">
-            <Printer className="w-4 h-4" /> FAX. +82-31-994-6873
+            <Printer className="w-4 h-4" /> FAX. +82-31-902-8130
           </span>
           <span className="inline-flex items-center gap-2">
             <Clock className="w-4 h-4" /> Mon-Fri 9:00-18:00 KST
@@ -158,14 +168,16 @@ export default function CompanyHistoryPage() {
         <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
           <button 
             onClick={() => window.location.href = lang === "ko" ? "/?lang=ko" : "/"}
-            className="flex items-center gap-3 hover:opacity-80 transition-opacity"
+            className="flex items-center hover:opacity-80 transition-opacity"
           >
             <img 
-              src="/images/hwarang-logo-alt.jpeg" 
-              alt="HWARANG CO., LTD. Logo" 
-              className="w-10 h-10 object-contain"
+              src="/images/logo_itl.jpg?v=2" 
+              alt="ITL CO., LTD. Logo" 
+              className="h-11 object-contain"
+              onError={(e) => {
+                console.error('Logo failed to load');
+              }}
             />
-            <span className="text-xl font-bold tracking-tight text-neutral-900">{t.brand}</span>
           </button>
           
           <div className="hidden md:flex items-center gap-8">
@@ -431,8 +443,8 @@ export default function CompanyHistoryPage() {
                 </h3>
                 <p className="text-lg text-blue-100 max-w-3xl mx-auto leading-relaxed">
                   {lang === "ko" 
-                    ? "화랑은 지난 성과를 바탕으로 더욱 혁신적이고 신뢰할 수 있는 물류 서비스를 제공하며, 고객과 함께 성장하는 글로벌 물류 파트너로 발전해 나가겠습니다."
-                    : "Building on our past achievements, Hwarang will continue to provide more innovative and reliable logistics services, developing as a global logistics partner that grows together with our customers."
+                    ? "아이티엘은 지난 성과를 바탕으로 더욱 혁신적이고 신뢰할 수 있는 물류 서비스를 제공하며, 고객과 함께 성장하는 글로벌 물류 파트너로 발전해 나가겠습니다."
+                    : "Building on our past achievements, ITL will continue to provide more innovative and reliable logistics services, developing as a global logistics partner that grows together with our customers."
                   }
                 </p>
               </div>
@@ -449,8 +461,8 @@ export default function CompanyHistoryPage() {
           </h2>
           <p className="text-base md:text-lg text-gray-200 mb-6 max-w-2xl mx-auto">
             {lang === "ko" 
-              ? "화랑과 함께 더 큰 미래를 열어보세요. 전문 물류 팀이 고객의 성공을 위해 최선을 다하겠습니다."
-              : "Open a greater future with Hwarang. Our professional logistics team will do our best for your success."
+              ? "아이티엘과 함께 더 큰 미래를 열어보세요. 전문 물류 팀이 고객의 성공을 위해 최선을 다하겠습니다."
+              : "Open a greater future with ITL. Our professional logistics team will do our best for your success."
             }
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

@@ -17,9 +17,9 @@ export default function ServicesPage() {
 
   const translations = {
     en: {
-      brand: "HWARANG CO., LTD.",
+      brand: "ITL CO., LTD.",
       nav: ["Home", "About Us", "Services", "Quote Request", "Network & Lanes", "Contact"],
-      aboutSubNav: ["Why Hwarang?", "Facilities", "Company History"],
+      aboutSubNav: ["Why ITL?", "Facilities", "Company History"],
       heroTitle: "Professional Logistics Services",
       heroSubtitle: "Comprehensive forwarding solutions tailored to your global transportation needs",
       quickNavTitle: "Quick Navigation",
@@ -45,12 +45,12 @@ export default function ServicesPage() {
       insuranceDesc: "Comprehensive cargo transportation coverage",
       consultingTitle: "Logistics Consulting",
       consultingDesc: "Optimized logistics solutions and advice",
-      footer: "© 2025 Hwarang Co., Ltd. All rights reserved."
+      footer: "© 2025 ITL Co., Ltd. All rights reserved."
     },
     ko: {
-      brand: "HWARANG CO., LTD.",
+      brand: "ITL CO., LTD.",
       nav: ["홈", "회사소개", "서비스", "견적요청", "네트워크", "연락처"],
-      aboutSubNav: ["왜 화랑인가?", "회사설비", "회사연혁"],
+      aboutSubNav: ["왜 아이티엘인가?", "회사설비", "회사연혁"],
       heroTitle: "전문 물류 서비스",
       heroSubtitle: "글로벌 운송 요구에 맞춘 포괄적인 포워딩 솔루션",
       quickNavTitle: "빠른 탐색",
@@ -76,7 +76,7 @@ export default function ServicesPage() {
       insuranceDesc: "화물 운송 위험 보장",
       consultingTitle: "물류 컨설팅",
       consultingDesc: "최적화된 물류 솔루션 제안",
-      footer: "© 2025 주식회사 화랑. All rights reserved."
+      footer: "© 2025 주식회사 아이티엘. All rights reserved."
     }
   };
 
@@ -150,7 +150,7 @@ export default function ServicesPage() {
       <div className="hidden md:flex items-center justify-between px-6 py-2 text-sm bg-neutral-100 text-neutral-600">
         <div className="flex items-center gap-4">
           <span className="inline-flex items-center gap-2">
-            <Mail className="w-4 h-4" /> hr@hwarangshipping.com
+            <Mail className="w-4 h-4" /> itl@itlshipping.com
           </span>
           <span className="inline-flex items-center gap-2">
             <Clock className="w-4 h-4" /> {lang === "ko" ? "월-금 08:00-18:00" : "Mon-Fri 08:00-18:00"}
@@ -159,11 +159,11 @@ export default function ServicesPage() {
         <div className="flex items-center gap-6">
           <div className="flex items-center gap-2">
             <Phone className="w-4 h-4" />
-            <span>TEL. +82-31-994-687/0~2</span>
+            <span>TEL. +82-31-911-5612~4</span>
           </div>
           <div className="flex items-center gap-2">
             <Printer className="w-4 h-4" />
-            <span>FAX. +82-31-994-6873</span>
+            <span>FAX. +82-31-902-8130</span>
           </div>
         </div>
       </div>
@@ -173,14 +173,16 @@ export default function ServicesPage() {
         <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
           <button 
             onClick={navigateToHome}
-            className="flex items-center gap-3 hover:opacity-80 transition-opacity"
+            className="flex items-center hover:opacity-80 transition-opacity"
           >
             <img 
-              src="/images/hwarang-logo-alt.jpeg" 
-              alt="HWARANG CO., LTD. Logo" 
-              className="w-10 h-10 object-contain"
+              src="/images/logo_itl.jpg?v=2" 
+              alt="ITL CO., LTD. Logo" 
+              className="h-11 object-contain"
+              onError={(e) => {
+                console.error('Logo failed to load');
+              }}
             />
-            <span className="text-xl font-bold tracking-tight text-neutral-900">{t.brand}</span>
           </button>
           <div className="hidden md:flex items-center gap-8">
             {t.nav.map((item, index) => (
@@ -434,11 +436,6 @@ export default function ServicesPage() {
           <div className="grid md:grid-cols-3 gap-8 text-center md:text-left">
             <div>
               <div className="flex items-center justify-center md:justify-start gap-3 mb-4">
-                <img 
-                  src="/images/hwarang-logo-alt.jpeg" 
-                  alt="HWARANG CO., LTD. Logo" 
-                  className="w-8 h-8 object-contain"
-                />
                 <span className="text-lg font-bold">{t.brand}</span>
               </div>
               <p className="text-neutral-400 text-sm leading-relaxed">
@@ -453,15 +450,15 @@ export default function ServicesPage() {
               <div className="space-y-2 text-sm text-neutral-400">
                 <div className="flex items-center justify-center md:justify-start gap-2">
                   <Phone className="w-4 h-4" />
-                  <span>+82-31-994-687/0~2</span>
+                  <span>+82-31-911-5612~4</span>
                 </div>
                 <div className="flex items-center justify-center md:justify-start gap-2">
                   <Mail className="w-4 h-4" />
-                  <span>hr@hwarangshipping.com</span>
+                  <span>itl@itlshipping.com</span>
                 </div>
                 <div className="flex items-center justify-center md:justify-start gap-2">
                   <Printer className="w-4 h-4" />
-                  <span>+82-31-994-6873</span>
+                  <span>+82-31-902-8130</span>
                 </div>
               </div>
             </div>

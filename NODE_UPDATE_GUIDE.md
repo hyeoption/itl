@@ -1,4 +1,4 @@
-# 🔧 Node.js Update Guide for Hwarang Logistics Project
+# 🔧 Node.js Update Guide for ITL Logistics Project
 
 ## 🚨 Current Issue
 Your current Node.js version (v10.15.3) is too old for modern React/Next.js development. We need to update to Node.js v18+ LTS.
@@ -83,7 +83,7 @@ npm cache clean --force
 
 ### Step 2: Navigate to Project Directory
 ```bash
-cd /Users/jisooyun/Desktop/Hwarang
+cd /Users/jisooyun/Desktop/ITL
 ```
 
 ### Step 3: Remove Old node_modules and package-lock.json
@@ -172,7 +172,7 @@ added 1234 packages, and audited 1235 packages in 45s
 found 0 vulnerabilities
 
 $ npm run dev
-> hwarang-logistics@1.0.0 dev
+> ITL-logistics@1.0.0 dev
 > next dev
 
 - ready started server on 0.0.0.0:3000, url: http://localhost:3000

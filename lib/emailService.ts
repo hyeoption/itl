@@ -55,7 +55,7 @@ export const sendContactEmail = async (formData: ContactFormData): Promise<boole
       from_name: formData.name,
       from_email: formData.email,
       message: formData.message,
-      to_name: 'Hwarang Co., Ltd.',
+      to_name: 'ITL Co., Ltd.',
       reply_to: formData.email,
     };
 
@@ -103,7 +103,7 @@ export const sendQuoteEmail = async (formData: QuoteFormData): Promise<boolean> 
       cargo_type: formData.cargoType,
       inquiry_title: formData.title,
       inquiry_content: formData.content,
-      to_name: 'Hwarang Co., Ltd.',
+      to_name: 'ITL Co., Ltd.',
       reply_to: formData.contactEmail,
     };
 

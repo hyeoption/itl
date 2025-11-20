@@ -29,13 +29,13 @@ export default function NetworkPageKo() {
 
   const translations = {
     en: {
-      brand: "HWARANG CO., LTD.",
+      brand: "ITL CO., LTD.",
       nav: ["Home", "About Us", "Services", "Quote Request", "Network & Lanes", "Contact"],
-      aboutSubNav: ["Why Hwarang?", "Facilities", "Company History"],
+      aboutSubNav: ["Why ITL?", "Facilities", "Company History"],
       heroTitle: "Network & Lanes",
       heroSubtitle: "Strategic partnerships connecting Asia and the world",
       
-      companyName: "HWARANG CO., LTD.",
+      companyName: "ITL CO., LTD.",
       
       intro: "Our extensive global network and trusted partnerships ensure reliable logistics solutions across key trade corridors.",
       
@@ -87,13 +87,13 @@ export default function NetworkPageKo() {
       ]
     },
     ko: {
-      brand: "HWARANG CO., LTD.",
+      brand: "ITL CO., LTD.",
       nav: ["홈", "회사소개", "서비스", "견적요청", "네트워크", "연락처"],
-      aboutSubNav: ["왜 화랑인가?", "회사설비", "회사연혁"],
+      aboutSubNav: ["왜 아이티엘인가?", "회사설비", "회사연혁"],
       heroTitle: "네트워크 & 항로",
       heroSubtitle: "아시아와 세계를 연결하는 전략적 파트너십",
       
-      companyName: "주식회사 화랑",
+      companyName: "주식회사 아이티엘",
       
       intro: "광범위한 글로벌 네트워크와 신뢰할 수 있는 파트너십을 통해 주요 무역 통로에서 안정적인 물류 솔루션을 보장합니다.",
       
@@ -164,13 +164,13 @@ export default function NetworkPageKo() {
       <div className="hidden md:flex items-center justify-between px-6 py-2 text-sm bg-neutral-100 text-neutral-600">
         <div className="flex items-center gap-4">
           <span className="inline-flex items-center gap-2">
-            <Mail className="w-4 h-4" /> hr@hwarangshipping.com
+            <Mail className="w-4 h-4" /> itl@itlshipping.com
           </span>
           <span className="inline-flex items-center gap-2">
-            <Phone className="w-4 h-4" /> TEL. +82-31-994-687/0~2
+            <Phone className="w-4 h-4" /> TEL. +82-31-911-5612~4
           </span>
           <span className="inline-flex items-center gap-2">
-            <Printer className="w-4 h-4" /> FAX. +82-31-994-6873
+            <Printer className="w-4 h-4" /> FAX. +82-31-902-8130
           </span>
           <span className="inline-flex items-center gap-2">
             <Clock className="w-4 h-4" /> Mon-Fri 9:00-18:00 KST
@@ -187,14 +187,16 @@ export default function NetworkPageKo() {
         <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
           <button 
             onClick={() => window.location.href = "/ko"}
-            className="flex items-center gap-3 hover:opacity-80 transition-opacity"
+            className="flex items-center hover:opacity-80 transition-opacity"
           >
             <img 
-              src="/images/hwarang-logo-alt.jpeg" 
-              alt="HWARANG CO., LTD. Logo" 
-              className="w-10 h-10 object-contain"
+              src="/images/logo_itl.jpg?v=2" 
+              alt="ITL CO., LTD. Logo" 
+              className="h-11 object-contain"
+              onError={(e) => {
+                console.error('Logo failed to load');
+              }}
             />
-            <span className="text-xl font-bold tracking-tight text-neutral-900">{t.brand}</span>
           </button>
           
           <div className="hidden md:flex items-center gap-8">
@@ -495,8 +497,8 @@ export default function NetworkPageKo() {
           </h2>
           <p className="text-base md:text-lg text-gray-200 mb-6 max-w-2xl mx-auto">
             {lang === "ko" 
-              ? "화랑과 함께 더 큰 미래를 열어보세요. 전문 물류 팀이 고객의 성공을 위해 최선을 다하겠습니다."
-              : "Open a greater future with Hwarang. Our professional logistics team will do our best for your success."
+              ? "아이티엘과 함께 더 큰 미래를 열어보세요. 전문 물류 팀이 고객의 성공을 위해 최선을 다하겠습니다."
+              : "Open a greater future with ITL. Our professional logistics team will do our best for your success."
             }
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

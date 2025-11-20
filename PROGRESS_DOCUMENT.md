@@ -1,4 +1,4 @@
-# 🚀 Hwarang Logistics Website - Progress Document
+# 🚀 ITL Logistics Website - Progress Document
 
 ## 📋 Project Overview
 **Goal**: Transform the current landing page to match the professional logistics company design from the provided mockup.
@@ -31,9 +31,9 @@
   - Fixed linter errors
 
 - [x] **Updated Content & Branding**
-  - Changed company name to "HWARANG CO., LTD."
+  - Changed company name to "ITL CO., LTD."
   - Updated hero title to "DEDICATED TO DELIVERING EXCELLENCE"
-  - Updated contact info to match image (info@hwarang.com, +32.51-123-4567)
+  - Updated contact info to match image (info@ITL.com, +32.51-123-4567)
   - Added working hours display
 
 - [x] **Layout Restructuring - Top Header Bar**
@@ -207,7 +207,7 @@
 
 #### **File Structure**:
 ```
-Hwarang/
+ITL/
 ├── app/
 │   ├── globals.css
 │   ├── layout.tsx

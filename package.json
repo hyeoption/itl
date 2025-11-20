@@ -1,7 +1,7 @@
 {
-  "name": "hwarang-logistics",
+  "name": "ITL-logistics",
   "version": "1.0.0",
-  "description": "Hwarang Logistics - Professional logistics and forwarding services",
+  "description": "ITL Logistics - Professional logistics and forwarding services",
   "main": "index.js",
   "scripts": {
     "dev": "next dev",

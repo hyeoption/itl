@@ -1,4 +1,4 @@
-# 📧 Email Setup Guide for Hwarang Contact Forms
+# 📧 Email Setup Guide for ITL Contact Forms
 
 ## 🚀 Quick Setup with EmailJS (5 minutes)
 
@@ -29,19 +29,19 @@ Your contact forms are now ready! You just need to configure EmailJS to start re
 3. **Use this template**:
 
 ```html
-Subject: New Contact Form Submission - Hwarang Logistics
+Subject: New Contact Form Submission - ITL Logistics
 
 From: {{from_name}} <{{from_email}}>
-To: hr@hwarangshipping.com
+To: itl@itlshipping.com
 
-New contact form submission from Hwarang website:
+New contact form submission from ITL website:
 
 Name: {{from_name}}
 Email: {{from_email}}
 Message: {{message}}
 
 ---
-This email was sent from the Hwarang Logistics website contact form.
+This email was sent from the ITL Logistics website contact form.
 Reply to: {{reply_to}}
 ```
 
@@ -87,25 +87,25 @@ NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key_here
 ### When someone submits the contact form:
 - ✅ **Form shows "Sending..." state**
 - ✅ **Success message appears** after sending
-- ✅ **Email arrives** at `hr@hwarangshipping.com`
+- ✅ **Email arrives** at `itl@itlshipping.com`
 - ✅ **Form resets** automatically
 - ✅ **Works in both English and Korean**
 
 ### Email Format You'll Receive:
 ```
-Subject: New Contact Form Submission - Hwarang Logistics
+Subject: New Contact Form Submission - ITL Logistics
 
 From: John Doe <john@example.com>
-To: hr@hwarangshipping.com
+To: itl@itlshipping.com
 
-New contact form submission from Hwarang website:
+New contact form submission from ITL website:
 
 Name: John Doe
 Email: john@example.com
 Message: I need a quote for shipping containers from Busan to Los Angeles.
 
 ---
-This email was sent from the Hwarang Logistics website contact form.
+This email was sent from the ITL Logistics website contact form.
 Reply to: john@example.com
 ```
 
@@ -146,17 +146,17 @@ Reply to: john@example.com
 Create a second template for customer confirmations:
 
 ```html
-Subject: Thank you for contacting Hwarang Logistics
+Subject: Thank you for contacting ITL Logistics
 
 Dear {{from_name}},
 
-Thank you for contacting Hwarang Logistics. We have received your message and will respond within 24 hours.
+Thank you for contacting ITL Logistics. We have received your message and will respond within 24 hours.
 
 Your message:
 {{message}}
 
 Best regards,
-Hwarang Logistics Team
+ITL Logistics Team
 ```
 
 ### Quote Form Integration:

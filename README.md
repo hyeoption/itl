@@ -1,4 +1,4 @@
-# HWARANG CO., LTD. - Professional Logistics Website
+# ITL CO., LTD. - Professional Logistics Website
 
 A modern, bilingual (English/Korean) logistics company website built with Next.js, featuring responsive design and professional UI components.
 
@@ -39,7 +39,7 @@ A modern, bilingual (English/Korean) logistics company website built with Next.j
 1. **Clone the repository**
    ```bash
    git clone <repository-url>
-   cd Hwarang
+   cd ITL
    ```
 
 2. **Install dependencies**
@@ -65,7 +65,7 @@ npm start
 ## 📁 Project Structure
 
 ```
-Hwarang/
+ITL/
 ├── app/
 │   ├── about/
 │   │   └── page.tsx          # About Us page
@@ -77,7 +77,7 @@ Hwarang/
 │   └── page.tsx              # Main page (renders landing)
 ├── public/
 │   └── images/               # Static images
-│       ├── hwarang-logo-alt.jpeg
+│       ├── logo_itl.jpg
 │       ├── container-ship-aerial.jpg
 │       └── ...
 ├── next.config.js            # Next.js configuration
@@ -182,10 +182,10 @@ Hwarang/
 
 ## 📞 Company Information
 
-**HWARANG CO., LTD.**
-- **Email**: hr@hwarangshipping.com
-- **Phone**: +82-31-994-687/0~2
-- **Fax**: +82-31-994-6873
+**ITL CO., LTD.**
+- **Email**: itl@itlshipping.com
+- **Phone**: +82-31-911-5612~4
+- **Fax**: +82-31-902-8130
 - **Hours**: Mon-Fri 9:00-18:00 KST
 
 ### Services
@@ -210,7 +210,7 @@ npm run type-check   # TypeScript type checking
 
 ## 📝 License
 
-© 2025 Hwarang Co., Ltd. All rights reserved.
+© 2025 ITL Co., Ltd. All rights reserved.
 
 ## 🤝 Contributing
 
@@ -222,4 +222,4 @@ npm run type-check   # TypeScript type checking
 
 ---
 
-**Built with ❤️ for HWARANG CO., LTD.**
+**Built with ❤️ for ITL CO., LTD.**

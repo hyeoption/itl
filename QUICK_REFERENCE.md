@@ -1,4 +1,4 @@
-# ⚡ Quick Reference - Hwarang Logistics Project
+# ⚡ Quick Reference - ITL Logistics Project
 
 ## 🚨 IMMEDIATE ACTION REQUIRED
 
@@ -49,7 +49,7 @@ npm --version   # Should show latest version
 
 ### 3. Fix Project
 ```bash
-cd /Users/jisooyun/Desktop/Hwarang
+cd /Users/jisooyun/Desktop/ITL
 rm -rf node_modules package-lock.json
 npm cache clean --force
 npm install
@@ -61,7 +61,7 @@ npm run dev
 After Node.js update, you should see:
 ```
 $ npm run dev
-> hwarang-logistics@1.0.0 dev
+> ITL-logistics@1.0.0 dev
 > next dev
 
 - ready started server on 0.0.0.0:3000, url: http://localhost:3000

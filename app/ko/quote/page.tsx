@@ -52,9 +52,9 @@ export default function QuotePageKo() {
   });
 
   const t = {
-    brand: "HWARANG CO., LTD.",
+    brand: "ITL CO., LTD.",
     nav: ["홈", "회사소개", "서비스", "견적요청", "네트워크", "연락처"],
-    aboutSubNav: ["왜 화랑인가?", "회사설비", "회사연혁"],
+    aboutSubNav: ["왜 아이티엘인가?", "회사설비", "회사연혁"],
     pageTitle: "견적요청",
     pageSubtitle: "맞춤형 배송 견적을 받아보세요",
     formTitle: "견적요청서",
@@ -90,7 +90,7 @@ export default function QuotePageKo() {
     contactEmail: "담당자 이메일",
     submitButton: "견적요청 제출",
     requiredField: "★필수 항목 작성 부탁드립니다★",
-    footer: "© 2025 주식회사 화랑. All rights reserved."
+    footer: "© 2025 주식회사 아이티엘. All rights reserved."
   };
 
   useEffect(() => {
@@ -184,7 +184,7 @@ export default function QuotePageKo() {
       <div className="hidden md:flex items-center justify-between px-6 py-2 text-sm bg-neutral-100 text-neutral-600">
         <div className="flex items-center gap-4">
           <span className="inline-flex items-center gap-2">
-            <Mail className="w-4 h-4" /> hr@hwarangshipping.com
+            <Mail className="w-4 h-4" /> itl@itlshipping.com
           </span>
           <span className="inline-flex items-center gap-2">
             <Clock className="w-4 h-4" /> 월-금 08:00-18:00
@@ -193,11 +193,11 @@ export default function QuotePageKo() {
         <div className="flex items-center gap-6">
           <div className="flex items-center gap-2">
             <Phone className="w-4 h-4" />
-            <span>TEL. +82-31-994-687/0~2</span>
+            <span>TEL. +82-31-911-5612~4</span>
           </div>
           <div className="flex items-center gap-2">
             <Printer className="w-4 h-4" />
-            <span>FAX. +82-31-994-6873</span>
+            <span>FAX. +82-31-902-8130</span>
           </div>
         </div>
       </div>
@@ -207,14 +207,16 @@ export default function QuotePageKo() {
         <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
           <button 
             onClick={() => window.location.href = "/ko"}
-            className="flex items-center gap-3 hover:opacity-80 transition-opacity"
+            className="flex items-center hover:opacity-80 transition-opacity"
           >
             <img 
-              src="/images/hwarang-logo-alt.jpeg" 
-              alt="HWARANG CO., LTD. Logo" 
-              className="w-10 h-10 object-contain"
+              src="/images/logo_itl.jpg?v=2" 
+              alt="ITL CO., LTD. Logo" 
+              className="h-11 object-contain"
+              onError={(e) => {
+                console.error('Logo failed to load');
+              }}
             />
-            <span className="text-xl font-bold tracking-tight text-neutral-900">{t.brand}</span>
           </button>
           <div className="hidden md:flex items-center gap-8">
             {t.nav.map((item: string, index: number) => (
@@ -773,11 +775,6 @@ export default function QuotePageKo() {
           <div className="grid md:grid-cols-3 gap-8 text-center md:text-left">
             <div>
               <div className="flex items-center justify-center md:justify-start gap-3 mb-4">
-                <img 
-                  src="/images/hwarang-logo-alt.jpeg" 
-                  alt="HWARANG CO., LTD. Logo" 
-                  className="w-8 h-8 object-contain"
-                />
                 <span className="text-lg font-bold">{t.brand}</span>
               </div>
               <p className="text-neutral-400 text-sm leading-relaxed">
@@ -789,15 +786,15 @@ export default function QuotePageKo() {
               <div className="space-y-2 text-sm text-neutral-400">
                 <div className="flex items-center justify-center md:justify-start gap-2">
                   <Phone className="w-4 h-4" />
-                  <span>+82-31-994-687/0~2</span>
+                  <span>+82-31-911-5612~4</span>
                 </div>
                 <div className="flex items-center justify-center md:justify-start gap-2">
                   <Mail className="w-4 h-4" />
-                  <span>hr@hwarangshipping.com</span>
+                  <span>itl@itlshipping.com</span>
                 </div>
                 <div className="flex items-center justify-center md:justify-start gap-2">
                   <Printer className="w-4 h-4" />
-                  <span>+82-31-994-6873</span>
+                  <span>+82-31-902-8130</span>
                 </div>
               </div>
             </div>

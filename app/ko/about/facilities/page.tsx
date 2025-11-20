@@ -18,11 +18,11 @@ export default function FacilitiesPageKo() {
   const [mounted, setMounted] = useState(false);
 
   const t = {
-    brand: "HWARANG CO., LTD.",
+    brand: "ITL CO., LTD.",
     nav: ["홈", "회사소개", "서비스", "견적요청", "네트워크", "연락처"],
-    aboutSubNav: ["주식회사 화랑", "회사설비", "회사연혁"],
+    aboutSubNav: ["주식회사 아이티엘", "회사설비", "회사연혁"],
     
-    companyName: "주식회사 화랑",
+    companyName: "주식회사 아이티엘",
     
     intro: "고객의 물류 요구사항을 충족하기 위한 포괄적인 시설과 컨테이너 재고입니다.",
     
@@ -66,7 +66,7 @@ export default function FacilitiesPageKo() {
     ],
     
     warehouseInfo: {
-      name: "화랑 창고",
+      name: "아이티엘 창고",
       address: "부산광역시 기장군 장안읍 고무로 288",
       phone: "051-714-3950",
       features: [
@@ -91,7 +91,7 @@ export default function FacilitiesPageKo() {
       <div className="hidden md:flex items-center justify-between px-6 py-2 text-sm bg-neutral-100 text-neutral-600">
         <div className="flex items-center gap-4">
           <span className="inline-flex items-center gap-2">
-            <Mail className="w-4 h-4" /> hr@hwarangshipping.com
+            <Mail className="w-4 h-4" /> itl@itlshipping.com
           </span>
           <span className="inline-flex items-center gap-2">
             <Clock className="w-4 h-4" /> 월-금 08:00-18:00
@@ -100,11 +100,11 @@ export default function FacilitiesPageKo() {
         <div className="flex items-center gap-6">
           <div className="flex items-center gap-2">
             <Phone className="w-4 h-4" />
-            <span>TEL. +82-31-994-687/0~2</span>
+            <span>TEL. +82-31-911-5612~4</span>
           </div>
           <div className="flex items-center gap-2">
             <Printer className="w-4 h-4" />
-            <span>FAX. +82-31-994-6873</span>
+            <span>FAX. +82-31-902-8130</span>
           </div>
         </div>
       </div>
@@ -114,14 +114,16 @@ export default function FacilitiesPageKo() {
         <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
           <button 
             onClick={() => window.location.href = "/ko"}
-            className="flex items-center gap-3 hover:opacity-80 transition-opacity"
+            className="flex items-center hover:opacity-80 transition-opacity"
           >
             <img 
-              src="/images/hwarang-logo-alt.jpeg" 
-              alt="HWARANG CO., LTD. Logo" 
-              className="w-10 h-10 object-contain"
+              src="/images/logo_itl.jpg?v=2" 
+              alt="ITL CO., LTD. Logo" 
+              className="h-11 object-contain"
+              onError={(e) => {
+                console.error('Logo failed to load');
+              }}
             />
-            <span className="text-xl font-bold tracking-tight text-neutral-900">{t.brand}</span>
           </button>
           
           <div className="hidden md:flex items-center gap-8">
@@ -411,7 +413,7 @@ export default function FacilitiesPageKo() {
                     allowFullScreen
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
-                    title="화랑 창고 위치"
+                    title="아이티엘 창고 위치"
                   ></iframe>
                 </div>
                 <div className="text-center">
@@ -436,7 +438,7 @@ export default function FacilitiesPageKo() {
             함께 성장할 준비가 되셨나요?
           </h2>
           <p className="text-base md:text-lg text-gray-200 mb-6 max-w-2xl mx-auto">
-            화랑과 함께 더 큰 미래를 열어보세요. 전문 물류 팀이 고객의 성공을 위해 최선을 다하겠습니다.
+            아이티엘과 함께 더 큰 미래를 열어보세요. 전문 물류 팀이 고객의 성공을 위해 최선을 다하겠습니다.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button 

@@ -17,15 +17,15 @@ import {
   Printer
 } from "lucide-react";
 
-export default function WhyHwarangPageKo() {
+export default function WhyITLPageKo() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
 
   const t = {
-    brand: "HWARANG CO., LTD.",
+    brand: "ITL CO., LTD.",
     nav: ["홈", "회사소개", "서비스", "견적요청", "네트워크 & 항로", "연락처"],
-    aboutSubNav: ["주식회사 화랑", "회사설비", "회사연혁"],
-    pageTitle: "주식회사 화랑",
+    aboutSubNav: ["주식회사 아이티엘", "회사설비", "회사연혁"],
+    pageTitle: "주식회사 아이티엘",
     pageSubtitle: "글로벌 비즈니스를 위한 전문 물류 및 포워딩 서비스",
     globalTitle: "글로벌 네트워크",
     globalDesc: "전 세계 파트너와의 협력을 통해 어디든 안전하게 화물을 운송합니다.",
@@ -41,7 +41,7 @@ export default function WhyHwarangPageKo() {
     safetyDesc: "화물의 안전을 최우선으로 하는 체계적인 관리 시스템",
     customerTitle: "고객 만족",
     customerDesc: "고객의 성공이 곧 우리의 성공이라는 마음으로 최선을 다합니다.",
-    footer: "© 2025 주식회사 화랑. All rights reserved."
+    footer: "© 2025 주식회사 아이티엘. All rights reserved."
   };
 
   useEffect(() => {
@@ -56,7 +56,7 @@ export default function WhyHwarangPageKo() {
       <div className="hidden md:flex items-center justify-between px-6 py-2 text-sm bg-neutral-100 text-neutral-600">
         <div className="flex items-center gap-4">
           <span className="inline-flex items-center gap-2">
-            <Mail className="w-4 h-4" /> hr@hwarangshipping.com
+            <Mail className="w-4 h-4" /> itl@itlshipping.com
           </span>
           <span className="inline-flex items-center gap-2">
             <Clock className="w-4 h-4" /> 월-금 08:00-18:00
@@ -65,11 +65,11 @@ export default function WhyHwarangPageKo() {
         <div className="flex items-center gap-6">
           <div className="flex items-center gap-2">
             <Phone className="w-4 h-4" />
-            <span>TEL. +82-31-994-687/0~2</span>
+            <span>TEL. +82-31-911-5612~4</span>
           </div>
           <div className="flex items-center gap-2">
             <Printer className="w-4 h-4" />
-            <span>FAX. +82-31-994-6873</span>
+            <span>FAX. +82-31-902-8130</span>
           </div>
         </div>
       </div>
@@ -79,14 +79,16 @@ export default function WhyHwarangPageKo() {
         <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
           <button 
             onClick={() => window.location.href = "/ko"}
-            className="flex items-center gap-3 hover:opacity-80 transition-opacity"
+            className="flex items-center hover:opacity-80 transition-opacity"
           >
             <img 
-              src="/images/hwarang-logo-alt.jpeg" 
-              alt="HWARANG CO., LTD. Logo" 
-              className="w-10 h-10 object-contain"
+              src="/images/logo_itl.jpg?v=2" 
+              alt="ITL CO., LTD. Logo" 
+              className="h-11 object-contain"
+              onError={(e) => {
+                console.error('Logo failed to load');
+              }}
             />
-            <span className="text-xl font-bold tracking-tight text-neutral-900">{t.brand}</span>
           </button>
           <div className="hidden md:flex items-center gap-8">
             {t.nav.map((item, index) => (
@@ -351,7 +353,7 @@ export default function WhyHwarangPageKo() {
       <section className="py-20 bg-blue-900 text-white">
         <div className="max-w-6xl mx-auto px-6 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            화랑과 함께하세요
+            아이티엘과 함께하세요
           </h2>
           <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
             20년 이상의 경험과 전문성으로 고객의 물류 요구사항을 완벽하게 해결해드립니다.
@@ -379,11 +381,6 @@ export default function WhyHwarangPageKo() {
           <div className="grid md:grid-cols-3 gap-8 text-center md:text-left">
             <div>
               <div className="flex items-center justify-center md:justify-start gap-3 mb-4">
-                <img 
-                  src="/images/hwarang-logo-alt.jpeg" 
-                  alt="HWARANG CO., LTD. Logo" 
-                  className="w-8 h-8 object-contain"
-                />
                 <span className="text-lg font-bold">{t.brand}</span>
               </div>
               <p className="text-neutral-400 text-sm leading-relaxed">
@@ -395,15 +392,15 @@ export default function WhyHwarangPageKo() {
               <div className="space-y-2 text-sm text-neutral-400">
                 <div className="flex items-center justify-center md:justify-start gap-2">
                   <Phone className="w-4 h-4" />
-                  <span>+82-31-994-687/0~2</span>
+                  <span>+82-31-911-5612~4</span>
                 </div>
                 <div className="flex items-center justify-center md:justify-start gap-2">
                   <Mail className="w-4 h-4" />
-                  <span>hr@hwarangshipping.com</span>
+                  <span>itl@itlshipping.com</span>
                 </div>
                 <div className="flex items-center justify-center md:justify-start gap-2">
                   <Printer className="w-4 h-4" />
-                  <span>+82-31-994-6873</span>
+                  <span>+82-31-902-8130</span>
                 </div>
               </div>
             </div>

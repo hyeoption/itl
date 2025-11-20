@@ -7,9 +7,9 @@ export default function AboutPage() {
     if (typeof window !== 'undefined') {
       const urlParams = new URLSearchParams(window.location.search);
       const langParam = urlParams.get('lang');
-      // Redirect to the "Why Hwarang?" page
+      // Redirect to the "Why ITL?" page
       if (langParam === 'ko') {
-        window.location.href = '/about/why-hwarang?lang=ko';
+        window.location.href = '/ko/about/why-hwarang';
       } else {
         window.location.href = '/about/why-hwarang';
       }

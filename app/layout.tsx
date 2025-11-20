@@ -10,7 +10,7 @@ const notoSansKR = Noto_Sans_KR({
 })
 
 export const metadata: Metadata = {
-  title: 'HWARANG CO., LTD. - Professional Logistics & Freight Forwarding',
+  title: 'ITL CO., LTD. - Professional Logistics & Freight Forwarding',
   description: 'Dedicated to delivering excellence in logistics and freight forwarding services across global corridors.',
 }
 
