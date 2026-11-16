@@ -42,7 +42,7 @@ export default function WhyITLPage() {
     safetyDesc: "Systematic management system prioritizing cargo safety above all.",
     customerTitle: "Customer Satisfaction",
     customerDesc: "We do our best with the mindset that customer success is our success.",
-    footer: "© 2025 ITL Co., Ltd. All rights reserved."
+    footer: "© 2026 ITL Co., Ltd. All rights reserved."
   };
 
   useEffect(() => {
@@ -60,7 +60,7 @@ export default function WhyITLPage() {
             <Mail className="w-4 h-4" /> itl@itlshipping.com
           </span>
           <span className="inline-flex items-center gap-2">
-            <Clock className="w-4 h-4" /> Mon-Fri 08:00-18:00
+            <Clock className="w-4 h-4" /> Mon-Fri 09:00-18:00
           </span>
         </div>
         <div className="flex items-center gap-6">
@@ -404,7 +404,7 @@ export default function WhyITLPage() {
               <div className="space-y-2 text-sm text-neutral-400">
                 <div className="flex items-center justify-center md:justify-start gap-2">
                   <Clock className="w-4 h-4" />
-                  <span>Mon-Fri: 08:00-18:00</span>
+                  <span>Mon-Fri: 09:00-18:00</span>
                 </div>
               </div>
             </div>

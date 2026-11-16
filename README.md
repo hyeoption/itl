@@ -185,7 +185,7 @@ ITL/
 - **Email**: itl@itlshipping.com
 - **Phone**: +82-31-911-5612~4
 - **Fax**: +82-31-902-8130
-- **Hours**: Mon-Fri 9:00-18:00 KST
+- **Hours**: Mon-Fri 09:00-18:00 KST
 
 ### Services
 - International logistics and forwarding
@@ -209,7 +209,7 @@ npm run type-check   # TypeScript type checking
 
 ## 📝 License
 
-© 2025 ITL Co., Ltd. All rights reserved.
+© 2026 ITL Co., Ltd. All rights reserved.
 
 ## 🤝 Contributing
 

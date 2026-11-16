@@ -93,7 +93,7 @@ export default function CompanyHistoryPageKo() {
             <Printer className="w-4 h-4" /> FAX. +82-31-902-8130
           </span>
           <span className="inline-flex items-center gap-2">
-            <Clock className="w-4 h-4" /> 월-금 9:00-18:00 KST
+            <Clock className="w-4 h-4" /> 월-금 09:00-18:00 KST
           </span>
         </div>
         <div className="flex items-center gap-2">

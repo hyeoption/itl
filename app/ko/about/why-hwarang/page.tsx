@@ -42,7 +42,7 @@ export default function WhyITLPageKo() {
     safetyDesc: "화물의 안전을 최우선으로 하는 체계적인 관리 시스템",
     customerTitle: "고객 만족",
     customerDesc: "고객의 성공이 곧 우리의 성공이라는 마음으로 최선을 다합니다.",
-    footer: "© 2025 주식회사 아이티엘. All rights reserved."
+    footer: "© 2026 주식회사 아이티엘. All rights reserved."
   };
 
   useEffect(() => {
@@ -60,7 +60,7 @@ export default function WhyITLPageKo() {
             <Mail className="w-4 h-4" /> itl@itlshipping.com
           </span>
           <span className="inline-flex items-center gap-2">
-            <Clock className="w-4 h-4" /> 월-금 08:00-18:00
+            <Clock className="w-4 h-4" /> 월-금 09:00-18:00
           </span>
         </div>
         <div className="flex items-center gap-6">
@@ -404,7 +404,7 @@ export default function WhyITLPageKo() {
               <div className="space-y-2 text-sm text-neutral-400">
                 <div className="flex items-center justify-center md:justify-start gap-2">
                   <Clock className="w-4 h-4" />
-                  <span>월-금: 08:00-18:00</span>
+                  <span>월-금: 09:00-18:00</span>
                 </div>
               </div>
             </div>

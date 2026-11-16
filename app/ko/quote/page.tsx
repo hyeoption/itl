@@ -89,7 +89,7 @@ export default function QuotePageKo() {
     contactEmail: "담당자 이메일",
     submitButton: "견적요청 제출",
     requiredField: "★필수 항목 작성 부탁드립니다★",
-    footer: "© 2025 주식회사 아이티엘. All rights reserved."
+    footer: "© 2026 주식회사 아이티엘. All rights reserved."
   };
 
   useEffect(() => {
@@ -186,7 +186,7 @@ export default function QuotePageKo() {
             <Mail className="w-4 h-4" /> itl@itlshipping.com
           </span>
           <span className="inline-flex items-center gap-2">
-            <Clock className="w-4 h-4" /> 월-금 08:00-18:00
+            <Clock className="w-4 h-4" /> 월-금 09:00-18:00
           </span>
         </div>
         <div className="flex items-center gap-6">
@@ -778,7 +778,7 @@ export default function QuotePageKo() {
               <div className="space-y-2 text-sm text-neutral-400">
                 <div className="flex items-center justify-center md:justify-start gap-2">
                   <Clock className="w-4 h-4" />
-                  <span>월-금: 08:00-18:00</span>
+                  <span>월-금: 09:00-18:00</span>
                 </div>
               </div>
             </div>

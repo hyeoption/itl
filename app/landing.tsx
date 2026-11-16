@@ -32,7 +32,7 @@ const content = {
     quoteIntro: "Share your origin, destination and cargo details so our team can review your request.",
     contact: "Contact ITL", office: "Head office",
     address: "Room 404, Peugeot Building, 844 Hosu-ro, Ilsanseo-gu, Goyang-si, Gyeonggi-do, South Korea",
-    hours: "Mon–Fri, 08:00–18:00 KST", directions: "View directions",
+    hours: "Mon–Fri, 09:00–18:00 KST", directions: "View directions",
     form: "General inquiries", name: "Name", email: "Email", message: "Message",
     send: "Send inquiry", sending: "Sending…", sent: "Your message was sent.",
     error: "Your message could not be sent. Try again or contact us by email.",
@@ -61,7 +61,7 @@ const content = {
     quoteIntro: "출발지, 도착지, 화물 정보를 알려주시면 담당자가 견적 요청을 검토합니다.",
     contact: "아이티엘에 연락하기", office: "본사",
     address: "경기도 고양시 일산서구 호수로 844, 푸조빌딩 404호",
-    hours: "월–금 08:00–18:00 (한국 시간)", directions: "지도에서 보기",
+    hours: "월–금 09:00–18:00 (한국 시간)", directions: "지도에서 보기",
     form: "일반 문의", name: "성함", email: "이메일", message: "문의 내용",
     send: "문의 보내기", sending: "전송 중…", sent: "문의가 전송되었습니다.",
     error: "전송에 실패했습니다. 다시 시도하거나 이메일로 문의해 주세요.",
@@ -117,7 +117,7 @@ export default function ITLHomepage({ locale = "en" }: { locale?: keyof typeof c
             <Mail className="w-4 h-4" /> itl@itlshipping.com
           </span>
           <span className="inline-flex items-center gap-2">
-            <Clock className="w-4 h-4" /> {locale === "ko" ? "월-금 08:00-18:00" : "Mon-Fri 08:00-18:00"}
+            <Clock className="w-4 h-4" /> {locale === "ko" ? "월-금 09:00-18:00" : "Mon-Fri 09:00-18:00"}
           </span>
         </div>
         <div className="flex items-center gap-6">

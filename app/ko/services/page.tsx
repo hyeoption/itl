@@ -44,7 +44,7 @@ export default function ServicesPageKo() {
       insuranceDesc: "We help you consider cargo insurance for loss or damage in transit, taking into account the value of the goods and the route. Coverage, deductibles and exclusions depend on the policy, so review those terms before booking.",
       consultingTitle: "Logistics Consulting",
       consultingDesc: "We compare shipping options based on cargo dimensions, route and delivery deadlines. For ocean freight, for example, we can compare full container load (FCL) and shared container space (LCL) against your cost and timing requirements.",
-      footer: "© 2025 ITL Co., Ltd. All rights reserved."
+      footer: "© 2026 ITL Co., Ltd. All rights reserved."
     },
     ko: {
       brand: "ITL CO., LTD.",
@@ -73,7 +73,7 @@ export default function ServicesPageKo() {
       insuranceDesc: "화물의 가격과 운송 구간을 바탕으로, 운송 중 분실이나 파손에 대비할 수 있는 적하보험 가입을 안내합니다. 보장 범위, 자기부담금, 보상 제외 항목은 보험 상품에 따라 달라집니다.",
       consultingTitle: "물류 컨설팅",
       consultingDesc: "화물의 크기와 물량, 출발지·도착지, 납기를 바탕으로 운송 방식을 비교합니다. 예를 들어 해상 운송에서는 컨테이너를 단독으로 쓰는 FCL과 다른 화물과 공간을 나누는 LCL을 비용과 일정에 맞춰 검토합니다.",
-      footer: "© 2025 주식회사 아이티엘. All rights reserved."
+      footer: "© 2026 주식회사 아이티엘. All rights reserved."
     }
   };
 
@@ -141,7 +141,7 @@ export default function ServicesPageKo() {
             <Mail className="w-4 h-4" /> itl@itlshipping.com
           </span>
           <span className="inline-flex items-center gap-2">
-            <Clock className="w-4 h-4" /> {lang === "ko" ? "월-금 08:00-18:00" : "Mon-Fri 08:00-18:00"}
+            <Clock className="w-4 h-4" /> {lang === "ko" ? "월-금 09:00-18:00" : "Mon-Fri 09:00-18:00"}
           </span>
         </div>
         <div className="flex items-center gap-6">
@@ -443,7 +443,7 @@ export default function ServicesPageKo() {
               <div className="space-y-2 text-sm text-neutral-400">
                 <div className="flex items-center justify-center md:justify-start gap-2">
                   <Clock className="w-4 h-4" />
-                  <span>{lang === "ko" ? "월-금: 08:00-18:00" : "Mon-Fri: 08:00-18:00"}</span>
+                  <span>{lang === "ko" ? "월-금: 09:00-18:00" : "Mon-Fri: 09:00-18:00"}</span>
                 </div>
               </div>
             </div>

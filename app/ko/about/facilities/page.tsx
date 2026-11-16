@@ -96,7 +96,7 @@ export default function FacilitiesPageKo() {
             <Mail className="w-4 h-4" /> itl@itlshipping.com
           </span>
           <span className="inline-flex items-center gap-2">
-            <Clock className="w-4 h-4" /> 월-금 08:00-18:00
+            <Clock className="w-4 h-4" /> 월-금 09:00-18:00
           </span>
         </div>
         <div className="flex items-center gap-6">
