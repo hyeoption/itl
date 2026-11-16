@@ -1,4 +1,5 @@
 "use client";
+import PageHero from "../../page-hero";
 import React, { useState, useEffect } from "react";
 import {
   ArrowLeft,
@@ -18,8 +19,7 @@ import {
   Printer,
   MapPin,
   Building,
-  Ship,
-  Plane
+  Ship
 } from "lucide-react";
 
 export default function NetworkPageKo() {
@@ -370,153 +370,155 @@ export default function NetworkPageKo() {
         )}
       </nav>
 
-      {/* Breadcrumb */}
-      <div className="bg-neutral-50 border-b">
-        <div className="max-w-7xl mx-auto px-6 py-3">
-          <div className="flex items-center text-sm text-neutral-600">
-            <button 
-              onClick={() => window.location.href = "/ko"}
-              className="hover:text-blue-900 transition-colors"
-            >
-              {lang === "ko" ? "홈" : "Home"}
-            </button>
-            <span className="mx-2">/</span>
-            <span className="text-blue-900 font-medium">{t.heroTitle}</span>
+      <main className="itl-content" lang={lang}>
+        {/* Breadcrumb */}
+        <div className="itl-breadcrumb">
+          <div className="itl-wrap py-3">
+            <div className="flex items-center text-sm itl-muted">
+              <button
+                onClick={() => window.location.href = "/ko"}
+                className="hover:text-blue-900 transition-colors"
+              >
+                {lang === "ko" ? "홈" : "Home"}
+              </button>
+              <span className="mx-2">/</span>
+              <span className="text-blue-900 font-medium">{t.heroTitle}</span>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Introduction */}
-      <section className="py-12 bg-white">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-neutral-900 mb-4">
-              {t.companyName}
-            </h2>
-            <div className="w-16 h-0.5 bg-blue-900 mx-auto mb-6"></div>
-            <p className="text-lg md:text-xl text-neutral-600 max-w-3xl mx-auto leading-relaxed">
-              {t.intro}
-            </p>
+        <PageHero title={t.heroTitle} description={t.heroSubtitle} />
+
+        {/* Introduction */}
+        <section className="itl-section">
+          <div className="itl-wrap">
+            <div className="itl-section-heading">
+              <h2 className="mb-4">
+                {t.companyName}
+              </h2>
+              <p className="itl-muted max-w-3xl mx-auto">
+                {t.intro}
+              </p>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Russia Partner Section */}
-      <section className="py-16 bg-neutral-50">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-2xl md:text-3xl font-bold text-neutral-900 mb-4">
-              {t.russiaPartnerTitle}
-            </h2>
-            <div className="w-16 h-0.5 bg-blue-900 mx-auto"></div>
+        {/* Russia Partner Section */}
+        <section className="itl-section itl-section-tint">
+          <div className="itl-wrap">
+            <div className="itl-section-heading">
+              <h2 className="mb-4">
+                {t.russiaPartnerTitle}
+              </h2>
+            </div>
+
+            <div className="itl-card">
+              <h3 className="mb-6">
+                {t.russiaPartner.companyName}
+              </h3>
+
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {t.russiaPartner.offices.map((office, index) => (
+                  <div key={index} className="itl-card-inset">
+                    <div className="flex items-start gap-3 mb-3">
+                      <MapPin className="w-5 h-5 text-blue-900 mt-0.5 flex-shrink-0" />
+                      <div>
+                        <h4 className="mb-2">
+                          {office.name}
+                        </h4>
+                        <p className="itl-muted">
+                          {office.address}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
+        </section>
 
-          <div className="bg-white border border-neutral-200 rounded-lg p-8 shadow-lg">
-            <h3 className="text-xl font-bold text-neutral-900 mb-6">
-              {t.russiaPartner.companyName}
-            </h3>
+        {/* China Partners Section */}
+        <section className="itl-section">
+          <div className="itl-wrap">
+            <div className="itl-section-heading">
+              <h2 className="mb-4">
+                {t.chinaPartnerTitle}
+              </h2>
+            </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {t.russiaPartner.offices.map((office, index) => (
-                <div key={index} className="border border-neutral-200 rounded-lg p-4">
-                  <div className="flex items-start gap-3 mb-3">
-                    <MapPin className="w-5 h-5 text-blue-900 mt-0.5 flex-shrink-0" />
+            <div className="space-y-8">
+              {t.chinaPartners.map((partner, index) => (
+                <div key={index} className="itl-card">
+                  <h3 className="mb-6">
+                    {partner.companyName}
+                  </h3>
+
+                  <div className="grid md:grid-cols-2 gap-6">
                     <div>
-                      <h4 className="font-semibold text-neutral-900 mb-2">
-                        {office.name}
-                      </h4>
-                      <p className="text-sm text-neutral-600 leading-relaxed">
-                        {office.address}
-                      </p>
+                      <div className="flex items-start gap-3 mb-4">
+                        <Globe className="w-5 h-5 text-red-600 mt-0.5 flex-shrink-0" />
+                        <div>
+                          <h4 className="mb-2">
+                            {lang === "ko" ? "서비스 지역" : "Service Coverage"}
+                          </h4>
+                          <p className="itl-muted">
+                            {partner.coverage}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div>
+                      <div className="flex items-start gap-3">
+                        <MapPin className="w-5 h-5 text-red-600 mt-0.5 flex-shrink-0" />
+                        <div>
+                          <h4 className="mb-2">
+                            {lang === "ko" ? "주소" : "Address"}
+                          </h4>
+                          <p className="itl-muted">
+                            {partner.address}
+                          </p>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
               ))}
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* China Partners Section */}
-      <section className="py-16 bg-white">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-2xl md:text-3xl font-bold text-neutral-900 mb-4">
-              {t.chinaPartnerTitle}
+        {/* CTA Section */}
+        <section className="itl-band">
+          <div className="itl-wrap text-center">
+            <h2 className="mb-4">
+              {lang === "ko" ? "함께 성장할 준비가 되셨나요?" : "Ready to Grow Together?"}
             </h2>
-            <div className="w-16 h-0.5 bg-blue-900 mx-auto"></div>
+            <p className="text-gray-200 mb-6 max-w-2xl mx-auto">
+              {lang === "ko"
+                ? "아이티엘과 함께 더 큰 미래를 열어보세요. 전문 물류 팀이 고객의 성공을 위해 최선을 다하겠습니다."
+                : "Open a greater future with ITL. Our professional logistics team will do our best for your success."
+              }
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button
+                onClick={() => window.location.href = "/ko#contact"}
+                className="itl-button"
+              >
+                {lang === "ko" ? "문의하기" : "Get in Touch"}
+              </button>
+              <button
+                onClick={() => window.location.href = `/ko/services`}
+                className="itl-button itl-button-outline"
+              >
+                {lang === "ko" ? "서비스 보기" : "View Services"}
+              </button>
+            </div>
           </div>
+        </section>
+</main>
 
-          <div className="space-y-8">
-            {t.chinaPartners.map((partner, index) => (
-              <div key={index} className="bg-gradient-to-r from-neutral-50 to-white border border-neutral-200 rounded-lg p-8 shadow-lg">
-                <h3 className="text-xl font-bold text-neutral-900 mb-6">
-                  {partner.companyName}
-                </h3>
-
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <div className="flex items-start gap-3 mb-4">
-                      <Globe className="w-5 h-5 text-red-600 mt-0.5 flex-shrink-0" />
-                      <div>
-                        <h4 className="font-semibold text-neutral-900 mb-2">
-                          {lang === "ko" ? "서비스 지역" : "Service Coverage"}
-                        </h4>
-                        <p className="text-neutral-600 leading-relaxed">
-                          {partner.coverage}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div>
-                    <div className="flex items-start gap-3">
-                      <MapPin className="w-5 h-5 text-red-600 mt-0.5 flex-shrink-0" />
-                      <div>
-                        <h4 className="font-semibold text-neutral-900 mb-2">
-                          {lang === "ko" ? "주소" : "Address"}
-                        </h4>
-                        <p className="text-neutral-600 leading-relaxed">
-                          {partner.address}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-16 bg-neutral-900 text-white">
-        <div className="max-w-7xl mx-auto px-6 text-center">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4">
-            {lang === "ko" ? "함께 성장할 준비가 되셨나요?" : "Ready to Grow Together?"}
-          </h2>
-          <p className="text-base md:text-lg text-gray-200 mb-6 max-w-2xl mx-auto">
-            {lang === "ko" 
-              ? "아이티엘과 함께 더 큰 미래를 열어보세요. 전문 물류 팀이 고객의 성공을 위해 최선을 다하겠습니다."
-              : "Open a greater future with ITL. Our professional logistics team will do our best for your success."
-            }
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button 
-              onClick={() => window.location.href = "/ko#contact"}
-              className="px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors font-semibold text-base"
-            >
-              {lang === "ko" ? "문의하기" : "Get in Touch"}
-            </button>
-            <button 
-              onClick={() => window.location.href = `/ko/services`}
-              className="px-6 py-3 border border-white text-white rounded-lg hover:bg-white hover:text-neutral-900 transition-colors font-semibold text-base"
-            >
-              {lang === "ko" ? "서비스 보기" : "View Services"}
-            </button>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }

@@ -108,7 +108,6 @@ ITL/
 
 ### Services Page (`/services`)
 - **Ocean Freight**: FCL/LCL services, cross-trade
-- **Air Freight**: Charter services, courier options
 - **Project Cargo**: Specialized handling and monitoring
 - **Railway Services**: Eurasia rail connections (TCR, TSR, TMGR)
 
@@ -190,7 +189,7 @@ ITL/
 
 ### Services
 - International logistics and forwarding
-- Ocean and air freight
+- Ocean freight
 - Project cargo handling
 - Eurasia railway transportation
 - Customs clearance and documentation

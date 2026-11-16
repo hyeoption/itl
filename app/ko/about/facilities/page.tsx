@@ -1,4 +1,6 @@
 "use client";
+import ContainerGallery from "../../../container-gallery";
+import PageHero from "../../../page-hero";
 import React, { useState, useEffect } from "react";
 import {
   Clock,
@@ -283,179 +285,184 @@ export default function FacilitiesPageKo() {
         )}
       </nav>
 
-      {/* Breadcrumb */}
-      <div className="bg-neutral-50 border-b">
-        <div className="max-w-7xl mx-auto px-6 py-3">
-          <div className="flex items-center text-sm text-neutral-600">
-            <button 
-              onClick={() => window.location.href = "/ko"}
-              className="hover:text-blue-900 transition-colors"
-            >
-              홈
-            </button>
-            <span className="mx-2">/</span>
-            <button 
-              onClick={() => window.location.href = "/ko/about/why-hwarang"}
-              className="hover:text-blue-900 transition-colors"
-            >
-              회사소개
-            </button>
-            <span className="mx-2">/</span>
-            <span className="text-blue-900 font-medium">회사설비</span>
+      <main className="itl-content" lang="ko">
+        {/* Breadcrumb */}
+        <div className="itl-breadcrumb">
+          <div className="itl-wrap py-3">
+            <div className="flex items-center text-sm itl-muted">
+              <button
+                onClick={() => window.location.href = "/ko"}
+                className="hover:text-blue-900 transition-colors"
+              >
+                홈
+              </button>
+              <span className="mx-2">/</span>
+              <button
+                onClick={() => window.location.href = "/ko/about/why-hwarang"}
+                className="hover:text-blue-900 transition-colors"
+              >
+                회사소개
+              </button>
+              <span className="mx-2">/</span>
+              <span className="text-blue-900 font-medium">회사설비</span>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Container Inventory Section */}
-      <section className="py-16 bg-white">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-2xl md:text-3xl font-bold text-neutral-900 mb-4">
-              {t.containerInventoryTitle}
-            </h2>
-            <div className="w-16 h-0.5 bg-blue-900 mx-auto mb-4"></div>
-            <p className="text-lg text-neutral-600">
-              {t.containerInventorySubtitle}
-            </p>
-          </div>
+        <PageHero title="회사설비" description={t.intro} />
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {t.containers.map((container, index) => (
-              <div key={index} className="bg-gradient-to-br from-white to-neutral-50 border border-neutral-200 rounded-lg p-6 hover:shadow-lg transition-shadow duration-300">
-                <h3 className="text-lg font-semibold text-neutral-900 text-center mb-2">
-                  {container.type}
-                </h3>
-                <div className="text-center mb-4">
-                  <span className="text-2xl font-bold text-blue-900">{container.count}</span>
-                </div>
-                <p className="text-sm text-neutral-600 text-center leading-relaxed">
-                  {container.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+        <ContainerGallery locale="ko" />
 
-      {/* Warehouse Information Section */}
-      <section className="py-16 bg-neutral-50">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-2xl md:text-3xl font-bold text-neutral-900 mb-4">
-              {t.warehouseTitle}
-            </h2>
-            <div className="w-16 h-0.5 bg-blue-900 mx-auto mb-4"></div>
-            <p className="text-lg text-neutral-600">
-              {t.warehouseSubtitle}
-            </p>
-          </div>
+        {/* Container Inventory Section */}
+        <section className="itl-section">
+          <div className="itl-wrap">
+            <div className="itl-section-heading">
+              <h2 className="mb-4">
+                {t.containerInventoryTitle}
+              </h2>
+              <p className="itl-muted">
+                {t.containerInventorySubtitle}
+              </p>
+            </div>
 
-          <div className="grid lg:grid-cols-2 gap-12 items-stretch">
-            <div>
-              <div className="bg-white border border-neutral-200 rounded-lg p-8 shadow-lg h-full">
-                <div className="flex items-center gap-3 mb-6">
-                  <MapPin className="w-6 h-6 text-blue-900" />
-                  <h3 className="text-xl font-bold text-neutral-900">
-                    {t.warehouseInfo.name}
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 itl-grid-gap">
+              {t.containers.map((container, index) => (
+                <div key={index} className="itl-card">
+                  <h3 className="text-center mb-2">
+                    {container.type}
                   </h3>
+                  <div className="text-center mb-4">
+                    <span className="text-2xl font-bold text-blue-900">{container.count}</span>
+                  </div>
+                  <p className="itl-muted text-center">
+                    {container.description}
+                  </p>
                 </div>
-                
-                <div className="space-y-4 mb-6">
-                  <div className="flex items-start gap-3">
-                    <Package className="w-5 h-5 text-blue-900 mt-0.5 flex-shrink-0" />
-                    <div>
-                      <div className="font-medium text-neutral-900 mb-1">
-                        주소
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Warehouse Information Section */}
+        <section className="itl-section itl-section-tint">
+          <div className="itl-wrap">
+            <div className="itl-section-heading">
+              <h2 className="mb-4">
+                {t.warehouseTitle}
+              </h2>
+              <p className="itl-muted">
+                {t.warehouseSubtitle}
+              </p>
+            </div>
+
+            <div className="grid lg:grid-cols-2 itl-grid-gap items-stretch">
+              <div>
+                <div className="itl-card h-full">
+                  <div className="flex items-center gap-3 mb-6">
+                    <MapPin className="w-6 h-6 text-blue-900" />
+                    <h3>
+                      {t.warehouseInfo.name}
+                    </h3>
+                  </div>
+
+                  <div className="space-y-4 mb-6">
+                    <div className="flex items-start gap-3">
+                      <Package className="w-5 h-5 text-blue-900 mt-0.5 flex-shrink-0" />
+                      <div>
+                        <div className="font-medium text-neutral-900 mb-1">
+                          주소
+                        </div>
+                        <div className="itl-muted">
+                          {t.warehouseInfo.address}
+                        </div>
                       </div>
-                      <div className="text-neutral-600">
-                        {t.warehouseInfo.address}
+                    </div>
+
+                    <div className="flex items-start gap-3">
+                      <Phone className="w-5 h-5 text-blue-900 mt-0.5 flex-shrink-0" />
+                      <div>
+                        <div className="font-medium text-neutral-900 mb-1">
+                          전화번호
+                        </div>
+                        <div className="itl-muted">
+                          {t.warehouseInfo.phone}
+                        </div>
                       </div>
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-3">
-                    <Phone className="w-5 h-5 text-blue-900 mt-0.5 flex-shrink-0" />
-                    <div>
-                      <div className="font-medium text-neutral-900 mb-1">
-                        전화번호
-                      </div>
-                      <div className="text-neutral-600">
-                        {t.warehouseInfo.phone}
-                      </div>
-                    </div>
+                  <div>
+                    <h4 className="mb-3">
+                      주요 특징
+                    </h4>
+                    <ul className="space-y-2">
+                      {t.warehouseInfo.features.map((feature, index) => (
+                        <li key={index} className="flex items-start gap-2">
+                          <div className="w-1.5 h-1.5 bg-blue-900 rounded-full mt-2 flex-shrink-0"></div>
+                          <span className="itl-muted">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
-
-                <div>
-                  <h4 className="font-semibold text-neutral-900 mb-3">
-                    주요 특징
-                  </h4>
-                  <ul className="space-y-2">
-                    {t.warehouseInfo.features.map((feature, index) => (
-                      <li key={index} className="flex items-start gap-2">
-                        <div className="w-1.5 h-1.5 bg-blue-900 rounded-full mt-2 flex-shrink-0"></div>
-                        <span className="text-neutral-600">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
               </div>
-            </div>
 
-            <div className="lg:sticky lg:top-8">
-              <div className="bg-white border border-neutral-200 rounded-lg p-8 shadow-lg h-full flex flex-col">
-                <div className="bg-neutral-200 rounded-lg overflow-hidden flex-1 mb-6">
-                  <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3257.4824282145984!2d129.2166!3d35.3288!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3568e9c1b2b5e5e5%3A0x1234567890abcdef!2z7ZmU652567mA!5e0!3m2!1sko!2skr!4v1620000000000!5m2!1sko!2skr&q=부산광역시+기장군+장안읍+고무로+288"
-                    width="100%"
-                    height="100%"
-                    style={{ border: 0 }}
-                    allowFullScreen
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    title="아이티엘 창고 위치"
-                  ></iframe>
-                </div>
-                <div className="text-center">
-                  <button
-                    onClick={() => window.open('https://maps.google.com?q=부산광역시+기장군+장안읍+고무로+288', '_blank')}
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-blue-900 text-white rounded-lg hover:bg-blue-800 transition-colors text-sm font-medium shadow-md"
-                  >
-                    <MapPin className="w-4 h-4" />
-                    Google Maps에서 보기
-                  </button>
+              <div className="lg:sticky lg:top-8">
+                <div className="itl-card h-full flex flex-col">
+                  <div className="itl-map itl-media bg-neutral-200 overflow-hidden flex-1 mb-6">
+                    <iframe
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3257.4824282145984!2d129.2166!3d35.3288!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3568e9c1b2b5e5e5%3A0x1234567890abcdef!2z7ZmU652567mA!5e0!3m2!1sko!2skr!4v1620000000000!5m2!1sko!2skr&q=부산광역시+기장군+장안읍+고무로+288"
+                      width="100%"
+                      height="100%"
+                      style={{ border: 0 }}
+                      allowFullScreen
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                      title="아이티엘 창고 위치"
+                    ></iframe>
+                  </div>
+                  <div className="text-center">
+                    <button
+                      onClick={() => window.open('https://maps.google.com?q=부산광역시+기장군+장안읍+고무로+288', '_blank')}
+                      className="itl-text-link"
+                    >
+                      <MapPin className="w-4 h-4" />
+                      Google Maps에서 보기
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* CTA Section */}
-      <section className="py-16 bg-neutral-900 text-white">
-        <div className="max-w-7xl mx-auto px-6 text-center">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4">
-            함께 성장할 준비가 되셨나요?
-          </h2>
-          <p className="text-base md:text-lg text-gray-200 mb-6 max-w-2xl mx-auto">
-            아이티엘과 함께 더 큰 미래를 열어보세요. 전문 물류 팀이 고객의 성공을 위해 최선을 다하겠습니다.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button 
-              onClick={() => window.location.href = "/ko#contact"}
-              className="px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors font-semibold text-base"
-            >
-              문의하기
-            </button>
-            <button 
-              onClick={() => window.location.href = "/ko/services"}
-              className="px-6 py-3 border border-white text-white rounded-lg hover:bg-white hover:text-neutral-900 transition-colors font-semibold text-base"
-            >
-              서비스 보기
-            </button>
+        {/* CTA Section */}
+        <section className="itl-band">
+          <div className="itl-wrap text-center">
+            <h2 className="mb-4">
+              함께 성장할 준비가 되셨나요?
+            </h2>
+            <p className="text-gray-200 mb-6 max-w-2xl mx-auto">
+              아이티엘과 함께 더 큰 미래를 열어보세요. 전문 물류 팀이 고객의 성공을 위해 최선을 다하겠습니다.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button
+                onClick={() => window.location.href = "/ko#contact"}
+                className="itl-button"
+              >
+                문의하기
+              </button>
+              <button
+                onClick={() => window.location.href = "/ko/services"}
+                className="itl-button itl-button-outline"
+              >
+                서비스 보기
+              </button>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+</main>
+
     </div>
   );
 }

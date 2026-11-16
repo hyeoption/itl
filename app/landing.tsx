@@ -1,177 +1,123 @@
 "use client";
-import React, { useState, useEffect, useRef } from "react";
-import {
-  Globe,
-  Phone,
-  Mail,
-  MapPin,
-  Menu,
-  X,
-  CheckCircle,
-  Clock,
-  Search,
-  Printer
-} from "lucide-react";
-import { initEmailJS } from "../lib/emailService";
-import emailjs from '@emailjs/browser';
 
-export default function ITLHomepage() {
-  const [lang, setLang] = useState("en");
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowDown, ArrowRight, ArrowUpRight, Clock, Mail, MapPin, Menu, Package, Phone, Printer, Search, Ship, TrainFront, X } from "lucide-react";
+import { useState, type FormEvent } from "react";
+import emailjs from "@emailjs/browser";
+import styles from "./landing.module.css";
+
+const content = {
+  en: {
+    nav: ["Home", "About Us", "Services", "Quote Request", "Network & Lanes", "Contact"],
+    aboutSubNav: ["ITL CO., LTD.", "Facilities", "Company History"],
+    ctaContact: "Contact Us",
+    quote: "Request a quote", browse: "Explore services", skip: "Skip to content",
+    heroLabel: "INTERNATIONAL FREIGHT FORWARDING",
+    hero: ["Global freight.", "Ocean, rail & project cargo."],
+    intro: "ITL coordinates international freight around your cargo, route and schedule.",
+    services: "Freight services",
+    serviceIntro: "Choose the right transport for your cargo and delivery schedule.",
+    modes: [
+      ["Ocean freight", "International container freight backed by our own container operations in Busan."],
+      ["Rail freight", "Rail transport across Eurasian trade corridors."],
+      ["Project cargo", "Transport planning for oversized and specialized cargo."],
+    ],
+    busan: "Busan, South Korea", owned: "ITL-owned containers",
+    companyLabel: "ABOUT ITL",
+    company: "Based in Korea. Connected worldwide.",
+    companyIntro: "ITL owns and operates containers in Busan, including dry, open top and flat rack units. We work with overseas logistics partners to arrange transport based on your cargo and route.",
+    facilities: "Explore our facilities", about: "About ITL", network: "Explore our network",
+    quoteTitle: "Planning your next shipment?",
+    quoteIntro: "Share your origin, destination and cargo details so our team can review your request.",
+    contact: "Contact ITL", office: "Head office",
+    address: "Room 404, Peugeot Building, 844 Hosu-ro, Ilsanseo-gu, Goyang-si, Gyeonggi-do, South Korea",
+    hours: "Mon–Fri, 08:00–18:00 KST", directions: "View directions",
+    form: "General inquiries", name: "Name", email: "Email", message: "Message",
+    send: "Send inquiry", sending: "Sending…", sent: "Your message was sent.",
+    error: "Your message could not be sent. Try again or contact us by email.",
+  },
+  ko: {
+    nav: ["홈", "회사소개", "서비스", "견적요청", "네트워크", "연락처"],
+    aboutSubNav: ["주식회사 아이티엘", "회사설비", "회사연혁"],
+    ctaContact: "연락처",
+    quote: "운송 견적 요청", browse: "서비스 보기", skip: "본문 바로가기",
+    heroLabel: "국제 화물 포워딩",
+    hero: ["해상·철도부터", "프로젝트 화물까지"],
+    intro: "화물의 특성과 운송 구간, 납기에 맞춰 아이티엘이 국제 운송을 주선합니다.",
+    services: "운송 서비스",
+    serviceIntro: "화물의 특성과 납기에 맞는 운송 방식을 찾아보세요.",
+    modes: [
+      ["해상 운송", "부산 자체 컨테이너 운영을 바탕으로 국제 해상 운송을 주선합니다."],
+      ["철도 운송", "유라시아 주요 운송 구간을 잇는 철도 운송입니다."],
+      ["프로젝트 화물", "대형·특수 화물의 규격과 취급 조건에 맞춰 운송을 계획합니다."],
+    ],
+    busan: "대한민국 부산", owned: "자체 보유 컨테이너",
+    companyLabel: "아이티엘 소개",
+    company: "부산의 운영 기반과 해외 물류 네트워크",
+    companyIntro: "아이티엘은 부산에서 드라이, 오픈탑, 플랫랙 등 자체 보유 컨테이너를 운영합니다. 해외 물류 파트너와 협력해 화물의 특성과 운송 구간에 맞는 운송을 주선합니다.",
+    facilities: "회사설비 보기", about: "회사 소개 보기", network: "운송 네트워크 보기",
+    quoteTitle: "다음 운송을 준비하고 계신가요?",
+    quoteIntro: "출발지, 도착지, 화물 정보를 알려주시면 담당자가 견적 요청을 검토합니다.",
+    contact: "아이티엘에 연락하기", office: "본사",
+    address: "경기도 고양시 일산서구 호수로 844, 푸조빌딩 404호",
+    hours: "월–금 08:00–18:00 (한국 시간)", directions: "지도에서 보기",
+    form: "일반 문의", name: "성함", email: "이메일", message: "문의 내용",
+    send: "문의 보내기", sending: "전송 중…", sent: "문의가 전송되었습니다.",
+    error: "전송에 실패했습니다. 다시 시도하거나 이메일로 문의해 주세요.",
+  },
+} as const;
+
+const modes = [
+  { Icon: Ship, anchor: "ocean" },
+  { Icon: TrainFront, anchor: "railway" },
+  { Icon: Package, anchor: "project" },
+];
+const emailAddress = "itl@itlshipping.com";
+const officePhone = "+82-31-911-5612~4";
+
+export default function ITLHomepage({ locale = "en" }: { locale?: keyof typeof content }) {
+  const t = content[locale];
+  const base = locale === "ko" ? "/ko" : "";
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
-  const formRef = useRef<HTMLFormElement>(null);
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const quote = base + "/quote";
+  const services = base + "/services";
+  const network = base + "/network";
+  const about = base + "/about/why-hwarang";
 
-    const translations = {
-    en: {
-      brand: "ITL CO., LTD.",
-      nav: ["Home", "About Us", "Services", "Quote Request", "Network & Lanes", "Contact"],
-      aboutSubNav: ["ITL CO., LTD.", "Facilities", "Company History"],
-      heroTitle: "SAFE LOGISTICS WORLDWIDE",
-      heroSubtitle:
-        "Professional forwarding services with reliable partners and on‑time delivery.",
-      ctaQuote: "Get in Touch",
-      ctaContact: "Contact Us",
-      aboutTitle: "About Us",
-      aboutSubtitle: "ITL Co., Ltd. is a leading logistics and forwarding company.",
-      about:
-        "We own our own containers in Busan to reduce costs.",
-      servicesTitle: "Core Services",
-      coverageTitle: "Network & Lanes",
-      coverageDesc:
-        "Providing strategic delivery solutions and lanes specifically designed for your needs.",
-      stats: [
-        { k: "24/7", v: "OPERATIONS" },
-        { k: "2,122", v: "OWNED CONTAINERS" },
-        { k: "KITA", v: "MEMBER SINCE 2015" }
-      ],
-      whyTitle: "Why ITL",
-      why: [
-        "Commitment to quality and safety  ",
-        "Flexible and efficient solutions",
-        "Customer satisfaction and reliability"
-      ],
-      contactTitle: "Get in Touch",
-      contactForm: {
-        title: "Send us a Message",
-        name: "Your Name",
-        email: "Your Email",
-        message: "Message",
-        button: "Send"
-      },
-      footer: "© 2025 ITL Co., Ltd. All rights reserved."
-    },
-    ko: {
-      brand: "ITL CO., LTD.",
-      nav: ["홈", "회사소개", "서비스", "견적요청", "네트워크", "연락처"],
-      aboutSubNav: ["주식회사 아이티엘", "회사설비", "회사연혁"],
-      heroTitle: "SAFE LOGISTICS WORLDWIDE",
-      heroSubtitle:
-        "신뢰할 수 있는 파트너와 정시 배송으로 전문적인 포워딩 서비스를 제공합니다.",
-      ctaQuote: "문의하기",
-      ctaContact: "연락처",
-                      aboutTitle: "About Us",
-      aboutSubtitle: "주식회사 아이티엘은 선도적인 물류 및 포워딩 회사입니다.",
-        about:
-        "우리는 부산에 자체 컨테이너를 보유하여 비용을 절감하고 있습니다.",
-      servicesTitle: "Our Services",
-      coverageTitle: "Network & Lanes",
-      coverageDesc:
-        "고객의 요구에 맞게 특별히 설계된 전략적 배송 솔루션과 항로를 제공합니다.",
-      stats: [
-        { k: "24/7", v: "OPERATIONS" },
-        { k: "2,122", v: "OWNED CONTAINERS" },
-        { k: "KITA", v: "MEMBER SINCE 2015" }
-      ],
-      whyTitle: "아이티엘을 선택하는 이유",
-      why: [
-        "품질과 안전에 대한 약속",
-        "효율적인 비용의 Door to door",
-        "고객 만족과 신뢰성"
-      ],
-      contactTitle: "Get in Touch",
-      contactForm: {
-        title: "메시지 보내기",
-        name: "성함",
-        email: "이메일",
-        message: "메시지",
-        button: "전송"
-      },
-      footer: "© 2025 주식회사 아이티엘. All rights reserved."
-    }
-  };
+  async function sendInquiry(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (status === "sending") return;
+    const form = event.currentTarget;
+    if (!form.reportValidity()) return;
 
-  const t = translations[lang as keyof typeof translations];
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % heroImages.length);
-    }, 5000);
-    
-    return () => clearInterval(interval);
-  }, []);
-
-  useEffect(() => {
-    // Initialize EmailJS
-    initEmailJS();
-  }, []);
-
-  // Handle form submission
-  const handleFormSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    console.log('📝 Contact form submitted with data:', form);
-    
-    // Basic validation
-    if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
-      alert('Please fill in all fields');
-      return;
-    }
-
-    setIsSubmitting(true);
-    setSubmitStatus('idle');
-
+    setStatus("sending");
     try {
-      console.log('🚀 Sending email via EmailJS sendForm...');
-      
-      const result = await emailjs.sendForm(
-        'hye.option', // service ID
-        'template_5ummn9h', // template ID
-        formRef.current!, // form element
-        '7Kk7gV6Kf6nVSj8Fa' // public key
+      await emailjs.sendForm(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "hye.option",
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || "template_5ummn9h",
+        form,
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || "7Kk7gV6Kf6nVSj8Fa",
       );
-      
-      console.log('✅ Email sent successfully:', result);
-      setSubmitStatus('success');
-      setForm({ name: "", email: "", message: "" }); // Reset form
-      setTimeout(() => setSubmitStatus('idle'), 5000); // Reset status after 5 seconds
-      
-    } catch (error) {
-      console.error('❌ Contact form submission error:', error);
-      setSubmitStatus('error');
-    } finally {
-      setIsSubmitting(false);
+      form.reset();
+      setStatus("sent");
+    } catch {
+      setStatus("error");
     }
-  };
-
-  const heroImages = [
-    "/images/warehouse-logistics.jpg",
-    "/images/railway-container.jpg", 
-    "/images/container-ship-aerial.jpg"
-  ];
+  }
 
   return (
-    <div className="bg-white text-neutral-800 font-noto-sans-kr" data-testid="page-root">
+    <div className={styles.page} lang={locale} data-testid="page-root">
+      <a className={styles.skip} href="#main">{t.skip}</a>
       {/* Top info bar */}
-      <div className="hidden md:flex items-center justify-between px-6 py-2 text-sm bg-neutral-100 text-neutral-600">
+      <div className="font-noto-sans-kr hidden md:flex items-center justify-between px-6 py-2 text-sm bg-neutral-100 text-neutral-600">
         <div className="flex items-center gap-4">
           <span className="inline-flex items-center gap-2">
             <Mail className="w-4 h-4" /> itl@itlshipping.com
           </span>
           <span className="inline-flex items-center gap-2">
-            <Clock className="w-4 h-4" /> {lang === "ko" ? "월-금 08:00-18:00" : "Mon-Fri 08:00-18:00"}
+            <Clock className="w-4 h-4" /> {locale === "ko" ? "월-금 08:00-18:00" : "Mon-Fri 08:00-18:00"}
           </span>
         </div>
         <div className="flex items-center gap-6">
@@ -187,15 +133,15 @@ export default function ITLHomepage() {
       </div>
 
       {/* Navbar */}
-      <nav className="sticky top-0 z-40 bg-white/95 backdrop-blur border-b">
+      <nav className="font-noto-sans-kr text-neutral-800 sticky top-0 z-40 bg-white/95 backdrop-blur border-b">
         <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
-          <button 
-            onClick={() => window.location.href = lang === "ko" ? "/ko" : "/"}
+          <button
+            onClick={() => window.location.href = locale === "ko" ? "/ko" : "/"}
             className="flex items-center hover:opacity-80 transition-opacity"
           >
-            <img 
-              src="/images/logo_itl.jpg?v=2" 
-              alt="ITL CO., LTD. Logo" 
+            <img
+              src="/images/logo_itl.jpg?v=2"
+              alt="ITL CO., LTD. Logo"
               className="h-11 object-contain"
               onError={(e) => {
                 console.error('Logo failed to load');
@@ -219,11 +165,11 @@ export default function ITLHomepage() {
                           key={subIdx}
                           onClick={() => {
                             if (subIdx === 0) {
-                              window.location.href = lang === "ko" ? "/ko/about/why-hwarang" : "/about/why-hwarang";
+                              window.location.href = locale === "ko" ? "/ko/about/why-hwarang" : "/about/why-hwarang";
                             } else if (subIdx === 1) {
-                              window.location.href = lang === "ko" ? "/ko/about/facilities" : "/about/facilities";
+                              window.location.href = locale === "ko" ? "/ko/about/facilities" : "/about/facilities";
                             } else if (subIdx === 2) {
-                              window.location.href = lang === "ko" ? "/ko/about/history" : "/about/history";
+                              window.location.href = locale === "ko" ? "/ko/about/history" : "/about/history";
                             }
                           }}
                           className="block w-full text-left px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
@@ -237,15 +183,16 @@ export default function ITLHomepage() {
                   <button
                     onClick={() => {
                       if (item === "Services" || item === "서비스") {
-                        window.location.href = lang === "ko" ? "/ko/services" : "/services";
+                        window.location.href = locale === "ko" ? "/ko/services" : "/services";
                       } else if (item === "Home" || item === "홈") {
-                        window.location.href = lang === "ko" ? "/ko" : "/";
+                        window.location.href = locale === "ko" ? "/ko" : "/";
                       } else if (item === "Quote Request" || item === "견적요청") {
-                        window.location.href = lang === "ko" ? "/ko/quote" : "/quote";
+                        window.location.href = locale === "ko" ? "/ko/quote" : "/quote";
                       } else if (item === "Network & Lanes" || item === "네트워크") {
-                        window.location.href = lang === "ko" ? "/ko/network" : "/network";
+                        window.location.href = locale === "ko" ? "/ko/network" : "/network";
                       } else if (item === "Contact" || item === "연락처") {
-                        window.location.href = lang === "ko" ? "/ko#contact" : "/#contact";
+                        setMobileOpen(false);
+                        window.location.hash = "contact";
                       }
                     }}
                     className={`text-sm font-medium transition-colors ${
@@ -261,18 +208,18 @@ export default function ITLHomepage() {
               <Search className="w-4 h-4" />
               <div className="flex items-center gap-2">
                 <button
-                  onClick={() => setLang("en")}
+                  onClick={() => window.location.assign("/")}
                   className={`text-sm font-medium transition-colors ${
-                    lang === "en" ? "text-blue-900" : "hover:text-blue-900"
+                    locale === "en" ? "text-blue-900" : "hover:text-blue-900"
                   }`}
                 >
                   EN
                 </button>
                 <span className="text-gray-300">|</span>
                 <button
-                  onClick={() => setLang("ko")}
+                  onClick={() => window.location.assign("/ko")}
                   className={`text-sm font-medium transition-colors ${
-                    lang === "ko" ? "text-blue-900" : "hover:text-blue-900"
+                    locale === "ko" ? "text-blue-900" : "hover:text-blue-900"
                   }`}
                 >
                   한국어
@@ -285,6 +232,7 @@ export default function ITLHomepage() {
             className="md:hidden"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Toggle menu"
+            aria-expanded={mobileOpen}
           >
             {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -303,11 +251,11 @@ export default function ITLHomepage() {
                             key={subIdx}
                             onClick={() => {
                               if (subIdx === 0) {
-                                window.location.href = lang === "ko" ? "/ko/about/why-hwarang" : "/about/why-hwarang";
+                                window.location.href = locale === "ko" ? "/ko/about/why-hwarang" : "/about/why-hwarang";
                               } else if (subIdx === 1) {
-                                window.location.href = lang === "ko" ? "/ko/about/facilities" : "/about/facilities";
+                                window.location.href = locale === "ko" ? "/ko/about/facilities" : "/about/facilities";
                               } else if (subIdx === 2) {
-                                window.location.href = lang === "ko" ? "/ko/about/history" : "/about/history";
+                                window.location.href = locale === "ko" ? "/ko/about/history" : "/about/history";
                               }
                             }}
                             className="block text-left py-1 text-sm text-gray-600"
@@ -321,15 +269,16 @@ export default function ITLHomepage() {
                     <button
                       onClick={() => {
                         if (item === "Services" || item === "서비스") {
-                          window.location.href = lang === "ko" ? "/ko/services" : "/services";
+                          window.location.href = locale === "ko" ? "/ko/services" : "/services";
                         } else if (item === "Home" || item === "홈") {
-                          window.location.href = lang === "ko" ? "/ko" : "/";
+                          window.location.href = locale === "ko" ? "/ko" : "/";
                         } else if (item === "Quote Request" || item === "견적요청") {
-                          window.location.href = lang === "ko" ? "/ko/quote" : "/quote";
+                          window.location.href = locale === "ko" ? "/ko/quote" : "/quote";
                         } else if (item === "Network & Lanes" || item === "네트워크") {
-                          window.location.href = lang === "ko" ? "/ko/network" : "/network";
+                          window.location.href = locale === "ko" ? "/ko/network" : "/network";
                         } else if (item === "Contact" || item === "연락처") {
-                          window.location.href = lang === "ko" ? "/ko#contact" : "/#contact";
+                          setMobileOpen(false);
+                          window.location.hash = "contact";
                         }
                       }}
                       className={`text-left py-1 ${
@@ -342,25 +291,28 @@ export default function ITLHomepage() {
                 </div>
               ))}
               <button
-                onClick={() => window.location.href = lang === "ko" ? "/ko#contact" : "/#contact"}
+                onClick={() => {
+                  setMobileOpen(false);
+                  window.location.hash = "contact";
+                }}
                 className="mt-2 px-4 py-2 rounded-xl text-white bg-red-600"
               >
                 {t.ctaContact}
               </button>
               <div className="flex items-center gap-2 pt-3 border-t mt-3">
                 <button
-                  onClick={() => setLang("en")}
+                  onClick={() => window.location.assign("/")}
                   className={`text-sm font-medium transition-colors ${
-                    lang === "en" ? "text-blue-900" : "hover:text-blue-900"
+                    locale === "en" ? "text-blue-900" : "hover:text-blue-900"
                   }`}
                 >
                   EN
                 </button>
                 <span className="text-gray-300">|</span>
                 <button
-                  onClick={() => setLang("ko")}
+                  onClick={() => window.location.assign("/ko")}
                   className={`text-sm font-medium transition-colors ${
-                    lang === "ko" ? "text-blue-900" : "hover:text-blue-900"
+                    locale === "ko" ? "text-blue-900" : "hover:text-blue-900"
                   }`}
                 >
                   한국어
@@ -371,303 +323,92 @@ export default function ITLHomepage() {
         )}
       </nav>
 
-      {/* Hero Section */}
-      <section className="relative h-[50vh] min-h-[450px] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0">
-          <div
-            className="absolute inset-0 bg-cover bg-center transition-all duration-1000 ease-in-out"
-            style={{
-              backgroundImage: `url(${heroImages[currentSlide]})`
-            }}
-          />
-          <div className="absolute inset-0 bg-neutral-900/60" />
-        </div>
-        
-        <div className="relative z-10 max-w-7xl mx-auto px-6 text-white">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h1 className="text-3xl md:text-5xl font-bold mb-6 leading-tight">
-                {t.heroTitle}
-              </h1>
-              <p className="text-lg md:text-xl mb-8 text-neutral-200 leading-relaxed">
-                {t.heroSubtitle}
-              </p>
-              
-              <div className="flex flex-col sm:flex-row gap-4 justify-start">
-                <button 
-                  onClick={() => window.location.href = lang === "ko" ? "/ko#contact" : "/#contact"}
-                  className="px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors font-semibold text-base shadow-lg"
-                >
-                  {t.ctaQuote}
-                </button>
-                <button 
-                  onClick={() => window.location.href = lang === "ko" ? "/ko/services" : "/services"}
-                  className="px-6 py-3 border-2 border-white text-white rounded-lg hover:bg-white hover:text-neutral-900 transition-colors font-semibold text-base"
-                >
-                  {lang === "ko" ? "서비스 보기" : "View Services"}
-                </button>
+      <main id="main" className="itl-content">
+        <section className={styles.hero} aria-labelledby="landing-title">
+          <Image src="/images/landing-ocean.jpg" alt="" fill priority sizes="100vw" className={styles.heroImage} />
+          <div className={`itl-wrap ${styles.heroContent}`}>
+            <p className={styles.eyebrow}>{t.heroLabel}</p>
+            <h1 id="landing-title">{t.hero[0]}<br />{t.hero[1]}</h1>
+            <p className={styles.intro}>{t.intro}</p>
+            <div className={styles.heroActions}>
+              <Link className="itl-button" href={quote}>{t.quote}<ArrowUpRight size={19} /></Link>
+              <a className="itl-button itl-button-outline" href="#services">{t.browse}<ArrowDown size={18} /></a>
+            </div>
+          </div>
+        </section>
+
+        <section className={styles.company} aria-labelledby="company-title">
+          <div className={`itl-wrap ${styles.companyGrid}`}>
+            <div className={styles.companyPhoto}>
+              <Image src="/images/warehouse-logistics.jpg" alt="" fill sizes="(max-width: 760px) 100vw, 50vw" />
+              <div><MapPin size={19} /><span><strong>{t.busan}</strong><small>{t.owned}</small></span></div>
+            </div>
+            <div className={styles.companyCopy}>
+              <p className={styles.eyebrow}>{t.companyLabel}</p>
+              <h2 id="company-title">{t.company}</h2>
+              <p>{t.companyIntro}</p>
+              <div className={styles.textLinks}>
+                <Link className="itl-text-link" href={base + "/about/facilities"}>{t.facilities}<ArrowRight size={17} /></Link>
+                <Link className="itl-text-link" href={about}>{t.about}<ArrowRight size={17} /></Link>
+                <Link className="itl-text-link" href={network}>{t.network}<ArrowRight size={17} /></Link>
               </div>
             </div>
           </div>
-        </div>
+        </section>
 
-        {/* Slide indicators */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2">
-          {heroImages.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentSlide(index)}
-              className={`w-3 h-3 rounded-full transition-colors ${
-                index === currentSlide ? 'bg-white' : 'bg-white/40'
-              }`}
-            />
-          ))}
-        </div>
-      </section>
+        <section className={`itl-wrap itl-section`} id="services" aria-labelledby="services-title">
+          <div className={styles.sectionHeading}>
+            <h2 id="services-title">{t.services}</h2>
+            <p>{t.serviceIntro}</p>
+          </div>
+          <div className={styles.services}>
+            {t.modes.map(([name, description], index) => {
+              const { Icon, anchor } = modes[index];
+              return (
+                <Link href={`${services}#${anchor}`} className={`itl-card ${styles.service}`} key={name}>
+                  <div className={styles.serviceTop}><Icon size={29} strokeWidth={1.6} /><ArrowUpRight size={19} /></div>
+                  <h3>{name}</h3><p>{description}</p>
+                </Link>
+              );
+            })}
+          </div>
+        </section>
 
-      {/* About Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-neutral-900 mb-4">
-                {t.aboutTitle}
-              </h2>
-              <h3 className="text-lg text-neutral-600 mb-2">
-                {t.aboutSubtitle}
-              </h3>
-              <p className="text-lg text-neutral-600 mb-8 leading-relaxed">
-                {t.about}
-              </p>
-              
-              <div className="space-y-4 mb-8">
-                <h3 className="text-xl font-semibold text-neutral-900 mb-4">
-                  {t.whyTitle}
-                </h3>
-                {t.why.map((item, index) => (
-                  <div key={index} className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-blue-900 mt-1 flex-shrink-0" />
-                    <span className="text-neutral-700">{item}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {t.stats.map((stat, i) => (
-                <div key={i} className="bg-neutral-100 rounded-xl p-4 border border-neutral-200 hover:bg-neutral-200 transition-colors min-h-[130px] flex items-center justify-center">
-                  <div className="text-center w-full px-2">
-                    <div className="text-2xl md:text-3xl font-bold text-neutral-900 mb-2">{stat.k}</div>
-                    <div className="text-xs md:text-sm font-medium text-neutral-600 uppercase tracking-tight leading-tight break-words hyphens-auto">
-                      {stat.v}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
+        <section className={`itl-band ${styles.quoteBand}`} aria-labelledby="quote-title">
+          <div className="itl-wrap">
+            <div><h2 id="quote-title">{t.quoteTitle}</h2><p>{t.quoteIntro}</p></div>
+            <Link href={quote} className="itl-button">{t.quote}<ArrowUpRight size={19} /></Link>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Services Section */}
-      <section className="py-20 bg-neutral-50">
-        <div className="max-w-7xl mx-auto px-6 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-neutral-900 mb-4">
-            {t.servicesTitle}
-          </h2>
-          <div className="w-16 h-0.5 bg-blue-900 mx-auto mb-12"></div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-              <h3 className="text-xl font-semibold text-neutral-900 mb-2">
-                {lang === "ko" ? "해상 운송" : "Ocean Freight"}
-              </h3>
-              <p className="text-neutral-600">
-                {lang === "ko" ? "전 세계 해상 운송 솔루션" : "Global ocean freight solutions"}
-              </p>
-            </div>
-            
-            <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-              <h3 className="text-xl font-semibold text-neutral-900 mb-2">
-                {lang === "ko" ? "항공 운송" : "Air Freight"}
-              </h3>
-              <p className="text-neutral-600">
-                {lang === "ko" ? "빠르고 안전한 항공 화물 서비스" : "Fast and secure air cargo services"}
-              </p>
-            </div>
-            
-            <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-              <h3 className="text-xl font-semibold text-neutral-900 mb-2">
-                {lang === "ko" ? "철도 운송" : "Railway"}
-              </h3>
-              <p className="text-neutral-600">
-                {lang === "ko" ? "유라시아 철도 운송 서비스" : "Eurasia railway transportation"}
-              </p>
-            </div>
-            
-            <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-              <h3 className="text-xl font-semibold text-neutral-900 mb-2">
-                {lang === "ko" ? "프로젝트 화물" : "Project Cargo"}
-              </h3>
-              <p className="text-neutral-600">
-                {lang === "ko" ? "특수 프로젝트 화물 처리" : "Specialized project cargo handling"}
-              </p>
-            </div>
+        <section id="contact" className={`itl-wrap itl-section ${styles.contact}`}>
+          <div>
+            <h2>{t.contact}</h2>
+            <address>
+              <div><MapPin size={20} /><span><strong>{t.office}</strong><br />{t.address}</span></div>
+              <a href="tel:+82319115612"><Phone size={20} />{officePhone}</a>
+              <a href={`mailto:${emailAddress}`}><Mail size={20} />{emailAddress}</a>
+              <div><Clock size={20} />{t.hours}</div>
+              <div><span className={styles.fax}>FAX</span>+82-31-902-8130</div>
+            </address>
+            <a className="itl-text-link" href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(t.address)}`} target="_blank" rel="noreferrer">
+              {t.directions}<ArrowUpRight size={17} />
+            </a>
           </div>
-        </div>
-      </section>
-
-      {/* Contact Section */}
-      <section id="contact" className="py-20 bg-white text-neutral-900">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              {t.contactTitle}
-            </h2>
-            <div className="w-16 h-0.5 bg-blue-900 mx-auto"></div>
-          </div>
-          
-          {/* 구글맵 - 전체 너비 */}
-          <div className="mb-12">
-            <div className="bg-neutral-800 rounded-lg overflow-hidden">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3150.8!2d126.7451!3d37.6695!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357c9e0c8f8b8b8b%3A0x8b8b8b8b8b8b8b8b!2sRm404%2C%20Peugeot%20Bldg%2C%20844%20Hosu-ro%2C%20Daehwa-dong%2C%20Ilsanseo-gu%2C%20Goyang-si%2C%20Gyeonggi-do%2C%20South%20Korea!5e0!3m2!1sen!2sus!4v1699999999999"
-                width="100%"
-                height="400"
-                style={{ border: 0 }}
-                allowFullScreen={true}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                className="w-full"
-              ></iframe>
+          <form className={`itl-form-panel ${styles.form}`} onSubmit={sendInquiry}>
+            <h3>{t.form}</h3>
+            <div className={styles.fields}>
+              <label>{t.name}<input className="itl-field" name="name" autoComplete="name" required pattern=".*\\S.*" disabled={status === "sending"} /></label>
+              <label>{t.email}<input className="itl-field" name="email" type="email" autoComplete="email" required disabled={status === "sending"} /></label>
             </div>
-          </div>
-          
-          <div className="grid lg:grid-cols-2 gap-12">
-            {/* 왼쪽: 회사 주소와 구글맵 */}
-            <div>
-              <h3 className="text-2xl font-semibold mb-6">
-                {lang === "ko" ? "연락처 정보" : "Contact Information"}
-              </h3>
-              <div className="space-y-6 text-neutral-600">
-                <div className="flex items-start gap-3">
-                  <MapPin className="w-5 h-5 text-blue-900 mt-1 flex-shrink-0" />
-                  <div>
-                    <p className="font-semibold text-neutral-900">
-                      {lang === "ko" ? "본사" : "Head Office"}
-                    </p>
-                    <p>Rm404, Peugeot Bldg, 844 Hosu-ro, Daehwa-dong</p>
-                    <p>Ilsanseo-gu, Goyang-si</p>
-                    <p>Gyeonggi-do, South Korea</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-center gap-3">
-                  <Phone className="w-5 h-5 text-blue-900 flex-shrink-0" />
-                  <span>+82-31-911-5612~4</span>
-                </div>
-                
-                <div className="flex items-center gap-3">
-                  <Mail className="w-5 h-5 text-blue-900 flex-shrink-0" />
-                  <span>itl@itlshipping.com</span>
-                </div>
-                
-                <div className="flex items-center gap-3">
-                  <Printer className="w-5 h-5 text-blue-900 flex-shrink-0" />
-                  <span>FAX. +82-31-902-8130</span>
-                </div>
-                
-                <div className="flex items-center gap-3 mb-16">
-                  <Clock className="w-5 h-5 text-blue-900 flex-shrink-0" />
-                  <span>{lang === "ko" ? "월-금 08:00-18:00" : "Mon-Fri 08:00-18:00"}</span>
-                </div>
-              </div>
-            </div>
-            
-            {/* 오른쪽: Get in Touch 폼 */}
-            <div>
-              <h3 className="text-2xl font-semibold mb-6">{t.contactForm.title}</h3>
-              
-              {/* Status Messages */}
-              {submitStatus === 'success' && (
-                <div className="mb-4 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg">
-                  <div className="flex items-center">
-                    <CheckCircle className="w-5 h-5 mr-2" />
-                    {lang === "ko" 
-                      ? "메시지가 성공적으로 전송되었습니다!" 
-                      : "Message sent successfully!"
-                    }
-                  </div>
-                </div>
-              )}
-              
-              {submitStatus === 'error' && (
-                <div className="mb-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg">
-                  {lang === "ko" 
-                    ? "메시지 전송에 실패했습니다. 다시 시도해주세요." 
-                    : "Failed to send message. Please try again."
-                  }
-                </div>
-              )}
-              
-              <form ref={formRef} className="space-y-6" onSubmit={handleFormSubmit}>
-                <div>
-                  <input
-                    type="text"
-                    name="name"
-                    placeholder={t.contactForm.name}
-                    value={form.name}
-                    onChange={(e) => setForm({...form, name: e.target.value})}
-                    required
-                    disabled={isSubmitting}
-                    className="w-full px-4 py-3 bg-white border border-neutral-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-neutral-900 disabled:bg-neutral-100"
-                  />
-                </div>
-                <div>
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder={t.contactForm.email}
-                    value={form.email}
-                    onChange={(e) => setForm({...form, email: e.target.value})}
-                    required
-                    disabled={isSubmitting}
-                    className="w-full px-4 py-3 bg-white border border-neutral-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-neutral-900 disabled:bg-neutral-100"
-                  />
-                </div>
-                <div>
-                  <textarea
-                    name="message"
-                    placeholder={t.contactForm.message}
-                    value={form.message}
-                    onChange={(e) => setForm({...form, message: e.target.value})}
-                    rows={5}
-                    required
-                    disabled={isSubmitting}
-                    className="w-full px-4 py-3 bg-white border border-neutral-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-neutral-900 disabled:bg-neutral-100"
-                  />
-                </div>
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full px-6 py-3 bg-blue-900 text-white rounded-lg hover:bg-blue-800 transition-colors font-semibold disabled:bg-neutral-400 disabled:cursor-not-allowed"
-                >
-                  {isSubmitting 
-                    ? (lang === "ko" ? "전송 중..." : "Sending...") 
-                    : t.contactForm.button
-                  }
-                </button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="bg-neutral-900 text-white py-8 border-t border-neutral-800">
-        <div className="max-w-6xl mx-auto px-6 text-center">
-          <p className="text-neutral-400">{t.footer}</p>
-        </div>
+            <label>{t.message}<textarea className="itl-field" name="message" rows={4} required disabled={status === "sending"} /></label>
+            <button className="itl-button" type="submit" disabled={status === "sending"}>{status === "sending" ? t.sending : t.send}<ArrowRight size={17} /></button>
+            <p className={styles.formStatus} role="status">{status === "sent" ? t.sent : status === "error" ? t.error : ""}</p>
+          </form>
+        </section>
+      </main>
+      <footer className={`itl-footer ${styles.footer}`}>
+        <div className="itl-wrap"><strong>ITL CO., LTD.</strong><span>© {new Date().getFullYear()} ITL Co., Ltd.</span></div>
       </footer>
     </div>
   );

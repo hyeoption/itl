@@ -1,4 +1,5 @@
 "use client";
+import PageHero from "../../page-hero";
 import React, { useState, useEffect } from "react";
 import {
   ArrowLeft,
@@ -347,140 +348,143 @@ export default function CompanyHistoryPage() {
         )}
       </nav>
 
-      {/* Breadcrumb */}
-      <div className="bg-neutral-50 border-b">
-        <div className="max-w-7xl mx-auto px-6 py-3">
-          <div className="flex items-center text-sm text-neutral-600">
-            <button 
-              onClick={() => window.location.href = lang === "ko" ? "/?lang=ko" : "/"}
-              className="hover:text-blue-900 transition-colors"
-            >
-              {lang === "ko" ? "홈" : "Home"}
-            </button>
-            <span className="mx-2">/</span>
-            <button 
-              onClick={() => window.location.href = `/about/why-hwarang?lang=${lang}`}
-              className="hover:text-blue-900 transition-colors"
-            >
-              {lang === "ko" ? "회사소개" : "About Us"}
-            </button>
-            <span className="mx-2">/</span>
-            <span className="text-blue-900 font-medium">{t.heroTitle}</span>
+      <main className="itl-content" lang={lang}>
+        {/* Breadcrumb */}
+        <div className="itl-breadcrumb">
+          <div className="itl-wrap py-3">
+            <div className="flex items-center text-sm itl-muted">
+              <button
+                onClick={() => window.location.href = lang === "ko" ? "/?lang=ko" : "/"}
+                className="hover:text-blue-900 transition-colors"
+              >
+                {lang === "ko" ? "홈" : "Home"}
+              </button>
+              <span className="mx-2">/</span>
+              <button
+                onClick={() => window.location.href = `/about/why-hwarang?lang=${lang}`}
+                className="hover:text-blue-900 transition-colors"
+              >
+                {lang === "ko" ? "회사소개" : "About Us"}
+              </button>
+              <span className="mx-2">/</span>
+              <span className="text-blue-900 font-medium">{t.heroTitle}</span>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Company History Section */}
-      <section className="py-16 bg-white">
-        <div className="max-w-6xl mx-auto px-6">
-          {/* Header */}
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-neutral-900 mb-4">
-              {t.companyName}
-            </h2>
-            <div className="w-16 h-0.5 bg-blue-900 mx-auto mb-6"></div>
-            <p className="text-lg md:text-xl text-neutral-600 max-w-3xl mx-auto leading-relaxed">
-              {t.intro}
-            </p>
-          </div>
+        <PageHero title={t.heroTitle} description={t.heroSubtitle} />
 
-          {/* Introduction */}
-          <div className="mb-16">
-            <div className="bg-gradient-to-r from-neutral-50 to-white border border-neutral-200 rounded-lg p-8">
-              <p className="text-base md:text-lg text-neutral-700 leading-relaxed text-center max-w-4xl mx-auto">
-                {t.historyIntro}
+        {/* Company History Section */}
+        <section className="itl-section">
+          <div className="itl-wrap">
+            {/* Header */}
+            <div className="itl-section-heading">
+              <h2 className="mb-4">
+                {t.companyName}
+              </h2>
+              <p className="itl-muted max-w-3xl mx-auto">
+                {t.intro}
               </p>
             </div>
-          </div>
 
-          {/* Timeline */}
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-12">
-              <h3 className="text-2xl md:text-3xl font-bold text-neutral-900 mb-4">
-                {lang === "ko" ? "주요 연혁" : "Key Milestones"}
-              </h3>
-              <div className="w-16 h-0.5 bg-blue-900 mx-auto"></div>
-            </div>
-
-            <div className="relative">
-              {/* Timeline line */}
-              <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-blue-200 md:transform md:-translate-x-0.5"></div>
-              
-              {/* Timeline items */}
-              <div className="space-y-8">
-                {t.timelineItems.map((item, index) => (
-                  <div key={index} className="relative flex items-start md:justify-center">
-                    {/* Timeline dot */}
-                    <div className="absolute left-4 w-3 h-3 bg-blue-900 rounded-full md:left-1/2 md:transform md:-translate-x-1.5"></div>
-                    
-                    {/* Content */}
-                    <div className={`ml-10 md:ml-0 ${index % 2 === 0 ? 'md:w-1/2 md:pr-8 md:text-right' : 'md:w-1/2 md:pl-8'}`}>
-                      <div className="bg-neutral-50 border border-neutral-200 rounded-lg p-6 hover:shadow-lg transition-shadow duration-300">
-                        <div className="flex items-center gap-2 mb-3">
-                          <Building className="w-5 h-5 text-blue-900" />
-                          <div className="text-lg font-bold text-blue-900">{item.date}</div>
-                        </div>
-                        <h4 className="text-lg font-semibold text-neutral-900 mb-3">
-                          {item.title}
-                        </h4>
-                        <p className="text-sm text-neutral-600 leading-relaxed">
-                          {item.description}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Future Vision */}
-          <div className="mt-16">
-            <div className="bg-gradient-to-r from-blue-900 to-blue-800 text-white rounded-lg p-8">
-              <div className="text-center">
-                <h3 className="text-2xl font-bold mb-4">
-                  {lang === "ko" ? "미래를 향한 도약" : "Looking Towards the Future"}
-                </h3>
-                <p className="text-lg text-blue-100 max-w-3xl mx-auto leading-relaxed">
-                  {lang === "ko" 
-                    ? "아이티엘은 지난 성과를 바탕으로 더욱 혁신적이고 신뢰할 수 있는 물류 서비스를 제공하며, 고객과 함께 성장하는 글로벌 물류 파트너로 발전해 나가겠습니다."
-                    : "Building on our past achievements, ITL will continue to provide more innovative and reliable logistics services, developing as a global logistics partner that grows together with our customers."
-                  }
+            {/* Introduction */}
+            <div className="mb-16">
+              <div className="itl-card">
+                <p className="itl-muted text-center max-w-4xl mx-auto">
+                  {t.historyIntro}
                 </p>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
 
-      {/* CTA Section */}
-      <section className="py-16 bg-neutral-900 text-white">
-        <div className="max-w-7xl mx-auto px-6 text-center">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4">
-            {lang === "ko" ? "함께 성장할 준비가 되셨나요?" : "Ready to Grow Together?"}
-          </h2>
-          <p className="text-base md:text-lg text-gray-200 mb-6 max-w-2xl mx-auto">
-            {lang === "ko" 
-              ? "아이티엘과 함께 더 큰 미래를 열어보세요. 전문 물류 팀이 고객의 성공을 위해 최선을 다하겠습니다."
-              : "Open a greater future with ITL. Our professional logistics team will do our best for your success."
-            }
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button 
-              onClick={() => window.location.href = lang === "ko" ? "/?lang=ko#contact" : "/#contact"}
-              className="px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors font-semibold text-base"
-            >
-              {lang === "ko" ? "문의하기" : "Get in Touch"}
-            </button>
-            <button 
-              onClick={() => window.location.href = `/services?lang=${lang}`}
-              className="px-6 py-3 border border-white text-white rounded-lg hover:bg-white hover:text-neutral-900 transition-colors font-semibold text-base"
-            >
-              {lang === "ko" ? "서비스 보기" : "View Services"}
-            </button>
+            {/* Timeline */}
+            <div className="max-w-4xl mx-auto">
+              <div className="itl-section-heading">
+                <h3 className="mb-4 itl-section-title">
+                  {lang === "ko" ? "주요 연혁" : "Key Milestones"}
+                </h3>
+              </div>
+
+              <div className="relative">
+                {/* Timeline line */}
+                <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-blue-200 md:transform md:-translate-x-0.5"></div>
+
+                {/* Timeline items */}
+                <div className="space-y-8">
+                  {t.timelineItems.map((item, index) => (
+                    <div key={index} className="relative flex items-start md:justify-center">
+                      {/* Timeline dot */}
+                      <div className="absolute left-4 w-3 h-3 bg-blue-900 rounded-full md:left-1/2 md:transform md:-translate-x-1.5"></div>
+
+                      {/* Content */}
+                      <div className={`ml-10 md:ml-0 ${index % 2 === 0 ? 'md:w-1/2 md:pr-8 md:text-right' : 'md:w-1/2 md:pl-8'}`}>
+                        <div className="itl-card">
+                          <div className="flex items-center gap-2 mb-3">
+                            <Building className="w-5 h-5 text-blue-900" />
+                            <div className="text-lg font-bold text-blue-900">{item.date}</div>
+                          </div>
+                          <h4 className="mb-3">
+                            {item.title}
+                          </h4>
+                          <p className="itl-muted">
+                            {item.description}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Future Vision */}
+            <div className="mt-16">
+              <div className="itl-band-panel">
+                <div className="text-center">
+                  <h3 className="mb-4">
+                    {lang === "ko" ? "미래를 향한 도약" : "Looking Towards the Future"}
+                  </h3>
+                  <p className="text-blue-100 max-w-3xl mx-auto">
+                    {lang === "ko"
+                      ? "아이티엘은 지난 성과를 바탕으로 더욱 혁신적이고 신뢰할 수 있는 물류 서비스를 제공하며, 고객과 함께 성장하는 글로벌 물류 파트너로 발전해 나가겠습니다."
+                      : "Building on our past achievements, ITL will continue to provide more innovative and reliable logistics services, developing as a global logistics partner that grows together with our customers."
+                    }
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+
+        {/* CTA Section */}
+        <section className="itl-band">
+          <div className="itl-wrap text-center">
+            <h2 className="mb-4">
+              {lang === "ko" ? "함께 성장할 준비가 되셨나요?" : "Ready to Grow Together?"}
+            </h2>
+            <p className="text-gray-200 mb-6 max-w-2xl mx-auto">
+              {lang === "ko"
+                ? "아이티엘과 함께 더 큰 미래를 열어보세요. 전문 물류 팀이 고객의 성공을 위해 최선을 다하겠습니다."
+                : "Open a greater future with ITL. Our professional logistics team will do our best for your success."
+              }
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button
+                onClick={() => window.location.href = lang === "ko" ? "/?lang=ko#contact" : "/#contact"}
+                className="itl-button"
+              >
+                {lang === "ko" ? "문의하기" : "Get in Touch"}
+              </button>
+              <button
+                onClick={() => window.location.href = `/services?lang=${lang}`}
+                className="itl-button itl-button-outline"
+              >
+                {lang === "ko" ? "서비스 보기" : "View Services"}
+              </button>
+            </div>
+          </div>
+        </section>
+</main>
+
     </div>
   );
 }

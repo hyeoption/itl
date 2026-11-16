@@ -1,8 +1,8 @@
 "use client";
+import PageHero from "../../page-hero";
 import React, { useState, useEffect } from "react";
 import {
   Ship,
-  Plane,
   Train,
   Package,
   Globe,
@@ -34,7 +34,7 @@ export default function QuotePageKo() {
     companyName: "",
     contact: "",
     division: "수출",
-    shipmentCondition: "항공",
+    shipmentCondition: "해운 LCL",
     transportCondition: "EXW",
     originPort: "",
     destinationPort: "",
@@ -64,7 +64,6 @@ export default function QuotePageKo() {
     export: "수출",
     import: "수입",
     shipmentCondition: "선적조건",
-    air: "항공",
     ocean: "해운 LCL(소량화물)",
     oceanFCL: "해운 FCL(컨테이너)",
     bulk: "해운 BULK(벌크 화물)",
@@ -134,7 +133,7 @@ export default function QuotePageKo() {
           companyName: "",
           contact: "",
           division: "수출",
-          shipmentCondition: "항공",
+          shipmentCondition: "해운 LCL",
           transportCondition: "EXW",
           originPort: "",
           destinationPort: "",
@@ -380,409 +379,385 @@ export default function QuotePageKo() {
         )}
       </nav>
 
-      {/* Hero Section */}
-      <div className="relative bg-blue-900 text-white py-16 overflow-hidden">
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: 'url(/images/warehouse-logistics.jpg)'
-          }}
-        />
-        <div className="absolute inset-0 bg-blue-900/70"></div>
-        <div className="relative max-w-7xl mx-auto px-6 text-center">
-          <h1 className="text-3xl md:text-5xl font-bold mb-6 tracking-tight text-white drop-shadow-lg">{t.pageTitle}</h1>
-          <p className="text-lg md:text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed drop-shadow-md">
-            {t.pageSubtitle}
-          </p>
-        </div>
-      </div>
+      <main className="itl-content" lang="ko">
+        <PageHero title={t.pageTitle} description={t.pageSubtitle} />
 
-      {/* Quote Form */}
-      <div className="bg-neutral-50 py-20">
-        <div className="max-w-4xl mx-auto px-6">
-          <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12 border border-neutral-200">
-            <h2 className="text-3xl md:text-4xl font-bold text-neutral-900 mb-8 text-center">
-              {t.formTitle}
-            </h2>
-            
-            <div className="text-center mb-8">
-              <p className="text-red-600 font-medium text-lg">{t.requiredField}</p>
-            </div>
+        {/* Quote Form */}
+        <div className="itl-section itl-section-tint">
+          <div className="itl-wrap-narrow">
+            <div className="itl-form-panel">
+              <h2 className="mb-8 text-center">
+                {t.formTitle}
+              </h2>
 
-            <form onSubmit={handleSubmit} className="space-y-6">
-              {/* Company Name */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  {t.companyName} <span className="text-red-500">*</span>
-                </label>
-                <input
-                  type="text"
-                  required
-                  value={formData.companyName}
-                  onChange={(e) => handleInputChange("companyName", e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  placeholder={t.requiredField}
-                />
+              <div className="text-center mb-8">
+                <p className="text-red-600 font-medium">{t.requiredField}</p>
               </div>
 
-              {/* Contact Person */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  {t.contact} <span className="text-red-500">*</span>
-                </label>
-                <input
-                  type="text"
-                  required
-                  value={formData.contact}
-                  onChange={(e) => handleInputChange("contact", e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  placeholder={t.requiredField}
-                />
-              </div>
-
-              {/* Division */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  {t.division} <span className="text-red-500">*</span>
-                </label>
-                <div className="flex space-x-4">
-                  <label className="flex items-center">
-                    <input
-                      type="radio"
-                      name="division"
-                      value="수출"
-                      checked={formData.division === "수출"}
-                      onChange={(e) => handleInputChange("division", e.target.value)}
-                      className="mr-2"
-                    />
-                    {t.export}
+              <form onSubmit={handleSubmit} className="space-y-6">
+                {/* Company Name */}
+                <div>
+                  <label className="block text-sm font-medium itl-muted mb-2">
+                    {t.companyName} <span className="text-red-500">*</span>
                   </label>
-                  <label className="flex items-center">
-                    <input
-                      type="radio"
-                      name="division"
-                      value="수입"
-                      checked={formData.division === "수입"}
-                      onChange={(e) => handleInputChange("division", e.target.value)}
-                      className="mr-2"
-                    />
-                    {t.import}
-                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={formData.companyName}
+                    onChange={(e) => handleInputChange("companyName", e.target.value)}
+                    className="itl-field"
+                    placeholder={t.requiredField}
+                  />
                 </div>
-              </div>
 
-              {/* Shipment Condition */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  {t.shipmentCondition}
-                </label>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                  <label className="flex items-center">
-                    <input
-                      type="radio"
-                      name="shipmentCondition"
-                      value="항공"
-                      checked={formData.shipmentCondition === "항공"}
-                      onChange={(e) => handleInputChange("shipmentCondition", e.target.value)}
-                      className="mr-2"
-                    />
-                    {t.air}
+                {/* Contact Person */}
+                <div>
+                  <label className="block text-sm font-medium itl-muted mb-2">
+                    {t.contact} <span className="text-red-500">*</span>
                   </label>
-                  <label className="flex items-center">
-                    <input
-                      type="radio"
-                      name="shipmentCondition"
-                      value="해운 LCL"
-                      checked={formData.shipmentCondition === "해운 LCL"}
-                      onChange={(e) => handleInputChange("shipmentCondition", e.target.value)}
-                      className="mr-2"
-                    />
-                    {t.ocean}
-                  </label>
-                  <label className="flex items-center">
-                    <input
-                      type="radio"
-                      name="shipmentCondition"
-                      value="해운 FCL"
-                      checked={formData.shipmentCondition === "해운 FCL"}
-                      onChange={(e) => handleInputChange("shipmentCondition", e.target.value)}
-                      className="mr-2"
-                    />
-                    {t.oceanFCL}
-                  </label>
-                  <label className="flex items-center">
-                    <input
-                      type="radio"
-                      name="shipmentCondition"
-                      value="해운 BULK"
-                      checked={formData.shipmentCondition === "해운 BULK"}
-                      onChange={(e) => handleInputChange("shipmentCondition", e.target.value)}
-                      className="mr-2"
-                    />
-                    {t.bulk}
-                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={formData.contact}
+                    onChange={(e) => handleInputChange("contact", e.target.value)}
+                    className="itl-field"
+                    placeholder={t.requiredField}
+                  />
                 </div>
-              </div>
 
-              {/* Transport Terms */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  {t.transportCondition}
-                </label>
-                <div className="grid grid-cols-3 md:grid-cols-6 gap-4">
-                  {["EXW", "FCA", "FAS", "FOB", "CFR", "CIF", "CIP", "DAP", "DDP"].map((term) => (
-                    <label key={term} className="flex items-center">
+                {/* Division */}
+                <div>
+                  <label className="block text-sm font-medium itl-muted mb-2">
+                    {t.division} <span className="text-red-500">*</span>
+                  </label>
+                  <div className="flex space-x-4">
+                    <label className="flex items-center">
                       <input
                         type="radio"
-                        name="transportCondition"
-                        value={term}
-                        checked={formData.transportCondition === term}
-                        onChange={(e) => handleInputChange("transportCondition", e.target.value)}
+                        name="division"
+                        value="수출"
+                        checked={formData.division === "수출"}
+                        onChange={(e) => handleInputChange("division", e.target.value)}
                         className="mr-2"
                       />
-                      {term}
+                      {t.export}
                     </label>
-                  ))}
-                </div>
-              </div>
-
-              {/* Origin Port */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  {t.originPort}
-                </label>
-                <input
-                  type="text"
-                  value={formData.originPort}
-                  onChange={(e) => handleInputChange("originPort", e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                />
-              </div>
-
-              {/* Destination Port */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  {t.destinationPort}
-                </label>
-                <input
-                  type="text"
-                  value={formData.destinationPort}
-                  onChange={(e) => handleInputChange("destinationPort", e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                />
-              </div>
-
-              {/* Origin Country */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  {t.originCountry} <span className="text-red-500">*</span>
-                </label>
-                <input
-                  type="text"
-                  required
-                  value={formData.originCountry}
-                  onChange={(e) => handleInputChange("originCountry", e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  placeholder={t.requiredField}
-                />
-              </div>
-
-              {/* Destination Country */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  {t.destinationCountry} <span className="text-red-500">*</span>
-                </label>
-                <input
-                  type="text"
-                  required
-                  value={formData.destinationCountry}
-                  onChange={(e) => handleInputChange("destinationCountry", e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  placeholder={t.requiredField}
-                />
-              </div>
-
-              {/* Total CBM */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  {t.cbm}
-                </label>
-                <input
-                  type="text"
-                  value={formData.cbm}
-                  onChange={(e) => handleInputChange("cbm", e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                />
-              </div>
-
-              {/* Product Name */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  {t.productName}
-                </label>
-                <input
-                  type="text"
-                  value={formData.productName}
-                  onChange={(e) => handleInputChange("productName", e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                />
-              </div>
-
-              {/* HS Code */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  {t.hsCode}
-                </label>
-                <input
-                  type="text"
-                  value={formData.hsCode}
-                  onChange={(e) => handleInputChange("hsCode", e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                />
-              </div>
-
-              {/* Volume */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  {t.volume}
-                </label>
-                <input
-                  type="text"
-                  value={formData.volume}
-                  onChange={(e) => handleInputChange("volume", e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  placeholder={t.volumeNote}
-                />
-              </div>
-
-              {/* Cargo Type */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  {t.cargoType}
-                </label>
-                <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-                  {[t.exportSurvey, t.domesticTransport, t.nationalTransport, t.storage, t.insurance].map((type, index) => (
-                    <label key={index} className="flex items-center">
+                    <label className="flex items-center">
                       <input
                         type="radio"
-                        name="cargoType"
-                        value={type}
-                        checked={formData.cargoType === type}
-                        onChange={(e) => handleInputChange("cargoType", e.target.value)}
+                        name="division"
+                        value="수입"
+                        checked={formData.division === "수입"}
+                        onChange={(e) => handleInputChange("division", e.target.value)}
                         className="mr-2"
                       />
-                      {type}
+                      {t.import}
                     </label>
-                  ))}
-                </div>
-              </div>
-
-              {/* Title */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  {t.title} <span className="text-red-500">*</span>
-                </label>
-                <input
-                  type="text"
-                  required
-                  value={formData.title}
-                  onChange={(e) => handleInputChange("title", e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  placeholder={t.requiredField}
-                />
-              </div>
-
-              {/* Content */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  {t.content}
-                </label>
-                <textarea
-                  value={formData.content}
-                  onChange={(e) => handleInputChange("content", e.target.value)}
-                  rows={6}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                />
-              </div>
-
-              {/* File Attachment */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  {t.attachment}
-                </label>
-                <input
-                  type="file"
-                  onChange={handleFileUpload}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                />
-                {formData.attachment && (
-                  <p className="mt-2 text-sm text-gray-600">
-                    선택된 파일: {(formData.attachment as File)?.name}
-                  </p>
-                )}
-              </div>
-
-              {/* Contact Email */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  {t.contactEmail}
-                </label>
-                <input
-                  type="email"
-                  value={formData.contactEmail}
-                  onChange={(e) => handleInputChange("contactEmail", e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                />
-              </div>
-
-              {/* Status Messages */}
-              {submitStatus === 'success' && (
-                <div className="mb-4 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg">
-                  <div className="flex items-center">
-                    <CheckCircle className="w-5 h-5 mr-2" />
-                    견적요청이 성공적으로 전송되었습니다! 곧 연락드리겠습니다.
                   </div>
                 </div>
-              )}
-              
-              {submitStatus === 'error' && (
-                <div className="mb-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg">
-                  견적요청 전송에 실패했습니다. 다시 시도하거나 직접 연락해주세요.
-                </div>
-              )}
 
-              {/* Submit Button */}
-              <div className="pt-6">
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full bg-blue-600 text-white py-4 px-6 rounded-lg hover:bg-blue-700 transition-colors text-lg font-semibold flex items-center justify-center space-x-2 disabled:bg-gray-400 disabled:cursor-not-allowed"
-                >
-                  <FileText size={20} />
-                  <span>
-                    {isSubmitting ? "전송 중..." : t.submitButton}
-                  </span>
-                </button>
-              </div>
-            </form>
+                {/* Shipment Condition */}
+                <div>
+                  <label className="block text-sm font-medium itl-muted mb-2">
+                    {t.shipmentCondition}
+                  </label>
+                  <div className="grid sm:grid-cols-3 gap-4">
+                    <label className="flex items-center">
+                      <input
+                        type="radio"
+                        name="shipmentCondition"
+                        value="해운 LCL"
+                        checked={formData.shipmentCondition === "해운 LCL"}
+                        onChange={(e) => handleInputChange("shipmentCondition", e.target.value)}
+                        className="mr-2"
+                      />
+                      {t.ocean}
+                    </label>
+                    <label className="flex items-center">
+                      <input
+                        type="radio"
+                        name="shipmentCondition"
+                        value="해운 FCL"
+                        checked={formData.shipmentCondition === "해운 FCL"}
+                        onChange={(e) => handleInputChange("shipmentCondition", e.target.value)}
+                        className="mr-2"
+                      />
+                      {t.oceanFCL}
+                    </label>
+                    <label className="flex items-center">
+                      <input
+                        type="radio"
+                        name="shipmentCondition"
+                        value="해운 BULK"
+                        checked={formData.shipmentCondition === "해운 BULK"}
+                        onChange={(e) => handleInputChange("shipmentCondition", e.target.value)}
+                        className="mr-2"
+                      />
+                      {t.bulk}
+                    </label>
+                  </div>
+                </div>
+
+                {/* Transport Terms */}
+                <div>
+                  <label className="block text-sm font-medium itl-muted mb-2">
+                    {t.transportCondition}
+                  </label>
+                  <div className="grid grid-cols-3 md:grid-cols-6 gap-4">
+                    {["EXW", "FCA", "FAS", "FOB", "CFR", "CIF", "CIP", "DAP", "DDP"].map((term) => (
+                      <label key={term} className="flex items-center">
+                        <input
+                          type="radio"
+                          name="transportCondition"
+                          value={term}
+                          checked={formData.transportCondition === term}
+                          onChange={(e) => handleInputChange("transportCondition", e.target.value)}
+                          className="mr-2"
+                        />
+                        {term}
+                      </label>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Origin Port */}
+                <div>
+                  <label className="block text-sm font-medium itl-muted mb-2">
+                    {t.originPort}
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.originPort}
+                    onChange={(e) => handleInputChange("originPort", e.target.value)}
+                    className="itl-field"
+                  />
+                </div>
+
+                {/* Destination Port */}
+                <div>
+                  <label className="block text-sm font-medium itl-muted mb-2">
+                    {t.destinationPort}
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.destinationPort}
+                    onChange={(e) => handleInputChange("destinationPort", e.target.value)}
+                    className="itl-field"
+                  />
+                </div>
+
+                {/* Origin Country */}
+                <div>
+                  <label className="block text-sm font-medium itl-muted mb-2">
+                    {t.originCountry} <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={formData.originCountry}
+                    onChange={(e) => handleInputChange("originCountry", e.target.value)}
+                    className="itl-field"
+                    placeholder={t.requiredField}
+                  />
+                </div>
+
+                {/* Destination Country */}
+                <div>
+                  <label className="block text-sm font-medium itl-muted mb-2">
+                    {t.destinationCountry} <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={formData.destinationCountry}
+                    onChange={(e) => handleInputChange("destinationCountry", e.target.value)}
+                    className="itl-field"
+                    placeholder={t.requiredField}
+                  />
+                </div>
+
+                {/* Total CBM */}
+                <div>
+                  <label className="block text-sm font-medium itl-muted mb-2">
+                    {t.cbm}
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.cbm}
+                    onChange={(e) => handleInputChange("cbm", e.target.value)}
+                    className="itl-field"
+                  />
+                </div>
+
+                {/* Product Name */}
+                <div>
+                  <label className="block text-sm font-medium itl-muted mb-2">
+                    {t.productName}
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.productName}
+                    onChange={(e) => handleInputChange("productName", e.target.value)}
+                    className="itl-field"
+                  />
+                </div>
+
+                {/* HS Code */}
+                <div>
+                  <label className="block text-sm font-medium itl-muted mb-2">
+                    {t.hsCode}
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.hsCode}
+                    onChange={(e) => handleInputChange("hsCode", e.target.value)}
+                    className="itl-field"
+                  />
+                </div>
+
+                {/* Volume */}
+                <div>
+                  <label className="block text-sm font-medium itl-muted mb-2">
+                    {t.volume}
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.volume}
+                    onChange={(e) => handleInputChange("volume", e.target.value)}
+                    className="itl-field"
+                    placeholder={t.volumeNote}
+                  />
+                </div>
+
+                {/* Cargo Type */}
+                <div>
+                  <label className="block text-sm font-medium itl-muted mb-2">
+                    {t.cargoType}
+                  </label>
+                  <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+                    {[t.exportSurvey, t.domesticTransport, t.nationalTransport, t.storage, t.insurance].map((type, index) => (
+                      <label key={index} className="flex items-center">
+                        <input
+                          type="radio"
+                          name="cargoType"
+                          value={type}
+                          checked={formData.cargoType === type}
+                          onChange={(e) => handleInputChange("cargoType", e.target.value)}
+                          className="mr-2"
+                        />
+                        {type}
+                      </label>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Title */}
+                <div>
+                  <label className="block text-sm font-medium itl-muted mb-2">
+                    {t.title} <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={formData.title}
+                    onChange={(e) => handleInputChange("title", e.target.value)}
+                    className="itl-field"
+                    placeholder={t.requiredField}
+                  />
+                </div>
+
+                {/* Content */}
+                <div>
+                  <label className="block text-sm font-medium itl-muted mb-2">
+                    {t.content}
+                  </label>
+                  <textarea
+                    value={formData.content}
+                    onChange={(e) => handleInputChange("content", e.target.value)}
+                    rows={6}
+                    className="itl-field"
+                  />
+                </div>
+
+                {/* File Attachment */}
+                <div>
+                  <label className="block text-sm font-medium itl-muted mb-2">
+                    {t.attachment}
+                  </label>
+                  <input
+                    type="file"
+                    onChange={handleFileUpload}
+                    className="itl-field"
+                  />
+                  {formData.attachment && (
+                    <p className="mt-2 itl-muted">
+                      선택된 파일: {(formData.attachment as File)?.name}
+                    </p>
+                  )}
+                </div>
+
+                {/* Contact Email */}
+                <div>
+                  <label className="block text-sm font-medium itl-muted mb-2">
+                    {t.contactEmail}
+                  </label>
+                  <input
+                    type="email"
+                    value={formData.contactEmail}
+                    onChange={(e) => handleInputChange("contactEmail", e.target.value)}
+                    className="itl-field"
+                  />
+                </div>
+
+                {/* Status Messages */}
+                {submitStatus === 'success' && (
+                  <div className="mb-4 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg">
+                    <div className="flex items-center">
+                      <CheckCircle className="w-5 h-5 mr-2" />
+                      견적요청이 성공적으로 전송되었습니다! 곧 연락드리겠습니다.
+                    </div>
+                  </div>
+                )}
+
+                {submitStatus === 'error' && (
+                  <div className="mb-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg">
+                    견적요청 전송에 실패했습니다. 다시 시도하거나 직접 연락해주세요.
+                  </div>
+                )}
+
+                {/* Submit Button */}
+                <div className="pt-6">
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="itl-button w-full"
+                  >
+                    <FileText size={20} />
+                    <span>
+                      {isSubmitting ? "전송 중..." : t.submitButton}
+                    </span>
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
-      </div>
+</main>
 
       {/* Footer */}
-      <footer className="bg-neutral-900 text-white py-12">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid md:grid-cols-3 gap-8 text-center md:text-left">
+      <footer className="itl-footer itl-content" lang="ko">
+        <div className="itl-wrap">
+          <div className="grid md:grid-cols-3 itl-grid-gap text-center md:text-left">
             <div>
               <div className="flex items-center justify-center md:justify-start gap-3 mb-4">
                 <span className="text-lg font-bold">{t.brand}</span>
               </div>
-              <p className="text-neutral-400 text-sm leading-relaxed">
+              <p className="text-neutral-400 leading-relaxed">
                 전문적인 물류 및 포워딩 서비스를 통해 고객의 글로벌 비즈니스를 지원합니다.
               </p>
             </div>
             <div>
-              <h4 className="font-semibold mb-4 text-white">연락처</h4>
+              <h4 className="mb-4 text-white">연락처</h4>
               <div className="space-y-2 text-sm text-neutral-400">
                 <div className="flex items-center justify-center md:justify-start gap-2">
                   <Phone className="w-4 h-4" />
@@ -799,7 +774,7 @@ export default function QuotePageKo() {
               </div>
             </div>
             <div>
-              <h4 className="font-semibold mb-4 text-white">운영시간</h4>
+              <h4 className="mb-4 text-white">운영시간</h4>
               <div className="space-y-2 text-sm text-neutral-400">
                 <div className="flex items-center justify-center md:justify-start gap-2">
                   <Clock className="w-4 h-4" />
@@ -809,7 +784,7 @@ export default function QuotePageKo() {
             </div>
           </div>
           <div className="border-t border-neutral-800 mt-8 pt-6 text-center">
-            <p className="text-neutral-500 text-sm">{t.footer}</p>
+            <p className="text-neutral-500">{t.footer}</p>
           </div>
         </div>
       </footer>

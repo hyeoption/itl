@@ -1,0 +1,30 @@
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(8px, 1.2vw, 16px);
+}
+
+.photo {
+  display: block;
+  min-width: 0;
+  overflow: hidden;
+  border-radius: var(--itl-radius);
+  background: var(--itl-line);
+  align-self: start;
+}
+
+.photo:first-child {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (max-width: 767px) {
+  .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .photo:first-child { grid-row: auto; }
+}

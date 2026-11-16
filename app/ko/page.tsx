@@ -1,5 +1,5 @@
 import ITLHomepage from '../landing'
 
 export default function KoreanHome() {
-  return <ITLHomepage />
+  return <ITLHomepage locale="ko" />
 }

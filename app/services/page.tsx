@@ -1,4 +1,5 @@
 "use client";
+import PageHero from "../page-hero";
 import React, { useState, useEffect } from "react";
 import {
   Menu,
@@ -24,11 +25,9 @@ export default function ServicesPage() {
       heroSubtitle: "Comprehensive forwarding solutions tailored to your global transportation needs",
       quickNavTitle: "Quick Navigation",
       oceanFreight: "Ocean Freight",
-      airFreight: "Air Freight",
       projectPlant: "Project / Plant",
       railwayService: "Railway Service",
       oceanFreightDesc: "Complete ocean freight solutions for global shipping",
-      airFreightDesc: "Fast and reliable air cargo services worldwide",
       projectPlantDesc: "Specialized project cargo and plant equipment handling",
       railwayServiceDesc: "Eurasia railway transportation services",
       ctaTitle: "Ready to Ship?",
@@ -38,13 +37,13 @@ export default function ServicesPage() {
       servicesTitle: "Our Services",
       additionalTitle: "Additional Services",
       customsTitle: "Customs Clearance",
-      customsDesc: "Professional import/export customs services",
+      customsDesc: "We help prepare export and import documents such as commercial invoices, packing lists and bills of lading. We coordinate with customs brokers on any additional paperwork and the timing of cargo release.",
       warehouseTitle: "Warehouse Storage",
-      warehouseDesc: "Safe and efficient cargo storage solutions",
+      warehouseDesc: "We coordinate short-term storage before loading or after unloading. Based on the cargo dimensions, storage period and shipping schedule, we plan when the cargo enters and leaves the warehouse and how it connects to the next leg.",
       insuranceTitle: "Cargo Insurance",
-      insuranceDesc: "Comprehensive cargo transportation coverage",
+      insuranceDesc: "We help you consider cargo insurance for loss or damage in transit, taking into account the value of the goods and the route. Coverage, deductibles and exclusions depend on the policy, so review those terms before booking.",
       consultingTitle: "Logistics Consulting",
-      consultingDesc: "Optimized logistics solutions and advice",
+      consultingDesc: "We compare shipping options based on cargo dimensions, route and delivery deadlines. For ocean freight, for example, we can compare full container load (FCL) and shared container space (LCL) against your cost and timing requirements.",
       footer: "© 2025 ITL Co., Ltd. All rights reserved."
     },
     ko: {
@@ -55,11 +54,9 @@ export default function ServicesPage() {
       heroSubtitle: "글로벌 운송 요구에 맞춘 포괄적인 포워딩 솔루션",
       quickNavTitle: "빠른 탐색",
       oceanFreight: "해상 운송",
-      airFreight: "항공 운송",
       projectPlant: "프로젝트 / 플랜트",
       railwayService: "철도 서비스",
       oceanFreightDesc: "전 세계 해상 운송을 위한 완전한 솔루션",
-      airFreightDesc: "전 세계 빠르고 신뢰할 수 있는 항공 화물 서비스",
       projectPlantDesc: "전문 프로젝트 화물 및 플랜트 장비 처리",
       railwayServiceDesc: "유라시아 철도 운송 서비스",
       ctaTitle: "배송 준비 완료?",
@@ -69,13 +66,13 @@ export default function ServicesPage() {
       servicesTitle: "서비스",
       additionalTitle: "추가 서비스",
       customsTitle: "통관 서비스",
-      customsDesc: "전문적인 수출입 통관 업무",
+      customsDesc: "상업송장, 포장명세서, 선하증권 등 수출입 통관에 필요한 서류 준비를 돕습니다. 추가 서류가 필요하거나 화물 반출 일정이 바뀌면 관세사와 협의해 다음 운송 일정을 조율합니다.",
       warehouseTitle: "창고 보관",
-      warehouseDesc: "안전하고 효율적인 화물 보관",
+      warehouseDesc: "선적 전이나 하역 후 다음 운송까지 화물을 단기 보관할 수 있도록 조율합니다. 화물 규격, 보관 기간, 운송 일정에 맞춰 입고·출고 시점과 다음 운송 구간을 계획합니다.",
       insuranceTitle: "화물 보험",
-      insuranceDesc: "화물 운송 위험 보장",
+      insuranceDesc: "화물의 가격과 운송 구간을 바탕으로, 운송 중 분실이나 파손에 대비할 수 있는 적하보험 가입을 안내합니다. 보장 범위, 자기부담금, 보상 제외 항목은 보험 상품에 따라 달라집니다.",
       consultingTitle: "물류 컨설팅",
-      consultingDesc: "최적화된 물류 솔루션 제안",
+      consultingDesc: "화물의 크기와 물량, 출발지·도착지, 납기를 바탕으로 운송 방식을 비교합니다. 예를 들어 해상 운송에서는 컨테이너를 단독으로 쓰는 FCL과 다른 화물과 공간을 나누는 LCL을 비용과 일정에 맞춰 검토합니다.",
       footer: "© 2025 주식회사 아이티엘. All rights reserved."
     }
   };
@@ -86,26 +83,17 @@ export default function ServicesPage() {
     {
       id: 'ocean',
       title: t.oceanFreight,
-      description: t.oceanFreightDesc,
-      subtitle: 'Ocean Freight'
-    },
-    {
-      id: 'air',
-      title: t.airFreight,
-      description: t.airFreightDesc,
-      subtitle: 'Air Freight'
+      description: t.oceanFreightDesc
     },
     {
       id: 'project',
       title: t.projectPlant,
-      description: t.projectPlantDesc,
-      subtitle: 'Project Cargo'
+      description: t.projectPlantDesc
     },
     {
       id: 'railway',
       title: t.railwayService,
-      description: t.railwayServiceDesc,
-      subtitle: 'Railway Service'
+      description: t.railwayServiceDesc
     }
   ];
 
@@ -316,129 +304,116 @@ export default function ServicesPage() {
         )}
       </nav>
 
-      {/* Hero Section */}
-      <div className="bg-blue-900 text-white py-16">
-        <div className="max-w-7xl mx-auto px-6 text-center">
-          <h1 className="text-3xl md:text-5xl font-bold mb-6 tracking-tight">{t.heroTitle}</h1>
-          <p className="text-lg md:text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
-            {t.heroSubtitle}
-          </p>
-        </div>
-      </div>
+      <main className="itl-content" lang={lang}>
+        <PageHero title={t.heroTitle} description={t.heroSubtitle} />
 
-      {/* Quick Navigation */}
-      <section className="py-12 bg-neutral-50">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-wrap justify-center gap-4">
-            {services.map((service) => (
+        {/* Quick Navigation */}
+        <section className="itl-section-tint py-5">
+          <div className="itl-wrap">
+            <div className="flex flex-wrap justify-center gap-4">
+              {services.map((service) => (
+                <a
+                  href={`#${service.id}`}
+                  key={service.id}
+                  className="itl-text-link"
+                >
+                  {service.title}
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Main Services */}
+        <section className="itl-section">
+          <div className="itl-wrap">
+            <div className="itl-section-heading">
+              <h2 className="mb-4">
+                {t.servicesTitle}
+              </h2>
+              <p className="itl-muted">
+                {lang === "ko" ? "전문적인 물류 서비스를 제공합니다" : "Professional logistics services"}
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 itl-grid-gap">
+              {services.map((service, index) => (
+                <div id={service.id} key={service.id} className="scroll-mt-28 itl-card">
+                  <h3 className="text-center mb-2">
+                    {service.title}
+                  </h3>
+                  <p className="itl-muted text-left">
+                    {service.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Additional Services */}
+        <section className="itl-section itl-section-tint">
+          <div className="itl-wrap">
+            <div className="itl-section-heading">
+              <h2 className="mb-4">
+                {t.additionalTitle}
+              </h2>
+              <p className="itl-muted">
+                {lang === "ko" ? "추가 전문 서비스" : "Additional professional services"}
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 itl-grid-gap">
+              {additionalServices.map((service, index) => (
+                <div key={index} className="itl-card">
+                  <h3 className="text-center mb-2">
+                    {service.title}
+                  </h3>
+                  <p className="itl-muted text-left">
+                    {service.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* CTA Section */}
+        <section className="itl-band">
+          <div className="itl-wrap text-center">
+            <h2 className="mb-4">
+              {t.ctaTitle}
+            </h2>
+            <p className="text-blue-100 mb-8 max-w-2xl mx-auto">
+              {t.ctaSubtitle}
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
-                key={service.id}
-                className="px-6 py-3 bg-white rounded-full shadow-md hover:shadow-lg transition-shadow text-sm font-medium text-neutral-700 hover:text-blue-900"
+                onClick={() => window.location.href = `/?lang=${lang}#contact`}
+                className="itl-button"
               >
-                {service.title}
+                {t.ctaButton}
               </button>
-            ))}
+              <button
+                onClick={() => window.location.href = `/quote?lang=${lang}`}
+                className="itl-button itl-button-outline"
+              >
+                {lang === "ko" ? "견적 요청" : "Get Quote"}
+              </button>
+            </div>
           </div>
-        </div>
-      </section>
-
-      {/* Main Services */}
-      <section className="py-16 bg-white">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-2xl md:text-3xl font-bold text-neutral-900 mb-4">
-              {t.servicesTitle}
-            </h2>
-            <div className="w-16 h-0.5 bg-blue-900 mx-auto mb-4"></div>
-            <p className="text-lg text-neutral-600">
-              {lang === "ko" ? "전문적인 물류 서비스를 제공합니다" : "Professional logistics services"}
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            {services.map((service, index) => (
-              <div key={service.id} className="bg-gradient-to-br from-white to-neutral-50 border border-neutral-200 rounded-lg p-6 hover:shadow-lg transition-shadow duration-300">
-                <h3 className="text-lg font-semibold text-neutral-900 text-center mb-2">
-                  {service.title}
-                </h3>
-                <div className="text-center mb-4">
-                  <span className="text-xl font-bold text-blue-900">{service.subtitle || "Professional Service"}</span>
-                </div>
-                <p className="text-sm text-neutral-600 text-center leading-relaxed">
-                  {service.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Additional Services */}
-      <section className="py-16 bg-neutral-50">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-2xl md:text-3xl font-bold text-neutral-900 mb-4">
-              {t.additionalTitle}
-            </h2>
-            <div className="w-16 h-0.5 bg-blue-900 mx-auto mb-4"></div>
-            <p className="text-lg text-neutral-600">
-              {lang === "ko" ? "추가 전문 서비스" : "Additional professional services"}
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-2 gap-8">
-            {additionalServices.map((service, index) => (
-              <div key={index} className="bg-gradient-to-br from-white to-neutral-50 border border-neutral-200 rounded-lg p-6 hover:shadow-lg transition-shadow duration-300">
-                <h3 className="text-lg font-semibold text-neutral-900 text-center mb-2">
-                  {service.title}
-                </h3>
-                <div className="text-center mb-4">
-                  <span className="text-xl font-bold text-blue-900">Specialized Service</span>
-                </div>
-                <p className="text-sm text-neutral-600 text-center leading-relaxed">
-                  {service.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-20 bg-blue-900 text-white">
-        <div className="max-w-6xl mx-auto px-6 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            {t.ctaTitle}
-          </h2>
-          <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-            {t.ctaSubtitle}
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button 
-              onClick={() => window.location.href = `/?lang=${lang}#contact`}
-              className="px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors font-semibold text-base"
-            >
-              {t.ctaButton}
-            </button>
-            <button 
-              onClick={() => window.location.href = `/quote?lang=${lang}`}
-              className="px-6 py-3 border border-white text-white rounded-lg hover:bg-white hover:text-neutral-900 transition-colors font-semibold text-base"
-            >
-              {lang === "ko" ? "견적 요청" : "Get Quote"}
-            </button>
-          </div>
-        </div>
-      </section>
+        </section>
+</main>
 
       {/* Footer */}
-      <footer className="bg-neutral-900 text-white py-12">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid md:grid-cols-3 gap-8 text-center md:text-left">
+      <footer className="itl-footer itl-content" lang={lang}>
+        <div className="itl-wrap">
+          <div className="grid md:grid-cols-3 itl-grid-gap text-center md:text-left">
             <div>
               <div className="flex items-center justify-center md:justify-start gap-3 mb-4">
                 <span className="text-lg font-bold">{t.brand}</span>
               </div>
-              <p className="text-neutral-400 text-sm leading-relaxed">
+              <p className="text-neutral-400 leading-relaxed">
                 {lang === "ko" 
                   ? "전문적인 물류 및 포워딩 서비스를 통해 고객의 글로벌 비즈니스를 지원합니다."
                   : "Professional logistics and forwarding services supporting your global business operations."
@@ -446,7 +421,7 @@ export default function ServicesPage() {
               </p>
             </div>
             <div>
-              <h4 className="font-semibold mb-4 text-white">{lang === "ko" ? "연락처" : "Contact"}</h4>
+              <h4 className="mb-4 text-white">{lang === "ko" ? "연락처" : "Contact"}</h4>
               <div className="space-y-2 text-sm text-neutral-400">
                 <div className="flex items-center justify-center md:justify-start gap-2">
                   <Phone className="w-4 h-4" />
@@ -463,7 +438,7 @@ export default function ServicesPage() {
               </div>
             </div>
             <div>
-              <h4 className="font-semibold mb-4 text-white">
+              <h4 className="mb-4 text-white">
                 {lang === "ko" ? "운영시간" : "Office Hours"}
               </h4>
               <div className="space-y-2 text-sm text-neutral-400">
@@ -475,7 +450,7 @@ export default function ServicesPage() {
             </div>
           </div>
           <div className="border-t border-neutral-800 mt-8 pt-6 text-center">
-            <p className="text-neutral-500 text-sm">{t.footer}</p>
+            <p className="text-neutral-500">{t.footer}</p>
           </div>
         </div>
       </footer>

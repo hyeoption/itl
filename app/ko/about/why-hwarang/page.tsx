@@ -1,4 +1,5 @@
 "use client";
+import PageHero from "../../../page-hero";
 import React, { useState, useEffect } from "react";
 import {
   Shield,
@@ -241,154 +242,148 @@ export default function WhyITLPageKo() {
         )}
       </nav>
 
-      {/* Hero Section */}
-      <div className="bg-blue-900 text-white py-16">
-        <div className="max-w-7xl mx-auto px-6 text-center">
-          <h1 className="text-3xl md:text-5xl font-bold mb-6 tracking-tight">{t.pageTitle}</h1>
-          <p className="text-lg md:text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
-            {t.pageSubtitle}
-          </p>
-        </div>
-      </div>
+      <main className="itl-content" lang="ko">
+        <PageHero title={t.pageTitle} description={t.pageSubtitle} />
 
-      {/* Strengths Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
-            <div className="space-y-8">
-              <div className="flex items-start gap-4">
-                <TrendingUp className="w-8 h-8 text-blue-900 mt-1 flex-shrink-0" />
-                <div>
-                  <h3 className="text-xl font-semibold text-neutral-900 mb-2">
-                    {t.competitiveTitle}
-                  </h3>
-                  <p className="text-neutral-600 leading-relaxed">
-                    {t.competitiveDesc}
-                  </p>
+        {/* Strengths Section */}
+        <section className="itl-section">
+          <div className="itl-wrap">
+            <div className="grid lg:grid-cols-2 itl-grid-gap items-center mb-20">
+              <div className="space-y-8">
+                <div className="flex items-start gap-4">
+                  <TrendingUp className="w-8 h-8 text-blue-900 mt-1 flex-shrink-0" />
+                  <div>
+                    <h3 className="mb-2">
+                      {t.competitiveTitle}
+                    </h3>
+                    <p className="itl-muted">
+                      {t.competitiveDesc}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <Clock className="w-8 h-8 text-blue-900 mt-1 flex-shrink-0" />
+                  <div>
+                    <h3 className="mb-2">
+                      {t.timelyTitle}
+                    </h3>
+                    <p className="itl-muted">
+                      {t.timelyDesc}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <Shield className="w-8 h-8 text-blue-900 mt-1 flex-shrink-0" />
+                  <div>
+                    <h3 className="mb-2">
+                      {t.safetyTitle}
+                    </h3>
+                    <p className="itl-muted">
+                      {t.safetyDesc}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <Users className="w-8 h-8 text-blue-900 mt-1 flex-shrink-0" />
+                  <div>
+                    <h3 className="mb-2">
+                      {t.customerTitle}
+                    </h3>
+                    <p className="itl-muted">
+                      {t.customerDesc}
+                    </p>
+                  </div>
                 </div>
               </div>
-              
-              <div className="flex items-start gap-4">
-                <Clock className="w-8 h-8 text-blue-900 mt-1 flex-shrink-0" />
-                <div>
-                  <h3 className="text-xl font-semibold text-neutral-900 mb-2">
-                    {t.timelyTitle}
-                  </h3>
-                  <p className="text-neutral-600 leading-relaxed">
-                    {t.timelyDesc}
-                  </p>
-                </div>
-              </div>
-              
-              <div className="flex items-start gap-4">
-                <Shield className="w-8 h-8 text-blue-900 mt-1 flex-shrink-0" />
-                <div>
-                  <h3 className="text-xl font-semibold text-neutral-900 mb-2">
-                    {t.safetyTitle}
-                  </h3>
-                  <p className="text-neutral-600 leading-relaxed">
-                    {t.safetyDesc}
-                  </p>
-                </div>
-              </div>
-              
-              <div className="flex items-start gap-4">
-                <Users className="w-8 h-8 text-blue-900 mt-1 flex-shrink-0" />
-                <div>
-                  <h3 className="text-xl font-semibold text-neutral-900 mb-2">
-                    {t.customerTitle}
-                  </h3>
-                  <p className="text-neutral-600 leading-relaxed">
-                    {t.customerDesc}
-                  </p>
-                </div>
+
+              <div className="flex justify-center items-center">
+                <img
+                  src="/images/container-ship-aerial.jpg"
+                  alt="컨테이너"
+                  className="itl-media max-w-lg w-full h-auto object-cover"
+                />
               </div>
             </div>
-            
-            <div className="flex justify-center items-center">
-              <img 
-                src="/images/container-ship-aerial.jpg" 
-                alt="컨테이너" 
-                className="rounded-lg shadow-lg max-w-lg w-full h-auto object-cover"
-              />
+
+            {/* Service Cards */}
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 itl-grid-gap">
+              <div className="itl-card">
+                <Globe className="w-12 h-12 text-blue-900 mx-auto mb-4" />
+                <h3 className="mb-3">
+                  {t.globalTitle}
+                </h3>
+                <p className="itl-muted">
+                  {t.globalDesc}
+                </p>
+              </div>
+
+              <div className="itl-card">
+                <Target className="w-12 h-12 text-blue-900 mx-auto mb-4" />
+                <h3 className="mb-3">
+                  {t.serviceTitle}
+                </h3>
+                <p className="itl-muted">
+                  {t.serviceDesc}
+                </p>
+              </div>
+
+              <div className="itl-card">
+                <Shield className="w-12 h-12 text-blue-900 mx-auto mb-4" />
+                <h3 className="mb-3">
+                  {t.qualityTitle}
+                </h3>
+                <p className="itl-muted">
+                  {t.qualityDesc}
+                </p>
+              </div>
             </div>
           </div>
+        </section>
 
-          {/* Service Cards */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="text-center p-6 bg-neutral-50 rounded-xl">
-              <Globe className="w-12 h-12 text-blue-900 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold text-neutral-900 mb-3">
-                {t.globalTitle}
-              </h3>
-              <p className="text-neutral-600 leading-relaxed">
-                {t.globalDesc}
-              </p>
-            </div>
-            
-            <div className="text-center p-6 bg-neutral-50 rounded-xl">
-              <Target className="w-12 h-12 text-blue-900 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold text-neutral-900 mb-3">
-                {t.serviceTitle}
-              </h3>
-              <p className="text-neutral-600 leading-relaxed">
-                {t.serviceDesc}
-              </p>
-            </div>
-            
-            <div className="text-center p-6 bg-neutral-50 rounded-xl">
-              <Shield className="w-12 h-12 text-blue-900 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold text-neutral-900 mb-3">
-                {t.qualityTitle}
-              </h3>
-              <p className="text-neutral-600 leading-relaxed">
-                {t.qualityDesc}
-              </p>
+        {/* CTA Section */}
+        <section className="itl-band">
+          <div className="itl-wrap text-center">
+            <h2 className="mb-4">
+              아이티엘과 함께하세요
+            </h2>
+            <p className="text-blue-100 mb-8 max-w-2xl mx-auto">
+              20년 이상의 경험과 전문성으로 고객의 물류 요구사항을 완벽하게 해결해드립니다.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button
+                onClick={() => window.location.href = "/ko#contact"}
+                className="itl-button"
+              >
+                연락하기
+              </button>
+              <button
+                onClick={() => window.location.href = "/ko/quote"}
+                className="itl-button itl-button-outline"
+              >
+                견적 요청
+              </button>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-20 bg-blue-900 text-white">
-        <div className="max-w-6xl mx-auto px-6 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            아이티엘과 함께하세요
-          </h2>
-          <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-            20년 이상의 경험과 전문성으로 고객의 물류 요구사항을 완벽하게 해결해드립니다.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button 
-              onClick={() => window.location.href = "/ko#contact"}
-              className="px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors font-semibold text-base"
-            >
-              연락하기
-            </button>
-            <button 
-              onClick={() => window.location.href = "/ko/quote"}
-              className="px-6 py-3 border border-white text-white rounded-lg hover:bg-white hover:text-neutral-900 transition-colors font-semibold text-base"
-            >
-              견적 요청
-            </button>
-          </div>
-        </div>
-      </section>
+        </section>
+</main>
 
       {/* Footer */}
-      <footer className="bg-neutral-900 text-white py-12">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid md:grid-cols-3 gap-8 text-center md:text-left">
+      <footer className="itl-footer itl-content" lang="ko">
+        <div className="itl-wrap">
+          <div className="grid md:grid-cols-3 itl-grid-gap text-center md:text-left">
             <div>
               <div className="flex items-center justify-center md:justify-start gap-3 mb-4">
                 <span className="text-lg font-bold">{t.brand}</span>
               </div>
-              <p className="text-neutral-400 text-sm leading-relaxed">
+              <p className="text-neutral-400 leading-relaxed">
                 전문적인 물류 및 포워딩 서비스를 통해 고객의 글로벌 비즈니스를 지원합니다.
               </p>
             </div>
             <div>
-              <h4 className="font-semibold mb-4 text-white">연락처</h4>
+              <h4 className="mb-4 text-white">연락처</h4>
               <div className="space-y-2 text-sm text-neutral-400">
                 <div className="flex items-center justify-center md:justify-start gap-2">
                   <Phone className="w-4 h-4" />
@@ -405,7 +400,7 @@ export default function WhyITLPageKo() {
               </div>
             </div>
             <div>
-              <h4 className="font-semibold mb-4 text-white">운영시간</h4>
+              <h4 className="mb-4 text-white">운영시간</h4>
               <div className="space-y-2 text-sm text-neutral-400">
                 <div className="flex items-center justify-center md:justify-start gap-2">
                   <Clock className="w-4 h-4" />
@@ -415,7 +410,7 @@ export default function WhyITLPageKo() {
             </div>
           </div>
           <div className="border-t border-neutral-800 mt-8 pt-6 text-center">
-            <p className="text-neutral-500 text-sm">{t.footer}</p>
+            <p className="text-neutral-500">{t.footer}</p>
           </div>
         </div>
       </footer>
