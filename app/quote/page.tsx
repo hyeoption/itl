@@ -238,7 +238,7 @@ export default function QuotePage() {
                             } else if (subIdx === 1) {
                               window.location.href = `/about/facilities`;
                             } else if (subIdx === 2) {
-                              window.location.href = `/about/history`;
+                              window.location.href = `/about/why-hwarang#history`;
                             }
                           }}
                           className="block w-full text-left px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
@@ -319,7 +319,7 @@ export default function QuotePage() {
                               } else if (subIdx === 1) {
                                 window.location.href = `/about/facilities`;
                               } else if (subIdx === 2) {
-                                window.location.href = `/about/history`;
+                                window.location.href = `/about/why-hwarang#history`;
                               }
                             }}
                             className="block text-left py-1 text-sm text-gray-600"

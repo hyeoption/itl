@@ -1,6 +1,7 @@
 "use client";
+import CompanyHistory from "../../../company-history";
 import PageHero from "../../../page-hero";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   Shield,
   Clock,
@@ -20,7 +21,6 @@ import {
 
 export default function WhyITLPageKo() {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
 
   const t = {
     brand: "ITL CO., LTD.",
@@ -44,12 +44,6 @@ export default function WhyITLPageKo() {
     customerDesc: "고객의 성공이 곧 우리의 성공이라는 마음으로 최선을 다합니다.",
     footer: "© 2026 주식회사 아이티엘. All rights reserved."
   };
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) return null;
 
   return (
     <div className="bg-white text-neutral-800 font-noto-sans-kr" data-testid="page-root">
@@ -112,7 +106,8 @@ export default function WhyITLPageKo() {
                             } else if (subIndex === 1) {
                               window.location.href = `/ko/about/facilities`;
                             } else if (subIndex === 2) {
-                              window.location.href = `/ko/about/history`;
+                              setMobileOpen(false);
+                              window.location.href = `/ko/about/why-hwarang#history`;
                             }
                           }}
                           className={`block w-full text-left px-4 py-3 text-sm hover:bg-gray-50 transition-colors ${
@@ -167,17 +162,15 @@ export default function WhyITLPageKo() {
             </div>
           </div>
           {/* mobile */}
-          {mounted && (
-            <button
-              className="md:hidden"
-              onClick={() => setMobileOpen(!mobileOpen)}
-              aria-label="Toggle menu"
-            >
-              {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
-          )}
+          <button
+            className="md:hidden"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label="Toggle menu"
+          >
+            {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
         </div>
-        {mounted && mobileOpen && (
+        {mobileOpen && (
           <div className="md:hidden border-t bg-white">
             <div className="px-6 py-3 flex flex-col gap-3">
               {t.nav.map((item, index) => (
@@ -195,7 +188,8 @@ export default function WhyITLPageKo() {
                               } else if (subIndex === 1) {
                                 window.location.href = `/ko/about/facilities`;
                               } else if (subIndex === 2) {
-                                window.location.href = `/ko/about/history`;
+                                setMobileOpen(false);
+                                window.location.href = `/ko/about/why-hwarang#history`;
                               }
                             }}
                             className={`block text-left py-1 text-sm ${
@@ -343,6 +337,8 @@ export default function WhyITLPageKo() {
           </div>
         </section>
 
+        <CompanyHistory locale="ko" />
+
         {/* CTA Section */}
         <section className="itl-band">
           <div className="itl-wrap text-center">
@@ -350,7 +346,7 @@ export default function WhyITLPageKo() {
               아이티엘과 함께하세요
             </h2>
             <p className="text-blue-100 mb-8 max-w-2xl mx-auto">
-              20년 이상의 경험과 전문성으로 고객의 물류 요구사항을 완벽하게 해결해드립니다.
+              화물의 특성, 운송 구간, 납기에 맞춰 국제 운송을 주선합니다.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
@@ -368,7 +364,7 @@ export default function WhyITLPageKo() {
             </div>
           </div>
         </section>
-</main>
+      </main>
 
       {/* Footer */}
       <footer className="itl-footer itl-content" lang="ko">

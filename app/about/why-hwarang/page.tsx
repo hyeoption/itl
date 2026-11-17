@@ -1,6 +1,7 @@
 "use client";
+import CompanyHistory from "../../company-history";
 import PageHero from "../../page-hero";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   Shield,
   Clock,
@@ -20,7 +21,6 @@ import {
 
 export default function WhyITLPage() {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
 
   const t = {
     brand: "ITL CO., LTD.",
@@ -44,12 +44,6 @@ export default function WhyITLPage() {
     customerDesc: "We do our best with the mindset that customer success is our success.",
     footer: "© 2026 ITL Co., Ltd. All rights reserved."
   };
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) return null;
 
   return (
     <div className="bg-white text-neutral-800 font-sans">
@@ -112,7 +106,8 @@ export default function WhyITLPage() {
                             } else if (subIndex === 1) {
                               window.location.href = `/about/facilities`;
                             } else if (subIndex === 2) {
-                              window.location.href = `/about/history`;
+                              setMobileOpen(false);
+                              window.location.href = `/about/why-hwarang#history`;
                             }
                           }}
                           className={`block w-full text-left px-4 py-3 text-sm hover:bg-gray-50 transition-colors ${
@@ -167,17 +162,15 @@ export default function WhyITLPage() {
             </div>
           </div>
           {/* mobile */}
-          {mounted && (
-            <button
-              className="md:hidden"
-              onClick={() => setMobileOpen(!mobileOpen)}
-              aria-label="Toggle menu"
-            >
-              {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
-          )}
+          <button
+            className="md:hidden"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label="Toggle menu"
+          >
+            {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
         </div>
-        {mounted && mobileOpen && (
+        {mobileOpen && (
           <div className="md:hidden border-t bg-white">
             <div className="px-6 py-3 flex flex-col gap-3">
               {t.nav.map((item, index) => (
@@ -195,7 +188,8 @@ export default function WhyITLPage() {
                               } else if (subIndex === 1) {
                                 window.location.href = `/about/facilities`;
                               } else if (subIndex === 2) {
-                                window.location.href = `/about/history`;
+                                setMobileOpen(false);
+                                window.location.href = `/about/why-hwarang#history`;
                               }
                             }}
                             className={`block text-left py-1 text-sm ${
@@ -343,6 +337,8 @@ export default function WhyITLPage() {
           </div>
         </section>
 
+        <CompanyHistory locale="en" />
+
         {/* CTA Section */}
         <section className="itl-band">
           <div className="itl-wrap text-center">
@@ -350,7 +346,7 @@ export default function WhyITLPage() {
               Partner with ITL
             </h2>
             <p className="text-blue-100 mb-8 max-w-2xl mx-auto">
-              With over 20 years of experience and expertise, we perfectly solve your logistics requirements.
+              We arrange international freight around your cargo, route and delivery schedule.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
@@ -368,7 +364,7 @@ export default function WhyITLPage() {
             </div>
           </div>
         </section>
-</main>
+      </main>
 
       {/* Footer */}
       <footer className="itl-footer itl-content" lang="en">

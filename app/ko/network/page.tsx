@@ -222,7 +222,7 @@ export default function NetworkPageKo() {
                             } else if (subIndex === 1) {
                               window.location.href = `/ko/about/facilities`;
                             } else if (subIndex === 2) {
-                              window.location.href = `/ko/about/history`;
+                              window.location.href = `/ko/about/why-hwarang#history`;
                             }
                           }}
                           className="block w-full text-left px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
@@ -309,7 +309,7 @@ export default function NetworkPageKo() {
                               if (subIndex === 0) {
                                 window.location.href = `/ko/about/why-hwarang`;
                               } else if (subIndex === 1) {
-                                window.location.href = `/ko/about/history`;
+                                window.location.href = `/ko/about/why-hwarang#history`;
                               } else if (subIndex === 2) {
                                 window.location.href = `/ko/about/facilities`;
                               }
