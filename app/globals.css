@@ -82,7 +82,8 @@
   background: var(--itl-ink);
 }
 
-.itl-content h1 {
+.itl-content h1,
+.itl-page-hero .itl-page-hero-title {
   font-size: clamp(36px, 5vw, 64px);
   line-height: 1.08;
   letter-spacing: -.05em;

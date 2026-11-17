@@ -3,7 +3,13 @@ import { Building } from "lucide-react";
 const history = {
   en: {
     title: "Company History",
-    intro: "Founded in 2008, ITL grew into a freight forwarder specializing in trade routes between Russia and Asia.",
+    heroSubtitle: "Building trust and expertise through years of dedicated service",
+    companyName: "ITL CO., LTD.",
+    intro: "Our journey of growth and development in the logistics industry.",
+    historyIntro: "Since our establishment in 2008, ITL Co., Ltd. has been steadily growing as a comprehensive logistics company specializing in Russia-Asia trade corridors. Here's our journey of building expertise and expanding our capabilities.",
+    milestonesTitle: "Key Milestones",
+    visionTitle: "Looking Towards the Future",
+    vision: "Building on our past achievements, ITL will continue to provide more innovative and reliable logistics services, developing as a global logistics partner that grows together with our customers.",
     timelineItems: [
       {
         date: "2008.10.09",
@@ -39,7 +45,13 @@ const history = {
   },
   ko: {
     title: "회사연혁",
-    intro: "2008년 설립된 아이티엘은 러시아와 아시아를 잇는 운송에 특화된 국제물류주선사로 성장했습니다.",
+    heroSubtitle: "수년간의 헌신적인 서비스를 통해 쌓아온 신뢰와 전문성",
+    companyName: "주식회사 아이티엘",
+    intro: "물류 업계에서의 성장과 발전의 여정입니다.",
+    historyIntro: "2008년 설립 이후, 주식회사 아이티엘은 러시아-아시아 무역 통로에 특화된 종합 물류 전문 기업으로 꾸준히 성장해왔습니다. 전문성을 구축하고 역량을 확장해온 저희의 여정을 소개합니다.",
+    milestonesTitle: "주요 연혁",
+    visionTitle: "미래를 향한 도약",
+    vision: "아이티엘은 지난 성과를 바탕으로 더욱 혁신적이고 신뢰할 수 있는 물류 서비스를 제공하며, 고객과 함께 성장하는 글로벌 물류 파트너로 발전해 나가겠습니다.",
     timelineItems: [
       {
         date: "2008.10.09",
@@ -79,33 +91,59 @@ export default function CompanyHistory({ locale }: { locale: keyof typeof histor
   const content = history[locale];
 
   return (
-    <section id="history" className="itl-section scroll-mt-24" aria-labelledby="history-title">
-      <div className="itl-wrap">
-        <div className="itl-section-heading">
-          <h2 id="history-title" className="mb-4">{content.title}</h2>
-          <p className="itl-muted">{content.intro}</p>
+    <section id="history" className="scroll-mt-24" aria-labelledby="history-title">
+      <div className="itl-page-hero">
+        <div className="itl-wrap">
+          <h2 id="history-title" className="itl-page-hero-title">{content.title}</h2>
+          <p>{content.heroSubtitle}</p>
         </div>
-        <div className="relative mx-auto max-w-4xl">
-          <div aria-hidden="true" className="absolute left-4 top-0 bottom-0 w-0.5 bg-blue-200 md:left-1/2 md:-translate-x-0.5" />
-          <ol className="space-y-8">
-            {content.timelineItems.map(({ date, title, description }, index) => (
-              <li key={date} className="relative flex items-start md:justify-center">
-                <div aria-hidden="true" className="absolute left-4 h-3 w-3 rounded-full bg-blue-900 md:left-1/2 md:-translate-x-1.5" />
-                <div className={`ml-10 md:ml-0 md:w-1/2 ${index % 2 === 0 ? "md:pr-8 md:text-right" : "md:pl-8"}`}>
-                  <div className="itl-card">
-                    <div className="mb-3 flex items-center gap-2">
-                      <Building aria-hidden="true" className="h-5 w-5 text-blue-900" />
-                      <time dateTime={date.replace(/\./g, "-")} className="text-lg font-bold text-blue-900">
-                        {date}
-                      </time>
+      </div>
+      <div className="itl-section">
+        <div className="itl-wrap">
+          <div className="itl-section-heading">
+            <h3 className="mb-4 itl-section-title">{content.companyName}</h3>
+            <p className="itl-muted max-w-3xl mx-auto">{content.intro}</p>
+          </div>
+          <div className="mb-16">
+            <div className="itl-card">
+              <p className="itl-muted text-center max-w-4xl mx-auto">{content.historyIntro}</p>
+            </div>
+          </div>
+          <div className="max-w-4xl mx-auto">
+            <div className="itl-section-heading">
+              <h3 className="mb-4 itl-section-title">{content.milestonesTitle}</h3>
+            </div>
+            <div className="relative">
+              <div aria-hidden="true" className="absolute left-4 top-0 bottom-0 w-0.5 bg-blue-200 md:left-1/2 md:-translate-x-0.5" />
+              <ol className="space-y-8">
+                {content.timelineItems.map(({ date, title, description }, index) => (
+                  <li key={date} className="relative flex items-start md:justify-center">
+                    <div aria-hidden="true" className="absolute left-4 h-3 w-3 rounded-full bg-blue-900 md:left-1/2 md:-translate-x-1.5" />
+                    <div className={`ml-10 md:ml-0 md:w-1/2 ${index % 2 === 0 ? "md:pr-8 md:text-right" : "md:pl-8"}`}>
+                      <div className="itl-card">
+                        <div className="mb-3 flex items-center gap-2">
+                          <Building aria-hidden="true" className="h-5 w-5 text-blue-900" />
+                          <time dateTime={date.replace(/\./g, "-")} className="text-lg font-bold text-blue-900">
+                            {date}
+                          </time>
+                        </div>
+                        <h4 className="mb-3">{title}</h4>
+                        <p className="itl-muted">{description}</p>
+                      </div>
                     </div>
-                    <h3 className="mb-3">{title}</h3>
-                    <p className="itl-muted">{description}</p>
-                  </div>
-                </div>
-              </li>
-            ))}
-          </ol>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </div>
+          <div className="mt-16">
+            <div className="itl-band-panel">
+              <div className="text-center">
+                <h3 className="mb-4">{content.visionTitle}</h3>
+                <p className="text-blue-100 max-w-3xl mx-auto">{content.vision}</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
