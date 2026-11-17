@@ -1,3 +1,5 @@
+import { Building } from "lucide-react";
+
 const history = {
   en: {
     title: "Company History",
@@ -77,23 +79,34 @@ export default function CompanyHistory({ locale }: { locale: keyof typeof histor
   const content = history[locale];
 
   return (
-    <section id="history" className="itl-section itl-section-tint scroll-mt-24" aria-labelledby="history-title">
+    <section id="history" className="itl-section scroll-mt-24" aria-labelledby="history-title">
       <div className="itl-wrap">
         <div className="itl-section-heading">
           <h2 id="history-title" className="mb-4">{content.title}</h2>
           <p className="itl-muted">{content.intro}</p>
         </div>
-        <ol className="grid md:grid-cols-2 lg:grid-cols-3 itl-grid-gap">
-          {content.timelineItems.map(({ date, title, description }) => (
-            <li key={date} className="itl-card">
-              <time dateTime={date.replace(/\./g, "-")} className="mb-2 block text-sm font-bold tabular-nums text-blue-900">
-                {date}
-              </time>
-              <h3 className="mb-2">{title}</h3>
-              <p className="itl-muted">{description}</p>
-            </li>
-          ))}
-        </ol>
+        <div className="relative mx-auto max-w-4xl">
+          <div aria-hidden="true" className="absolute left-4 top-0 bottom-0 w-0.5 bg-blue-200 md:left-1/2 md:-translate-x-0.5" />
+          <ol className="space-y-8">
+            {content.timelineItems.map(({ date, title, description }, index) => (
+              <li key={date} className="relative flex items-start md:justify-center">
+                <div aria-hidden="true" className="absolute left-4 h-3 w-3 rounded-full bg-blue-900 md:left-1/2 md:-translate-x-1.5" />
+                <div className={`ml-10 md:ml-0 md:w-1/2 ${index % 2 === 0 ? "md:pr-8 md:text-right" : "md:pl-8"}`}>
+                  <div className="itl-card">
+                    <div className="mb-3 flex items-center gap-2">
+                      <Building aria-hidden="true" className="h-5 w-5 text-blue-900" />
+                      <time dateTime={date.replace(/\./g, "-")} className="text-lg font-bold text-blue-900">
+                        {date}
+                      </time>
+                    </div>
+                    <h3 className="mb-3">{title}</h3>
+                    <p className="itl-muted">{description}</p>
+                  </div>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
       </div>
     </section>
   );
