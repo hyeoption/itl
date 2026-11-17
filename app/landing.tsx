@@ -15,7 +15,7 @@ const content = {
     quote: "Request a quote", browse: "Explore services", skip: "Skip to content",
     heroLabel: "INTERNATIONAL FREIGHT FORWARDING",
     hero: ["Global freight.", "Ocean, rail & project cargo."],
-    intro: "ITL coordinates international freight around your cargo, route and schedule.",
+    intro: "With over 20 years of experience in international logistics, we plan shipments around your cargo, route and schedule.",
     services: "Freight services",
     serviceIntro: "Choose the right transport for your cargo and delivery schedule.",
     modes: [
@@ -44,7 +44,7 @@ const content = {
     quote: "운송 견적 요청", browse: "서비스 보기", skip: "본문 바로가기",
     heroLabel: "국제 화물 포워딩",
     hero: ["해상·철도부터", "프로젝트 화물까지"],
-    intro: "화물의 특성과 운송 구간, 납기에 맞춰 아이티엘이 국제 운송을 주선합니다.",
+    intro: "20년 넘게 쌓아온 국제 물류 경험을 바탕으로, 화물의 특성과 운송 구간, 납기에 맞춰 운송을 주선합니다.",
     services: "운송 서비스",
     serviceIntro: "화물의 특성과 납기에 맞는 운송 방식을 찾아보세요.",
     modes: [
