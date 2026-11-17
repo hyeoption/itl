@@ -1,0 +1,94 @@
+.heading {
+  margin-bottom: clamp(28px, 4vw, 42px);
+}
+
+.heading p {
+  max-width: 70ch;
+  margin-top: 14px;
+  text-wrap: pretty;
+}
+
+.timeline {
+  --date-width: 114px;
+  --rail-gap: 32px;
+  --dot-top: 25px;
+  position: relative;
+  display: grid;
+  gap: 14px;
+}
+
+.timeline::before {
+  position: absolute;
+  top: var(--dot-top);
+  bottom: 0;
+  left: var(--date-width);
+  width: 1px;
+  background: var(--itl-line);
+  content: "";
+}
+
+.milestone {
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--date-width) minmax(0, 1fr);
+  column-gap: var(--rail-gap);
+  align-items: start;
+}
+
+.milestone::before {
+  position: absolute;
+  top: var(--dot-top);
+  left: var(--date-width);
+  width: 9px;
+  height: 9px;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: var(--itl-ink);
+  box-shadow: 0 0 0 4px var(--itl-surface);
+  content: "";
+}
+
+.date {
+  padding-top: 18px;
+  color: var(--itl-ink);
+  font-size: 14px;
+  font-weight: 750;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.card {
+  padding: 18px 22px;
+}
+
+.card p,
+.vision p {
+  margin-top: 6px;
+}
+
+.vision {
+  margin-top: clamp(28px, 4vw, 44px);
+  padding-block: 24px;
+}
+
+@media (max-width: 600px) {
+  .timeline {
+    --date-width: 5px;
+    --dot-top: 8px;
+    gap: 18px;
+  }
+
+  .milestone {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 7px;
+    padding-left: 24px;
+  }
+
+  .date {
+    padding-top: 0;
+  }
+
+  .card {
+    padding: 16px;
+  }
+}
